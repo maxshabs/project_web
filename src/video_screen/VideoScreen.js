@@ -3,58 +3,59 @@ import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
 
-const VideoScreen = () => {
+const VideoScreen = ( {video} ) => {
+
+  const videos = [{title: 'best vid ever', author: 'Mike Hawk'},
+                  {title: 'best job ever', author: 'Mike need'},
+                  {title: 'worst vid ever', author: 'tony Hawk'}];
+const videoList = videos.map((video, key) => {
+  return <SideVideo title="t" author="b"/>
+})
+
     return (
       <body>
-        <div class="container-fluid">
+        <div className="container-fluid">
         <div id="searchBar">
                         <input></input>
                         <button>Search</button>
                     </div>
-            <div class="row">
-                <div class="col-2 bg-light vh-100">
-                      <ul class="list-group">
-                        <li class="list-group-item">An active item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
+            <div className="row">
+                <div className="col-2 bg-light vh-100">
+                      <ul className="list-group">
+                        <li className="list-group-item">An active item</li>
+                        <li className="list-group-item">A second item</li>
+                        <li className="list-group-item">A third item</li>
+                        <li className="list-group-item">A fourth item</li>
+                        <li className="list-group-item">And a fifth one</li>
                       </ul>
                 </div>
-                <div class="col-7">
+                <div className="col-7">
                     <div>
                         <div>
-                            <img class="thumbnail" src="pic3.jpg" alt=''></img>
-                            <div id="title">This is the best Video Title</div>
-                            <div class="container">
-                                <div class="userBar">
-                                    <img src="lebron.png" class="img-thumbnail" alt=''></img>
-                                    <a id="userName" href="">User Name</a>
-                                    <button class="userBar-button">Subscribe</button>
+                            <img className="thumbnail" src="pic3.jpg" alt=''></img>
+                            <div id="title">{video.title}</div>
+                            <div className="container">
+                                <div className="userBar">
+                                    <img src="lebron.png" className="img-thumbnail" alt=''></img>
+                                    <a id="userName" href="">{video.author}</a>
+                                    <button className="userBar-button">Subscribe</button>
                                 </div>
-                                <div class="actionBar">
-                                    <button class="userBar-button">Like</button>
-                                    <button class="userBar-button">Dislike</button>
-                                    <button class="userBar-button">Share</button>
+                                <div className="actionBar">
+                                    <button className="userBar-button">Like</button>
+                                    <button className="userBar-button">Dislike</button>
+                                    <button className="userBar-button">Share</button>
                                 </div>
                             </div>
                             <div id="description">
-                                    <div id="stats">100M views - 1 day ago</div>
-                                    <div>this is the description</div>
+                                    <div id="stats">{video.views} views - {video.time} ago</div>
+                                    <div>{video.description}</div>
                             </div>
                             <CommentSection/>
                         </div>
                     </div>
-                
                 </div>
-                <div class="col-3">
-
-                  <SideVideo/>
-
-                  <SideVideo/>
-
-                  <SideVideo/>
-
+                <div className="col-3">
+                  {videoList}
                 </div>
             </div>    
         </div>

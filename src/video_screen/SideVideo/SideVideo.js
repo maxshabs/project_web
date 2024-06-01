@@ -1,6 +1,6 @@
 import './SideVideo.css'
 
-function SideVideo() {
+function SideVideo({ video }) {
     return (
         <div class="sideVideoContainer">
         <div class="row">
@@ -9,9 +9,9 @@ function SideVideo() {
           </div>
           <div class="col-md-8">
             <div class="sideVideoTextContainer">
-              <h5 class="sideVideoTitle">Card title</h5>
-              <p class="sideVideoText"> This content is a little bit longer.</p>
-              <p class="sideVideoStats"><small class="text-body-secondary">16 hours ago</small></p>
+              <h5 class="sideVideoTitle">{video.title}</h5>
+              <p class="sideVideoText"> {video.author}</p>
+              <p class="sideVideoStats"><small class="text-body-secondary">{video.time} ago</small></p>
             </div>
           </div>
         </div>

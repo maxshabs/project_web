@@ -1,0 +1,18 @@
+.commentContainer {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.commentText {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.lighter {
+    font-weight: lighter;
+}
