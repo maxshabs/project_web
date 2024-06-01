@@ -25,7 +25,7 @@
 .title {
     font-weight: bold; /* Bold text */
     margin-bottom: 30px; /* Add some margin to the bottom */
-    font-size: 40px;
+    font-size: 40px; /* Large font size */
 }
 
 .input {
