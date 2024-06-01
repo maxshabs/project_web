@@ -1,0 +1,77 @@
+/* Container */
+.container {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack the flex items vertically */
+    align-items: center; /* Align items to the right */
+    
+    height: 100vh; /* Full height of the viewport */
+    background-color: #ebc8c8; /* Light grey background */
+    padding-right: 100px; /* Add some padding to the right */
+    padding-top: 50px; /* Add some padding to the top */
+}
+
+.form {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack the flex items vertically */
+    align-items: center; /* Align items to the center */
+    width: 600px; /* Fixed width */
+    padding: 80px; /* Add some padding */
+    background-color: #fff; /* White background */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow */
+    padding-right: 50px; /* Add some padding to the right */
+}
+
+.title {
+    font-weight: bold; /* Bold text */
+    margin-bottom: 30px; /* Add some margin to the bottom */
+    font-size: 40px;
+}
+
+.input {
+    
+    padding: 20px; /* Add some padding */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 10px; /* Rounded corners */
+    width: 100%; /* Full width */   
+    flex: 1; /* Take up all available space */
+}
+
+.input:focus {
+    outline: none; /* Remove the default outline */
+    border-color: black; /* Red border color on focus */
+}
+
+.input::placeholder {
+    font-size: 18px; /* Set the font size for the placeholder text */
+    color: #aaa; /* Set the color for the placeholder text */
+}
+
+.button {
+    width: 100%; /* Full width */
+    padding: 20px; /* Add some padding */
+    background-color: #00cc11; /* Red background */
+    color: #fff; /* White text */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove the border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Add a pointer cursor */
+    margin-top: 20px;
+    font-size: large;
+}
+
+.button:hover {
+    background-color: #00ff22; /* Darker red background on hover */
+    font-weight: bold; /* Bold text */
+}
+
+
+.href {
+    margin-top: 20px; /* Add some margin to the top */
+    text-decoration: none; /* Remove underline */
+    color: white; /* White text */
+}
+
+.href:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
