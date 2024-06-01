@@ -1,6 +1,7 @@
 import React from 'react';
 import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
+import CommentSection from './CommentSection/CommentSection';
 
 const VideoScreen = () => {
     return (
@@ -41,13 +42,7 @@ const VideoScreen = () => {
                                     <div id="stats">100M views - 1 day ago</div>
                                     <div>this is the description</div>
                             </div>
-                            <div class='commentSection'>
-                                217 Comments
-                                <div>
-                                  <input></input>
-                                  <button class='userBar-button'>Comment</button>
-                                </div>
-                            </div>
+                            <CommentSection/>
                         </div>
                     </div>
                 

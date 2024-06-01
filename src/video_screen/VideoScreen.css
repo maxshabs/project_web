@@ -105,11 +105,3 @@
     align-items: center;
     gap: 10px;
   }
- 
-/* Comment section */
-  .commentSection {
-    padding-top: 30px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 20px;
-  }
