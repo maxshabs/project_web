@@ -24,11 +24,6 @@
     border-radius: 15px;
   }
   
-  .miniThumbnail {
-    width: 170px;
-    border-radius: 10px;
-  }
-  
   #description {
     background-color: lightgray;
     border-radius: 10px;
@@ -110,7 +105,11 @@
     align-items: center;
     gap: 10px;
   }
-  
-  .sideListVideo {
-    width: 170px;
+ 
+/* Comment section */
+  .commentSection {
+    padding-top: 30px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
   }

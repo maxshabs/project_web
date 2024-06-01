@@ -1,0 +1,24 @@
+
+  .sideVideoPic {
+    width: 170px;
+    border-radius: 7px;
+  }
+
+  .sideVideoTextContainer {
+    padding-left: 25px;
+  }
+
+  .sideVideoTitle {
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .sideVideoText {
+    text-align: left;
+  }
+
+  .sideVideoStats {
+    text-align: left;
+  }
+  
+ 

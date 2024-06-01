@@ -1,10 +1,15 @@
 import React from 'react';
 import './VideoScreen.css';
+import SideVideo from './SideVideo/SideVideo';
 
 const VideoScreen = () => {
     return (
       <body>
         <div class="container-fluid">
+        <div id="searchBar">
+                        <input></input>
+                        <button>Search</button>
+                    </div>
             <div class="row">
                 <div class="col-2 bg-light vh-100">
                       <ul class="list-group">
@@ -16,13 +21,9 @@ const VideoScreen = () => {
                       </ul>
                 </div>
                 <div class="col-7">
-                    <div id="searchBar">
-                        <input></input>
-                        <button>Search</button>
-                    </div>
                     <div>
                         <div>
-                            <img class="thumbnail" src="maxresdefault.jpg" alt=''></img>
+                            <img class="thumbnail" src="pic3.jpg" alt=''></img>
                             <div id="title">This is the best Video Title</div>
                             <div class="container">
                                 <div class="userBar">
@@ -40,15 +41,25 @@ const VideoScreen = () => {
                                     <div id="stats">100M views - 1 day ago</div>
                                     <div>this is the description</div>
                             </div>
-                            <div>
-                                This is the comment section
+                            <div class='commentSection'>
+                                217 Comments
+                                <div>
+                                  <input></input>
+                                  <button class='userBar-button'>Comment</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 
                 </div>
                 <div class="col-3">
-                  column
+
+                  <SideVideo/>
+
+                  <SideVideo/>
+
+                  <SideVideo/>
+
                 </div>
             </div>    
         </div>
