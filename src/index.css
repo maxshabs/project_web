@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.leftMenu {
+  width: 200px;
+  background-color: lightgray;
+  float: left;
+}
+
+.mainSection {
+  float: left;
+}
+
+.tags li {
+  float: left;
+  padding: 5px;
+}
