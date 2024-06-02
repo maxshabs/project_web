@@ -1,17 +1,17 @@
 import './SideVideo.css'
 
-function SideVideo({ video }) {
+function SideVideo({ title, author, views, image }) {
     return (
-        <div class="sideVideoContainer">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="pic4.jpg" class="sideVideoPic" alt=""></img>
+        <div className="sideVideoContainer">
+        <div className="row">
+          <div className="col-md-4">
+            <img src={image} className="sideVideoPic" alt=""></img>
           </div>
-          <div class="col-md-8">
-            <div class="sideVideoTextContainer">
-              <h5 class="sideVideoTitle">{video.title}</h5>
-              <p class="sideVideoText"> {video.author}</p>
-              <p class="sideVideoStats"><small class="text-body-secondary">{video.time} ago</small></p>
+          <div className="col-md-8">
+            <div className="sideVideoTextContainer">
+              <h5 className="sideVideoTitle">{title}</h5>
+              <p className="sideVideoText"> {author}</p>
+              <p className="sideVideoStats"><small className="text-body-secondary">{views} views - 1 day ago</small></p>
             </div>
           </div>
         </div>

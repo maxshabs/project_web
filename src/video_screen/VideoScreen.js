@@ -2,14 +2,13 @@ import React from 'react';
 import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
+import videos from './videos';
+
 
 const VideoScreen = ( {video} ) => {
 
-  const videos = [{title: 'best vid ever', author: 'Mike Hawk'},
-                  {title: 'best job ever', author: 'Mike need'},
-                  {title: 'worst vid ever', author: 'tony Hawk'}];
 const videoList = videos.map((video, key) => {
-  return <SideVideo title="t" author="b"/>
+  return <SideVideo {...video} key={key}/>
 })
 
     return (
@@ -33,11 +32,11 @@ const videoList = videos.map((video, key) => {
                     <div>
                         <div>
                             <img className="thumbnail" src="pic3.jpg" alt=''></img>
-                            <div id="title">{video.title}</div>
+                            <div id="title">This is the title</div>
                             <div className="container">
                                 <div className="userBar">
                                     <img src="lebron.png" className="img-thumbnail" alt=''></img>
-                                    <a id="userName" href="">{video.author}</a>
+                                    <a id="userName" href="">Mike Hawk</a>
                                     <button className="userBar-button">Subscribe</button>
                                 </div>
                                 <div className="actionBar">
@@ -47,8 +46,8 @@ const videoList = videos.map((video, key) => {
                                 </div>
                             </div>
                             <div id="description">
-                                    <div id="stats">{video.views} views - {video.time} ago</div>
-                                    <div>{video.description}</div>
+                                    <div id="stats">100 views - 1 day ago</div>
+                                    <div>this is a description</div>
                             </div>
                             <CommentSection/>
                         </div>

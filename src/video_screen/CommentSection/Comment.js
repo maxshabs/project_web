@@ -2,11 +2,11 @@ import './Comment.css'
 
 function Comment() {
   return (
-    <div class='commentContainer'>
-            <img src="lebron.png" class="userPicture" alt=''></img>
-            <div class="commentText">
+    <div className='commentContainer'>
+            <img src="lebron.png" className="userPicture" alt=''></img>
+            <div className="commentText">
                 <h9>Lebron James - 16 mins ago</h9>
-                <p class='lighter'>I am the GOAT</p>
+                <p className='lighter'>I am the GOAT</p>
             </div>
         </div>
   );
