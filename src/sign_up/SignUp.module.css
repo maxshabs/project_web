@@ -1,82 +1,124 @@
-/* SignUp.css */
-
 /* Container */
 .container {
     display: flex; /* Flexbox layout */
     flex-direction: column; /* Stack the flex items vertically */
-    align-items: flex-end; /* Align items to the right */
-    justify-content: top; /* Align items to the top */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
     height: 100vh; /* Full height of the viewport */
-    background-color: #f9f9f9; /* Light grey background */
-    padding-right: 100px; /* Add some padding to the right */
-    padding-top: 50px; /* Add some padding to the top */
+    
+    background-color: rgba(222, 230, 242);
+}
+
+/* Logo */
+.logo {
+    margin-bottom: 20px; /* Space between logo and form */
+    margin-right: 400px; /* Space between logo and form */
+    font-size: larger; /* Larger font size */
+}
+
+/* Form Wrapper to Position Form */
+.formWrapper {
+    position: absolute; /* Position absolute */
+    right: 30%; /* Position form between center and right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
 }
 
 /* Form */
 .form {
-    width: 600px; /* Fixed width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Space between items */
+    width: 350px; /* Width for 9:16 ratio */
+    height: 600px; /* Height for 9:16 ratio */
     padding: 30px; /* Add some padding */
     background-color: #fff; /* White background */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow */
-    padding-right: 50px; /* Add some padding to the right */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow */
+    background-color: #f9f9f9; /* Light grey background */
 }
 
 /* Title */
 .title {
-    font-size: 50px; /* Large font size */
+    font-size: 32px; /* Larger font size */
     font-weight: bold; /* Bold text */
-    margin-bottom: 120px; /* Add some margin to the bottom */
+    margin-bottom: 20px; /* Add some margin to the bottom */
     text-align: center; /* Center the title text */
-    align-self: center; /* Center the title element horizontally */
     width: 100%; /* Full width */
+    color: #007bff; /* Blue color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
 }
 
 /* Input */
-.input {
-    padding: 7px; /* Add some padding */
-    margin-bottom: 15px; /* Add some margin to the bottom */
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 5px; /* Rounded corners */
-    margin-left: 5px; /* Add some margin to the left */
-    width: 30%; /* 30% of the container, will apply if flex 1 is removed */
-    flex: 1; /* Take up all available space */
+.inputContainer {
+    width: 100%;
+    position: relative;
 }
 
-.input:focus {
-    outline: none; /* Remove the default outline */
-    border-color: black; /* Red border color on focus */
+.input {
+    width: 100%; /* Full width */
+    padding: 15px 10px; /* Add some padding */
+    margin-bottom: 15px; /* Add some margin to the bottom */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 10px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 16px; /* Increase font size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow to inputs */
+    background-color: white;
 }
+
+/* Label Inside Input */
+.inputLabel {
+    position: absolute; /* Position absolute */
+    top: -10px; /* Position above the input */
+    left: 10px; /* Position to the left inside the input */
+    background-color: #fff; /* Background to cover input border */
+    padding: 0 5px; /* Padding for background */
+    font-size: 15px; /* Larger font size */
+    color: #333; /* Darker color */
+}
+
+/* Placeholder */
+.input::placeholder {
+    font-size: 14px; /* Set the font size for the placeholder text */
+    color: #aaa; /* Set the color for the placeholder text */
+}
+
 /* Button */
 .button {
     width: 100%; /* Full width */
     padding: 10px; /* Add some padding */
-    background-color: #ff0000; /* Red background */
+    background-color: #007bff; /* Blue background */
     color: #fff; /* White text */
     font-weight: bold; /* Bold text */
     border: none; /* Remove the border */
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 15px; /* Rounded corners */
     cursor: pointer; /* Add a pointer cursor */
+    font-size: 16px; /* Increase font size for the button */
+    margin-top: 20px; /* Add margin to the top */
 }
 
 .button:hover {
-    background-color: #cc0000; /* Darker red background on hover */
+    background-color: #0056b3; /* Darker blue background on hover */
 }
 
-.form-row {
-    display: flex; /* Flexbox layout */
-    margin-bottom: 10px; /* Add some margin to the bottom */
-}
-
-.form-label {
-    width: 130px; /* Fixed width for labels */
-    margin-right: 10px; /* Add some margin to the right */
-    text-align: left; /* Left align text */
-}
-
-.error-message {
+/* Error Message */
+.errorMessage {
     color: red; /* Red text color */
     font-size: 14px; /* Small font size */
     margin-top: -10px; /* Add some negative margin to the top */
     margin-bottom: 10px; /* Add some margin to the bottom */
-  }
+}
+
+/* Link */
+.link {
+    margin-top: -20px; /* Add some negative margin to the top */
+    color: #007bff; /* Blue text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Font size */
+}
+
+.link:hover {
+    text-decoration: underline; /* Underline on hover */
+}

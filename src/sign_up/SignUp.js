@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './SignUp.module.css';
 
 const SignUp = () => {
-  
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -42,34 +41,38 @@ const SignUp = () => {
       console.log('Form contains errors');
     }
   };
-  
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Sign Up</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.formRow}>
-          <label htmlFor="username" className={styles.formLabel}>Username:</label>
-          <input type="text" id="username" name="username" className={styles.input} required />
-        </div>
-        <div className={styles.formRow}>
-          <label htmlFor="password" className={styles.formLabel}>Password:</label>
-          <input type="password" id="password" name="password" className={styles.input} value={password} onChange={validatePassword} required />
-        </div>
-        <div className={styles.formRow}>
-          <label htmlFor="verifyPassword" className={styles.formLabel}>Verify Password:</label>
-          <input type="password" id="verifyPassword" name="verifyPassword" className={styles.input} value={verifyPassword} onChange={validateVerifyPassword} required />
-        </div>
-        <div className={styles.formRow}>
-          <label htmlFor="displayName" className={styles.formLabel}>Display Name:</label>
-          <input type="text" id="displayName" name="displayName" className={styles.input} required />
-        </div>
-        <div className={styles.formRow}>
-          <label htmlFor="profilePicture" className={styles.formLabel}>Upload Profile Picture:</label>
-          <input type="file" id="profilePicture" name="profilePicture" className={styles.input} required />
-        </div>
-        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>} 
-        <button type="submit" className={styles.button}>Sign Up</button>
-      </form>
+      <div className={styles.logo}>Logo Here</div>
+      <div className={styles.formWrapper}>
+        <h1 className={styles.title}>Sign Up</h1>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="username">Username</label>
+            <input type="text" id="username" name="username" className={styles.input} placeholder="example123" required />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" className={styles.input} placeholder="********" value={password} onChange={validatePassword} required />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="verifyPassword">Verify Password</label>
+            <input type="password" id="verifyPassword" name="verifyPassword" className={styles.input} placeholder="********" value={verifyPassword} onChange={validateVerifyPassword} required />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="displayName">Display Name</label>
+            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="Lebron james" required />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture</label>
+            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} required />
+          </div>
+          {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+          <button type="submit" className={styles.button}>Sign Up</button>
+          <a href="/login" className={styles.link}>Already have an account? Log in</a>
+        </form>
+      </div>
     </div>
   );
 };
