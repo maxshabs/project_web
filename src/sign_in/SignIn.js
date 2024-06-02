@@ -1,16 +1,27 @@
+// src/sign_in/SignIn.js
 import React from 'react';
 import styles from './SignIn.module.css';
+import logo from '../assets/lebronsunshine.jpg';
 
 const SignIn = () => {
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
-            <h1 className={styles.title}>Footub</h1>
-            <input type="text" id="username" name="username" className={styles.input} placeholder='Username' required />
-            <input type="password" id="password" name="password" className={styles.input} placeholder='Password' required />
-            <button type="submit" className={styles.button}>Sign In</button>
-       </form>
-       <a href="/sign-up" className={styles.href}>Don't have an account? Sign up here.</a>
+      <h1 className={styles.title}>VidTube</h1>
+      <div className={styles.formWrapper}>
+        <form className={styles.form}>
+          <img src={logo} alt='logo' className={styles.logo} />
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="username">Username</label>
+            <input type="text" id="username" name="username" className={styles.input} placeholder="example123" required />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" className={styles.input} placeholder="********" required />
+          </div>
+          <button type="submit" className={styles.button}>Sign In</button>
+          <a href="/sign-up" className={styles.link}>Don't have an account? Sign up here.</a>
+        </form>
+      </div>
     </div>
   );
 }

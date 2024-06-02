@@ -6,7 +6,7 @@ import SignIn from './sign_in/SignIn';
 function App() {
   return (
     <div className="App">
-        <SignUp />
+        <SignIn />
     </div>
   );
 }
