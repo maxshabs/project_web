@@ -62,7 +62,7 @@ const SignUp = () => {
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="displayName">Display Name</label>
-            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="Lebron james" required />
+            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="Lebron James" required />
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture</label>

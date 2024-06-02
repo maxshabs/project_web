@@ -1,0 +1,116 @@
+/* Container */
+.container {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack the flex items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: 100vh; /* Full height of the viewport */
+    background-color: rgba(222, 230, 242); /* Light grey background */
+}
+
+/* Form Wrapper to Position Form */
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px; /* Width for 9:16 ratio */
+    height: 600px; /* Height for 9:16 ratio */
+    padding: 30px; /* Add some padding */
+    background-color: #fff; /* White background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow */
+}
+
+/* Form */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Space between items */
+    width: 100%;
+    height: 100%;
+}
+
+/* Logo */
+.logo {
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Space between logo and form */
+}
+
+/* Title */
+.title {
+    font-size: 32px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 20px; /* Add some margin to the bottom */
+    text-align: center; /* Center the title text */
+    width: 100%; /* Full width */
+    color: #007bff; /* Blue color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
+}
+
+/* Input Container */
+.inputContainer {
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px; /* Reduce margin between inputs */
+}
+
+/* Input */
+.input {
+    width: 100%; /* Full width */
+    padding: 15px 10px; /* Add some padding */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 10px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 16px; /* Increase font size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow to inputs */
+    background-color: #fff; /* Ensure white background for inputs */
+}
+
+/* Label Inside Input */
+.inputLabel {
+    position: absolute; /* Position absolute */
+    top: -10px; /* Position above the input */
+    left: 10px; /* Position to the left inside the input */
+    background-color: #fff; /* Background to cover input border */
+    padding: 0 5px; /* Padding for background */
+    font-size: 15px; /* Larger font size */
+    color: #333; /* Darker color */
+}
+
+/* Placeholder */
+.input::placeholder {
+    font-size: 14px; /* Set the font size for the placeholder text */
+    color: #aaa; /* Set the color for the placeholder text */
+}
+
+/* Button */
+.button {
+    width: 100%; /* Full width */
+    padding: 10px; /* Add some padding */
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove the border */
+    border-radius: 15px; /* Rounded corners */
+    cursor: pointer; /* Add a pointer cursor */
+    font-size: 16px; /* Increase font size for the button */
+    margin-top: 20px; /* Add margin to the top */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker blue background on hover */
+}
+
+/* Link */
+.link {
+    color: #007bff; /* Blue text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Font size */
+    margin-top: 10px; /* Add margin to the top */
+    margin-bottom: 20px; /* Add margin to the bottom */
+}
+
+.link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
