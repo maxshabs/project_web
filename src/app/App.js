@@ -1,35 +1,48 @@
 import './App.css';
-import VideoItem from '../videoItem/VideoItem';
 import videos from '../videoItem/videos';
 import LeftMenu from '../leftMenu/LeftMenu';
+import Search from '../search/Search';
+import { useState } from 'react';
+import VideoListResults from '../videoListResults/VideoListResults';
+import SignInButton from '../signInButton/SignInButton';
+
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
 
-    const videoList = videos.map((video, key) => {
-        return <VideoItem {...video} key={key} />
-    });
+    const [videoList, setVideoList] = useState(videos);
+
+    const doSearch = function (query) {
+        setVideoList(videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
+    }
 
     return (
         <div className="container-fluid">
             <div className="row">
-                <LeftMenu />
-                <div className="col main-content">
-                    <div className="row bg-white justify-content-center">
-                        <div className="col-11">
-                            <div className="input-group mb-3 p-2">
-                                <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"></input>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2"><i className="bi bi-search"></i></button>
+                <BrowserRouter>
+                    <div className="col-1 menu">
+                        <LeftMenu />
+                    </div>
+                    <div className="col-11 main-content">
+                        <div className="row">
+                            <div className="col">
+                                <Search doSearch={doSearch} />
                             </div>
-                            <button className="sign-in-button" type="button">
-                                <i className="bi bi-person"></i>Sign in
-                            </button>
+                            <div className="col">
+                                <SignInButton />
+                            </div>
                         </div>
+                        <div className="row bg-white">
+                            <button type="button" className="btn btn-light col m-3 tag">Light</button>
+                            <button type="button" className="btn btn-light col m-3 tag">Light</button>
+                            <button type="button" className="btn btn-light col m-3 tag">Light</button>
+                            <button type="button" className="btn btn-light col m-3 tag">Light</button>
+                            <button type="button" className="btn btn-light col m-3 tag">Light</button>
+                            <button type="button" className="btn btn-light col m-3 tag">Light</button>
+                        </div>
+                        <VideoListResults videos={videoList} />
                     </div>
-                    <div className="row"></div>
-                    <div className="row gx-3">
-                        {videoList}
-                    </div>
-                </div>
+                </BrowserRouter>
             </div>
         </div>
     );

@@ -1,0 +1,61 @@
+.nav-link {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Add padding around the icons */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for the background color */
+    color: #000; /* Default text color */
+}
+
+.nav-link:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.nav-link i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.menu-link {
+    color: #000;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 10px;
+    display: flex;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+.menu-item {
+    padding: 0;
+    margin: 10px 0;
+}
+.logo-image {
+    height: 60px;
+    width: auto;
+}
+.menu-btn {
+    padding: 5px;
+    border: 1px solid #000;
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    margin-left: 16px;
+}
+
+.menu-btn i {
+    font-size: 1.5rem;
+}
+
+.menu-btn:hover {
+    background-color: #e0e0e0;
+}

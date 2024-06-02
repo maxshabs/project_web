@@ -1,0 +1,48 @@
+.card {
+    color: rgb(0, 0, 0); /* White text color */
+    border: none; /* Remove default border */
+    overflow: hidden;
+    transition: transform 0.2s; /* Smooth transform transition for hover effect */
+    margin: 10px; /* Add margin for spacing between cards */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.card-img-top {
+    border-radius: 12px; /* Rounded corners */
+    border-bottom: 1px solid #333; /* Border at the bottom of the image */
+    height: 150px;
+}
+
+.card-body {
+    padding: 10px; /* Add padding inside the card */
+}
+
+.card-title {
+    font-size: 1rem; /* Smaller font size for the title */
+    margin-bottom: 0.5rem; /* Space below the title */
+    line-height: 1.2; /* Adjust line height */
+}
+
+.card-text {
+    font-size: 0.875rem; /* Smaller font size for the text */
+    margin-bottom: 0.25rem; /* Space below the text */
+    line-height: 1.2; /* Adjust line height */
+}
+
+.card-text:last-child {
+    color: #aaa; /* Lighter color for the last text (views and time ago) */
+}
+
+.video-time {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.75rem; /* Smaller font size for the time */
+    border-radius: 3px;
+}
