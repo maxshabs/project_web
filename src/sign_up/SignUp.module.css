@@ -5,7 +5,6 @@
     align-items: center; /* Center items horizontally */
     justify-content: center; /* Center items vertically */
     height: 100vh; /* Full height of the viewport */
-    
     background-color: rgba(222, 230, 242);
 }
 
@@ -36,7 +35,6 @@
     background-color: #fff; /* White background */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow */
-    background-color: #f9f9f9; /* Light grey background */
 }
 
 /* Title */
@@ -50,12 +48,13 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
 }
 
-/* Input */
+/* Input Container */
 .inputContainer {
     width: 100%;
     position: relative;
 }
 
+/* Input */
 .input {
     width: 100%; /* Full width */
     padding: 15px 10px; /* Add some padding */
@@ -65,7 +64,12 @@
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     font-size: 16px; /* Increase font size */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow to inputs */
-    background-color: white;
+    background-color: #fff; /* Ensure white background for inputs */
+}
+
+/* File Input */
+.input[type="file"] {
+    background-color: #fff; /* Ensure white background for file input */
 }
 
 /* Label Inside Input */
@@ -113,7 +117,7 @@
 
 /* Link */
 .link {
-    margin-top: -20px; /* Add some negative margin to the top */
+    margin-top: 20px; /* Add some margin to the top */
     color: #007bff; /* Blue text color */
     text-decoration: none; /* Remove underline */
     font-size: 14px; /* Font size */
