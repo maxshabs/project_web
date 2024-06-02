@@ -7,7 +7,7 @@ import UploadVideo from './upload_video/UploadVideo';
 function App() {
   return (
     <div className="App">
-        <SignUp />
+        <UploadVideo />
     </div>
   );
 }
