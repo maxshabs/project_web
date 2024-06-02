@@ -1,0 +1,82 @@
+[
+    {
+        "id": "1",
+        "title": "Funniest videos of 2022",
+        "author": "Tutorials by Adam",
+        "views": "1.2M",
+        "img": "images/img1.jpg",
+        "time": "2 years"
+    },
+    {
+        "id": "2",
+        "title": "Learn Photoshop in 5 minutes",
+        "author": "Tutorials by Adam",
+        "views": "517K",
+        "img": "images/img2.jpg",
+        "time": "1 year"
+    },
+    {
+        "id": "3",
+        "title": "Was Will Smith in Shrek?",
+        "author": "Conspiracy Theories",
+        "views": "1.2M",
+        "img": "images/img3.jpg",
+        "time": "2 years"
+    },
+    {
+        "id": "4",
+        "title": "Who is the best Roblox youtuber?",
+        "author": "MegaEpicGaming",
+        "views": "5.7K",
+        "img": "images/img4.jpg",
+        "time": "3 weeks"
+    },
+    {
+        "id": "5",
+        "title": "Will AI take over the world?",
+        "author": "DailyTechNews",
+        "views": "3.4M",
+        "img": "images/img5.jpg",
+        "time": "6 months"
+    },
+    {
+        "id": "6",
+        "title": "The possibility to create superhumans",
+        "author": "ScienceDaily",
+        "views": "5.2M",
+        "img": "images/img6.jpg",
+        "time": "4 months"
+    },
+    {
+        "id": "7",
+        "title": "Lebron James 2013-2014 Highlights",
+        "author": "NBA",
+        "views": "2M",
+        "img": "images/img7.jpg",
+        "time": "3 years"
+    },
+    {
+        "id": "8",
+        "title": "Funny cat compilation 2023",
+        "author": "FunnyAnimals",
+        "views": "1.5M",
+        "img": "images/img8.jpg",
+        "time": "1 year"
+    },
+    {
+        "id": "9",
+        "title": "Best DIY of 2024",
+        "author": "Diyourself",
+        "views": "103K",
+        "img": "images/img9.jpg",
+        "time": "3 days"
+    },
+    {
+        "id": "10",
+        "title": "The best gaming setup of 2023",
+        "author": "GamingCentral",
+        "views": "1.9M",
+        "img": "images/img10.jpg",
+        "time": "1 year"
+    }
+]

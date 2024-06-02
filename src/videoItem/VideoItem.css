@@ -1,48 +1,50 @@
 .card {
-    color: rgb(0, 0, 0); /* White text color */
-    border: none; /* Remove default border */
+    color: rgb(0, 0, 0);
+    border: none;
     overflow: hidden;
-    transition: transform 0.2s; /* Smooth transform transition for hover effect */
-    margin: 10px; /* Add margin for spacing between cards */
+    transition: transform 0.2s;
+    margin: 10px; 
+    text-decoration: none;
+    width: auto;
 }
 
 .card:hover {
-    transform: scale(1.05); /* Scale up on hover */
+    transform: scale(1.05);
 }
 
 .card-img-top {
-    border-radius: 12px; /* Rounded corners */
-    border-bottom: 1px solid #333; /* Border at the bottom of the image */
+    border-radius: 12px; 
+    border: 1px solid #b3b3b3; 
     height: 150px;
 }
 
 .card-body {
-    padding: 10px; /* Add padding inside the card */
+    padding: 10px; 
 }
 
 .card-title {
-    font-size: 1rem; /* Smaller font size for the title */
-    margin-bottom: 0.5rem; /* Space below the title */
-    line-height: 1.2; /* Adjust line height */
+    font-size: 1rem; 
+    margin-bottom: 0.5rem; 
+    line-height: 1.2; 
 }
 
 .card-text {
-    font-size: 0.875rem; /* Smaller font size for the text */
-    margin-bottom: 0.25rem; /* Space below the text */
-    line-height: 1.2; /* Adjust line height */
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
 }
 
 .card-text:last-child {
-    color: #aaa; /* Lighter color for the last text (views and time ago) */
+    color: #aaa;
 }
 
 .video-time {
     position: absolute;
     bottom: 8px;
     right: 8px;
-    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.75); 
     color: white;
     padding: 2px 5px;
-    font-size: 0.75rem; /* Smaller font size for the time */
+    font-size: 0.75rem; 
     border-radius: 3px;
 }

@@ -1,6 +1,5 @@
 .nav-link {
     display: flex; /* Use flexbox to align items */
-    align-items: center; /* Center items vertically */
     padding: 10px; /* Add padding around the icons */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s; /* Smooth transition for the background color */
@@ -18,10 +17,12 @@
 
 .menu-link {
     color: #000;
+    border: none;
     transition: background-color 0.3s;
     border-radius: 5px;
     font-size: 25px;
-    padding: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
     display: flex;
     text-decoration: none;
 }
@@ -30,26 +31,21 @@
     background-color: #e0e0e0;
     color: #000;
 }
-.menu-item {
-    padding: 0;
-    margin: 10px 0;
-}
 .logo-image {
-    height: 60px;
+    height: 65px;
     width: auto;
 }
 .menu-btn {
-    padding: 5px;
-    border: 1px solid #000;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border: none;
     background-color: transparent;
     width: auto;
     height: auto;
-    display: inline-flex;
-    align-items: center;
+    display: flex;
     justify-content: center;
-    border-radius: 50px;
+    border-radius: 5px;
     transition: background-color 0.3s;
-    margin-left: 16px;
 }
 
 .menu-btn i {
@@ -58,4 +54,12 @@
 
 .menu-btn:hover {
     background-color: #e0e0e0;
+}
+
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
