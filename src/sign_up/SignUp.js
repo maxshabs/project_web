@@ -1,6 +1,6 @@
 // src/sign_up/SignUp.js
 import React, { useState } from 'react';
-import './SignUp.css';
+import styles from './SignUp.module.css';
 
 const SignUp = () => {
   
@@ -44,31 +44,31 @@ const SignUp = () => {
   };
   
   return (
-    <div className="container">
-      <h1 className="title">Sign Up</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-row">
-          <label htmlFor="username" className="form-label">Username:</label>
-          <input type="text" id="username" name="username" className="input" required />
+    <div className={styles.container}>
+      <h1 className={styles.title}>Sign Up</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.formRow}>
+          <label htmlFor="username" className={styles.formLabel}>Username:</label>
+          <input type="text" id="username" name="username" className={styles.input} required />
         </div>
-        <div className="form-row">
-          <label htmlFor="password" className="form-label">Password:</label>
-          <input type="password" id="password" name="password" className="input" value={password} onChange={validatePassword} required />
+        <div className={styles.formRow}>
+          <label htmlFor="password" className={styles.formLabel}>Password:</label>
+          <input type="password" id="password" name="password" className={styles.input} value={password} onChange={validatePassword} required />
         </div>
-        <div className="form-row">
-          <label htmlFor="verifyPassword" className="form-label">Verify Password:</label>
-          <input type="password" id="verifyPassword" name="verifyPassword" className="input" value={verifyPassword} onChange={validateVerifyPassword} required />
+        <div className={styles.formRow}>
+          <label htmlFor="verifyPassword" className={styles.formLabel}>Verify Password:</label>
+          <input type="password" id="verifyPassword" name="verifyPassword" className={styles.input} value={verifyPassword} onChange={validateVerifyPassword} required />
         </div>
-        <div className="form-row">
-          <label htmlFor="displayName" className="form-label">Display Name:</label>
-          <input type="text" id="displayName" name="displayName" className="input" required />
+        <div className={styles.formRow}>
+          <label htmlFor="displayName" className={styles.formLabel}>Display Name:</label>
+          <input type="text" id="displayName" name="displayName" className={styles.input} required />
         </div>
-        <div className="form-row">
-          <label htmlFor="profilePicture" className="form-label">Upload Profile Picture:</label>
-          <input type="file" id="profilePicture" name="profilePicture" className="input" required />
+        <div className={styles.formRow}>
+          <label htmlFor="profilePicture" className={styles.formLabel}>Upload Profile Picture:</label>
+          <input type="file" id="profilePicture" name="profilePicture" className={styles.input} required />
         </div>
-        {errorMessage && <div className="error-message">{errorMessage}</div>} 
-        <button type="submit" className="button">Sign Up</button>
+        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>} 
+        <button type="submit" className={styles.button}>Sign Up</button>
       </form>
     </div>
   );
