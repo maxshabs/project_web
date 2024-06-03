@@ -1,8 +1,14 @@
 // src/sign_up/SignUp.js
 import React, { useState } from 'react';
 import styles from './SignUp.module.css';
+import { useNavigate, Link } from 'react-router-dom';
 
-const SignUp = () => {
+
+const SignUp = ({ addUser }) => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [profilePicture, setProfilePicture] = useState(null);
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,11 +40,11 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errorMessage === '') {
-      // Proceed with form submission
-      console.log('Form submitted');
+      addUser({ username, password, displayName, profilePicture });
+      navigate('/sign-in');
     } else {
       // Prevent form submission
-      console.log('Form contains errors');
+      setErrorMessage('Form contains errors');
     }
   };
 
@@ -50,7 +56,7 @@ const SignUp = () => {
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" className={styles.input} placeholder="example123" required />
+            <input type="text" id="username" name="username" className={styles.input} placeholder="example123" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="password">Password</label>
@@ -62,15 +68,15 @@ const SignUp = () => {
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="displayName">Display Name</label>
-            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="Lebron James" required />
+            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="Lebron James" value={displayName} onChange={(e) => setDisplayName(e.target.value)} required />
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture</label>
-            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} required />
+            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={(e) => setProfilePicture(URL.createObjectURL(e.target.files[0]))} required />
           </div>
           {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
           <button type="submit" className={styles.button}>Sign Up</button>
-          <a href="/login" className={styles.link}>Already have an account? Log in</a>
+          <Link to="/sign-in" className={styles.link}>Already have an account? Log in</Link>
         </form>
       </div>
     </div>

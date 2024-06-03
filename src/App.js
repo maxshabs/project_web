@@ -1,14 +1,14 @@
-import logo from './logo.svg';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import SignUp from './sign_up/SignUp';
-import SignIn from './sign_in/SignIn';
-import UploadVideo from './upload_video/UploadVideo';
+import ManageRoutes from './ManageRoutes';
 
 function App() {
   return (
-    <div className="App">
-        <UploadVideo />
-    </div>
+    <Router>
+      <ManageRoutes />
+    </Router>
   );
 }
 

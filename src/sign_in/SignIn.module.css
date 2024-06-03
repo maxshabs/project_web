@@ -10,9 +10,6 @@
 
 /* Form Wrapper to Position Form */
 .formWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 350px; /* Width for 9:16 ratio */
     height: 600px; /* Height for 9:16 ratio */
     padding: 30px; /* Add some padding */
@@ -23,12 +20,11 @@
 
 /* Form */
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between; /* Space between items */
-    width: 100%;
-    height: 100%;
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack the flex items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: space-between; /* Space between items */ 
+    height: 100%; /* Full height */
 }
 
 /* Logo */
@@ -41,17 +37,14 @@
 .title {
     font-size: 32px; /* Larger font size */
     font-weight: bold; /* Bold text */
-    margin-bottom: 20px; /* Add some margin to the bottom */
-    text-align: center; /* Center the title text */
-    width: 100%; /* Full width */
     color: #007bff; /* Blue color */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
 }
 
 /* Input Container */
 .inputContainer {
-    width: 100%;
-    position: relative;
+    width: 100%; /* Full width */
+    position: relative; /* Position relative for absolute positioning */
     margin-bottom: 15px; /* Reduce margin between inputs */
 }
 
