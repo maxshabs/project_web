@@ -1,5 +1,6 @@
 .card {
-    color: rgb(0, 0, 0);
+    color: var(--card-text-color);
+    background-color: var(--card-background-color);
     border: none;
     overflow: hidden;
     transition: transform 0.2s;
@@ -38,13 +39,4 @@
     color: #aaa;
 }
 
-.video-time {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background-color: rgba(0, 0, 0, 0.75); 
-    color: white;
-    padding: 2px 5px;
-    font-size: 0.75rem; 
-    border-radius: 3px;
-}
+

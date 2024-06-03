@@ -39,7 +39,7 @@ function LeftMenu() {
                     <h5 className="offcanvas-title" id="offcanvasMenuLabel">
                         <img src={Logo} alt="LogoImg" className="logo-image" />
                     </h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" className="close-btn" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
                 <div className="offcanvas-body">
                     <ul className="list-group list-group-flush offcanvas-list" id="offcanvasMenu">

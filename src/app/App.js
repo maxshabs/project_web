@@ -1,20 +1,32 @@
 import './App.css';
+import '../theme.css';
 import videos from '../data/videos.json';
 import LeftMenu from '../leftMenu/LeftMenu';
 import Search from '../search/Search';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import VideoListResults from '../videoListResults/VideoListResults';
 import SignInButton from '../signInButton/SignInButton';
 import UploadButton from '../uploadButton/UploadButton';
 import CategoryButton from '../categoryButton/CategoryButton';
+import ThemeSwitchButton from '../themeSwitchButton/ThemeSwitchButton';
+
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
 
     const [videoList, setVideoList] = useState(videos);
+    const [theme, setTheme] = useState('light');
+
+    useEffect(() => {
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+    }, [theme]);
 
     const doSearch = function (query) {
         setVideoList(videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
+    }
+
+    const toggleTheme = function () {
+        setTheme(theme === 'light' ? 'dark' : 'light');
     }
 
     return (
@@ -30,6 +42,7 @@ function App() {
                                 <Search doSearch={doSearch} />
                             </div>
                             <div className="col-auto d-flex justify-content-center">
+                                <ThemeSwitchButton toggleTheme={toggleTheme} theme={theme} />
                                 <UploadButton />
                                 <SignInButton />
                             </div>

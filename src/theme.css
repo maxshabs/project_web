@@ -1,0 +1,41 @@
+/* Light theme variables */
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --link-color: #0000ee;
+    --button-background-color: #f0f0f0;
+    --button-text-color: #000000;
+    --button-hover-background-color: #e0e0e0;
+    --card-background-color: #ffffff;
+    --card-text-color: #000000;
+    --nav-link-hover-color: #ebebeb;
+    --nav-link-color: #000;
+    --nav-link-hover-text-color: #bbbbbb;
+    --menu-link-text-color: #000;
+    --menu-link-hover-color: #ebebeb;
+    --offcanvas-background-color: #ffffff;
+    --category-button-background-color: #f0f0f0;
+    --category-button-text-color: #000;
+    --category-button-hover-background-color: #e0e0e0;
+}
+
+/* Dark theme variables */
+:root.dark {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --link-color: #1e90ff;
+    --button-background-color: #333333;
+    --button-text-color: #ffffff;
+    --button-hover-background-color: #444444;
+    --card-background-color: #1e1e1e;
+    --card-text-color: #ffffff;
+    --nav-link-hover-color: #333;
+    --nav-link-color: #ffffff;
+    --nav-link-hover-text-color: #bbbbbb;
+    --offcanvas-background-color: #252525;
+    --menu-link-text-color: #ffffff;
+    --menu-link-hover-color: #7e7e7e;
+    --category-button-background-color: #555555;
+    --category-button-text-color: #ffffff;
+    --category-button-hover-background-color: #979797;
+}

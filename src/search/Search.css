@@ -5,7 +5,8 @@
     display: flex;
     margin-top: 10px;
     max-width: 500px; /* Set a maximum width */
-    width: 100%
+    width: 100%;
+    background-color: var(--button-background-color);
 }
 
 #search-box .form-control {
@@ -13,11 +14,16 @@
     border-radius: 2rem 0 0 2rem;
     box-shadow: none;
     padding-left: 1rem;
+    background-color: var(--button-background-color);
 }
 
+.form-control::placeholder {
+    color: var(--button-text-color);
+}
 #search-box .btn {
     border: none;
     border-left: 1px solid #ddd;
     border-radius: 0 2rem 2rem 0;
     padding: 0 1rem;
+    color: var(--button-text-color);
 }

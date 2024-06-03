@@ -7,7 +7,7 @@
   margin-top: 10px;
   margin-right: 8px;
   transition: background-color 0.3s, color 0.3s;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
 }
 .upload-button:hover {
   background-color: #007bff; /* Hover background color */
