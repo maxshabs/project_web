@@ -1,12 +1,18 @@
-/* src/logged_in_header/LoggedInHeader.module.css */
+/* src/logged_in_header/loggedInHeader.module.css */
 .loggedInHeader {
   background-color: var(--background-color);
   font-size: 16px;
-  border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Adjust space between elements */
-  padding: 0 20px; /* Add padding to the sides */
+  justify-content: space-between; /* Distribute space between items */
+  padding: 0 20px;
+  border: none;
+}
+
+.loggedInHeader span {
+  color: var(--text-color);
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .logoContainer {
@@ -16,11 +22,11 @@
 
 .logo {
   height: 65px;
-  width: auto;
+  width: 100px;
 }
 
 .searchContainer {
-  flex-grow: 1; /* Make the search container take available space */
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +37,13 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
 }
 
 .button {
@@ -44,8 +56,8 @@
   justify-content: center;
   transition: background-color 0.3s, color 0.3s;
   margin-top: 10px;
+  margin-right: 10px;
   text-decoration: none;
-  margin-left: 5px;
 }
 
 .button:hover {

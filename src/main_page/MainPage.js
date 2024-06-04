@@ -4,9 +4,7 @@ import LeftMenu from '../leftMenu/LeftMenu';
 import VideoListResults from '../videoListResults/VideoListResults';
 import CategoryButton from '../categoryButton/CategoryButton';
 
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-
-function MainPage({ videos, theme, doSearch, toggleTheme}) {
+function MainPage({ videos }) {
 
     return (
         <div className="container-fluid">

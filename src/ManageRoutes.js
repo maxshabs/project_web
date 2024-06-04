@@ -25,6 +25,10 @@ const ManageRoutes = () => {
     return user;
   };
 
+  const signOutUser = () => {
+    setLoggedInUser(null);
+  };
+
   const [videoList, setVideoList] = useState(videos);
   const [theme, setTheme] = useState('light');
 
@@ -44,12 +48,13 @@ const ManageRoutes = () => {
     <Routes>
       <Route path="/sign-up" element={<SignUp addUser={addUser} />} />
       <Route path="/sign-in" element={<SignIn validateUser={validateUser} />} />
+      
       <Route 
         path="/main" 
         element={
           <>
-            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme}/>
-            <MainPage theme={theme} videos={videoList} doSearch={doSearch} toggleTheme={toggleTheme} loggedInUser={loggedInUser}/>
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
+            <MainPage videos={videoList}/>
           </>
         } 
       />
@@ -57,7 +62,7 @@ const ManageRoutes = () => {
         path="/upload-video" 
         element={
             <>
-              <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme}/>
+              <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
               <UploadVideo />
             </>
         } 
