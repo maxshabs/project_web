@@ -1,18 +1,29 @@
-/* src/logged_in_header/loggedInHeader.module.css */
+/* src/logged_in_header/LoggedInHeader.module.css */
 .loggedInHeader {
   background-color: var(--background-color);
-  padding: 10px;
-  text-align: right;
   font-size: 16px;
   border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  border: none;
+  justify-content: space-between; /* Adjust space between elements */
+  padding: 0 20px; /* Add padding to the sides */
 }
 
-.loggedInHeader span {
-  margin-left: 10px;
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 65px;
+  width: auto;
+}
+
+.searchContainer {
+  flex-grow: 1; /* Make the search container take available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profilePicture {
@@ -20,7 +31,7 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .button {
@@ -32,19 +43,12 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s, color 0.3s;
-  float: right;
   margin-top: 10px;
-  margin-right: 8px;
   text-decoration: none;
+  margin-left: 5px;
 }
 
 .button:hover {
   background-color: #007bff;
   color: white;
-}
-
-.logo {
-  height: 65px;
-  width: auto;
-  float: left;
 }
