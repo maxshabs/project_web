@@ -10,6 +10,7 @@
 }
 
 #search-box .form-control {
+    color: var(--text-color);
     border: none;
     border-radius: 2rem 0 0 2rem;
     box-shadow: none;

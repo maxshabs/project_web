@@ -3,7 +3,6 @@ import '../theme.css';
 import videos from '../data/videos.json';
 import LeftMenu from '../leftMenu/LeftMenu';
 import Search from '../search/Search';
-import { useState, useEffect } from 'react';
 import VideoListResults from '../videoListResults/VideoListResults';
 import SignInButton from '../signInButton/SignInButton';
 import UploadButton from '../uploadButton/UploadButton';
@@ -12,22 +11,7 @@ import ThemeSwitchButton from '../themeSwitchButton/ThemeSwitchButton';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-function MainPage() {
-
-    const [videoList, setVideoList] = useState(videos);
-    const [theme, setTheme] = useState('light');
-
-    useEffect(() => {
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-    }, [theme]);
-
-    const doSearch = function (query) {
-        setVideoList(videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
-    }
-
-    const toggleTheme = function () {
-        setTheme(theme === 'light' ? 'dark' : 'light');
-    }
+function MainPage({ videos, theme, doSearch, toggleTheme}) {
 
     return (
         <div className="container-fluid">
@@ -59,7 +43,7 @@ function MainPage() {
                                 <CategoryButton category="Live" />
                             </row>
                         </div>
-                        <VideoListResults videos={videoList} />
+                        <VideoListResults videos={videos} />
                     </div>
             </div>
         </div>
