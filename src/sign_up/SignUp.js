@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './SignUp.module.css';
 import { useNavigate, Link } from 'react-router-dom';
 
-
 const SignUp = ({ addUser }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -13,14 +12,17 @@ const SignUp = ({ addUser }) => {
   const [verifyPassword, setVerifyPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+
   const validatePassword = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
 
-    // Password must be at least 8 characters long and contain at least one capital letter, one small letter, one number, and one special character
-    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+    // Validate password strength and matching verification password
     if (!strongPasswordRegex.test(newPassword)) {
       setErrorMessage('Password must be at least 8 characters long and contain at least one capital letter, one small letter, one number, and one special character.');
+    } else if (verifyPassword !== '' && verifyPassword !== newPassword) {
+      setErrorMessage('Passwords do not match.');
     } else {
       setErrorMessage('');
     }
@@ -32,6 +34,8 @@ const SignUp = ({ addUser }) => {
 
     if (newVerifyPassword !== password) {
       setErrorMessage('Passwords do not match.');
+    } else if (!strongPasswordRegex.test(password)) {
+      setErrorMessage('Password must be at least 8 characters long and contain at least one capital letter, one small letter, one number, and one special character.');
     } else {
       setErrorMessage('');
     }
@@ -43,7 +47,6 @@ const SignUp = ({ addUser }) => {
       addUser({ username, password, displayName, profilePicture });
       navigate('/sign-in');
     } else {
-      // Prevent form submission
       setErrorMessage('Form contains errors');
     }
   };
