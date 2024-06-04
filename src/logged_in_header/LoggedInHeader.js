@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './LoggedInHeader.module.css';
+import SignInButton from '../signInButton/SignInButton';
 
 const LoggedInHeader = ({ loggedInUser }) => {
 
