@@ -7,6 +7,7 @@ import UploadVideo from './upload_video/UploadVideo';
 import MainPage from './main_page/MainPage';  
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 
+
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -31,7 +32,7 @@ const ManageRoutes = () => {
         path="/main" 
         element={
           <>
-            <LoggedInHeader displayName={loggedInUser ? loggedInUser.displayName : null} profilePicture={loggedInUser ? loggedInUser.profilePicture : null} />
+            <LoggedInHeader loggedInUser={loggedInUser} />
             <MainPage />
           </>
         } 
@@ -39,13 +40,13 @@ const ManageRoutes = () => {
       <Route 
         path="/upload-video" 
         element={
-          <>
-            <LoggedInHeader displayName={loggedInUser ? loggedInUser.displayName : null} profilePicture={loggedInUser ? loggedInUser.profilePicture : null} />
-            <UploadVideo />
-          </>
+            <>
+              <LoggedInHeader loggedInUser={loggedInUser} />
+              <UploadVideo />
+            </>
         } 
       />
-      <Route path="/" element={<Navigate to="/sign-up" />} />
+      <Route path="/" element={<Navigate to="/main" />} />
     </Routes>
   );
 };
