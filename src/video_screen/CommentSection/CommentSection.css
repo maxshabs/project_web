@@ -44,6 +44,7 @@
     cursor: pointer; /* Pointer cursor on hover */
     font-size: 16px; /* Font size */
     transition: background-color 0.3s ease; /* Smooth background color transition */
+    font-weight: 600;
   }
 
   .commentBtn:hover {

@@ -3,6 +3,10 @@ import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
 import videos from './videos';
+import ActionBar from './ActionsBar/ActionBar';
+import pic4 from './pic4.jpg'
+import comments from './comments';
+
 
 
 const VideoScreen = ( {video} ) => {
@@ -33,23 +37,12 @@ const videoList = videos.map((video, key) => {
                         <div>
                             <img className="thumbnail" src="pic3.jpg" alt=''></img>
                             <div id="title">This is the title</div>
-                            <div className="container">
-                                <div className="userBar">
-                                    <img src="lebron.png" className="img-thumbnail" alt=''></img>
-                                    <a id="userName" href="">Mike Hawk</a>
-                                    <button className="userBar-button">Subscribe</button>
-                                </div>
-                                <div className="actionBar">
-                                    <button className="userBar-button">Like</button>
-                                    <button className="userBar-button">Dislike</button>
-                                    <button className="userBar-button">Share</button>
-                                </div>
-                            </div>
+                              <ActionBar/>
                             <div id="description">
                                     <div id="stats">100 views - 1 day ago</div>
                                     <div>this is a description</div>
                             </div>
-                            <CommentSection/>
+                            <CommentSection img={pic4} comments={comments} />
                         </div>
                     </div>
                 </div>
