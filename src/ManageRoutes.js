@@ -8,10 +8,11 @@ import MainPage from './main_page/MainPage';
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 
-
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [videoList, setVideoList] = useState(videos);
+  const [theme, setTheme] = useState('light');
 
   const addUser = (newUser) => {
     setUsers([...users, newUser]);
@@ -25,20 +26,21 @@ const ManageRoutes = () => {
     return user;
   };
 
-  const [videoList, setVideoList] = useState(videos);
-  const [theme, setTheme] = useState('light');
+  const handleUploadVideo = (newVideo) => {
+    setVideoList([newVideo, ...videoList]);
+  };
 
   useEffect(() => {
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
-  const doSearch = function (query) {
-      setVideoList(videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
-  }
+  const doSearch = (query) => {
+    setVideoList(videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
+  };
 
-  const toggleTheme = function () {
-      setTheme(theme === 'light' ? 'dark' : 'light');
-  }
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <Routes>
@@ -49,17 +51,17 @@ const ManageRoutes = () => {
         element={
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme}/>
-            <MainPage theme={theme} videos={videoList} doSearch={doSearch} toggleTheme={toggleTheme} loggedInUser={loggedInUser}/>
+            <MainPage theme={theme} videos={videoList} />
           </>
         } 
       />
       <Route 
         path="/upload-video" 
         element={
-            <>
-              <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme}/>
-              <UploadVideo />
-            </>
+          <>
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme}/>
+            <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={videoList} />
+          </>
         } 
       />
       <Route path="/" element={<Navigate to="/main" />} />
