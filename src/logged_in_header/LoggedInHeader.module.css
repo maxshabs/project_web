@@ -1,6 +1,6 @@
 /* src/logged_in_header/loggedInHeader.module.css */
 .loggedInHeader {
-  background-color: #f9f9f9;
+  background-color: var(--background-color);
   padding: 10px;
   text-align: right;
   font-size: 16px;
@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  border: none;
 }
 
 .loggedInHeader span {
@@ -23,15 +24,27 @@
 }
 
 .button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
+  float: right;
+  margin-top: 10px;
+  margin-right: 8px;
+  text-decoration: none;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #007bff;
+  color: white;
+}
+
+.logo {
+  height: 65px;
+  width: auto;
+  float: left;
 }
