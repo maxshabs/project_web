@@ -4,11 +4,6 @@ import Logo from '../logo.png';
 function LeftMenu() {
     return (
         <div className="menu">
-            <div className="logo-container">
-                <h5 className="offcanvas-title" id="offcanvasMenuLabel">
-                    <img src={Logo} alt="LogoImg" className="logo-image" />
-                </h5>
-            </div>
             <button className="menu-btn" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">
                     <i className="bi bi-list"></i>
             </button>
