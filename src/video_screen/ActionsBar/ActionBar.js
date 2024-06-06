@@ -3,6 +3,11 @@ import './ActionBar.css';
 import { ReactComponent as ShareIcon } from './share.svg';
 import { ReactComponent as Like } from './like.svg';
 import { ReactComponent as Dislike } from './dislike.svg';
+import { ReactComponent as Whatsapp } from './whatsapp.svg';
+import { ReactComponent as Facebook } from './facebook.svg';
+import { ReactComponent as Gmail } from './gmail.svg';
+
+
 
 function ActionBar({
   userName,
@@ -60,9 +65,17 @@ function ActionBar({
         >
           <Dislike /> Dislike
         </button>
-        <button className="userBar-button">
-          <ShareIcon /> Share
-        </button>
+        <div class="dropdown">
+          <a class="userBar-button dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Share
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><Whatsapp></Whatsapp> Whatsapp</a></li>
+            <li><a class="dropdown-item" href="#"><Facebook></Facebook> Facebook</a></li>
+            <li><a class="dropdown-item" href="#"><Gmail></Gmail> Gmail</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   );

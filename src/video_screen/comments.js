@@ -15,8 +15,36 @@ const initialComments = [
   {
     videoId: 2,
     comments: [
-      { id: 5, text: 'Comment 1 for Video 2', username: 'Mike test', date: '3 hours', img: maxres  },
-      { id: 6, text: 'Comment 2 for Video 2', username: 'ben dover', date: '1 day', img: pic4  },
+      { id: 1, text: 'Comment 1 for Video 2', username: 'Mike test', date: '3 hours', img: maxres  },
+      { id: 2, text: 'Comment 2 for Video 2', username: 'ben dover', date: '1 day', img: pic4  },
+    ],
+  },
+  {
+    videoId: 3,
+    comments: [
+      { id: 1, text: 'Comment 1 for Video 3', username: 'Mike test', date: '3 hours', img: maxres  },
+      { id: 2, text: 'Comment 2 for Video 3', username: 'ben dover', date: '1 day', img: pic4  },
+    ],
+  },
+  {
+    videoId: 4,
+    comments: [
+      { id: 1, text: 'Comment 1 for Video 4', username: 'Mike test', date: '3 hours', img: maxres  },
+      { id: 2, text: 'Comment 2 for Video 4', username: 'ben dover', date: '1 day', img: pic4  },
+    ],
+  },
+  {
+    videoId: 5,
+    comments: [
+      { id: 1, text: 'Comment 1 for Video 5', username: 'Mike test', date: '3 hours', img: maxres  },
+      { id: 2, text: 'Comment 2 for Video 5', username: 'ben dover', date: '1 day', img: pic4  },
+    ],
+  },
+  {
+    videoId: 6,
+    comments: [
+      { id: 1, text: 'Comment 1 for Video 6', username: 'Mike test', date: '3 hours', img: maxres  },
+      { id: 2, text: 'Comment 2 for Video 6', username: 'ben dover', date: '1 day', img: pic4  },
     ],
   },
 ];
