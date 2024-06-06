@@ -1,23 +1,5 @@
-/* Sidebar */
-.list-group {
-    border-radius: 0;
-  }
-  
-  .list-group-item {
-    border-radius: 0;
-    border-width: 0;
-    background-color: transparent;
-    text-align: left;
-  }
-  
-  .list-group-item:hover {
-    border-radius: 0;
-    border-width: 0;
-    background-color: lightgray;
-    cursor: pointer;
-  }
-  
-  /* Video page */
+
+/* Video page */
   
   .thumbnail {
     width: 1100px;

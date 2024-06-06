@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './SideVideo.css';
 
-function SideVideo({ id, title, author, views, image }) {
+function SideVideo({ id, title, author, views, img }) {
   return (
     <Link to={`/videos/${id}`} className="sideVideoContainer link-style">
       <div className="row">
         <div className="col-md-4">
-          <img src={image} className="sideVideoPic" alt=""></img>
+          <img src={img} className="sideVideoPic" alt=""></img>
         </div>
         <div className="col-md-8">
           <div className="sideVideoTextContainer">
