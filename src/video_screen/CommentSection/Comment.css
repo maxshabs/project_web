@@ -15,6 +15,7 @@
 
 .lighter {
     font-weight: lighter;
+    font-size: 16px;
 }
 
 .comment-button {
@@ -27,4 +28,24 @@
     font-size: 16px; /* Font size */
     transition: background-color 0.3s ease; /* Smooth background color transition */
     font-weight: 600;
+  }
+
+  .comment-button:hover {
+    background-color: gray;
+  }
+
+  .comment-button.liked:hover {
+    background-color: rgb(66, 212, 66);
+  }
+
+  .comment-button.disliked:hover {
+    background-color: rgb(243, 77, 77);
+  }
+
+  .liked {
+    background-color: rgb(66, 212, 66);
+  }
+
+  .disliked {
+    background-color: rgb(243, 77, 77);
   }

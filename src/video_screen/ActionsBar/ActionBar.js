@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ActionBar.css';
 import { ReactComponent as ShareIcon } from './share.svg';
 import { ReactComponent as Like } from './like.svg';
 import { ReactComponent as Dislike } from './dislike.svg';
 
-function ActionBar() {
-  const [isLiked, setIsLiked] = useState(false);
-  const [isDisliked, setIsDisliked] = useState(false);
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
+function ActionBar({
+  userName,
+  img,
+  isLiked,
+  setIsLiked,
+  isDisliked,
+  setIsDisliked,
+  isSubscribed,
+  setIsSubscribed,
+}) {
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
     if (isDisliked) {
@@ -24,14 +29,14 @@ function ActionBar() {
   };
 
   const handleSubscribeClick = () => {
-    setIsSubscribed(!isSubscribed); // Toggle subscribe state
+    setIsSubscribed(!isSubscribed);
   };
 
   return (
     <div className="container">
       <div className="userBar">
-        <img src="lebron.png" className="img-thumbnail" alt=''></img>
-        <a id="userName" href="">Mike Hawk</a>
+        <img src={img} className="img-thumbnail" alt=""></img>
+        <a id="userName" href="">{userName}</a>
         <button
           id='subscribe'
           className={`subscribe-button${isSubscribed ? ' subscribed' : ''}`}
