@@ -79,7 +79,7 @@ const VideoScreen = () => {
               <div id="title">{currentVideo.title}</div>
               <ActionBar
                 userName={currentVideo.author}
-                img={currentVideo.img}
+                img={currentVideo.authorImage}
                 isLiked={isLiked}
                 setIsLiked={setIsLiked}
                 isDisliked={isDisliked}
