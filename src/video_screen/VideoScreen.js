@@ -4,12 +4,11 @@ import { useParams } from 'react-router-dom';
 import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
-import initialComments from './Comments';
-import videos from './videos';
+import initialComments from './comments';
 import ActionBar from './ActionsBar/ActionBar';
 import pic4 from './pic4.jpg';
 
-const VideoScreen = () => {
+const VideoScreen = ( {videos} ) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
   // State and function to update comments
@@ -29,7 +28,7 @@ const VideoScreen = () => {
   };
 
   useEffect(() => {
-    const video = videos.find((video) => video.id === parseInt(id));
+    const video = videos.find((video) => video.id === id);
     setCurrentVideo(video);
 
     // Reset button states when a new video is loaded
@@ -43,7 +42,7 @@ const VideoScreen = () => {
   }
 
   // Filter out the current video from the list of videos
-  const sideVideos = videos.filter((video) => video.id !== parseInt(id));
+  const sideVideos = videos.filter((video) => video.id !== id);
 
   const sideVideoList = sideVideos.map((video, key) => (
     <SideVideo

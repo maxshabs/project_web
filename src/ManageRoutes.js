@@ -8,6 +8,7 @@ import EditVideo from './edit_video/EditVideo';
 import MainPage from './main_page/MainPage';  
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
+import VideoScreen from './video_screen/VideoScreen';
 
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
@@ -95,6 +96,7 @@ const ManageRoutes = () => {
           </>
         } 
       />
+      <Route path="/videos/:id" element={<VideoScreen videos={allVideos} />} />
       <Route path="/" element={<Navigate to="/main" />} />
     </Routes>
   );
