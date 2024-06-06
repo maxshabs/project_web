@@ -4,7 +4,7 @@ import LeftMenu from '../leftMenu/LeftMenu';
 import VideoListResults from '../videoListResults/VideoListResults';
 import CategoryButton from '../categoryButton/CategoryButton';
 
-function MainPage({ videos }) {
+function MainPage({ videos, handleDeleteVideo, loggedInUser }) {
 
     return (
         <div className="container-fluid">
@@ -26,7 +26,7 @@ function MainPage({ videos }) {
                                 <CategoryButton category="Live" />
                             </row>
                         </div>
-                        <VideoListResults videos={videos} />
+                        <VideoListResults videos={videos} handleDeleteVideo={handleDeleteVideo} loggedInUser={loggedInUser} />
                     </div>
             </div>
         </div>

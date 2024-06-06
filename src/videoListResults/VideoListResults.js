@@ -1,9 +1,9 @@
 import VideoItem from "../videoItem/VideoItem";
 
-function VideoListResults({ videos }) {
+function VideoListResults({ videos, handleDeleteVideo, loggedInUser }) {
 
     const videoList = videos.map((video, key) => {
-        return <VideoItem {...video} key={key} />
+        return <VideoItem {...video} key={key} handleDeleteVideo={handleDeleteVideo} loggedInUser={loggedInUser}/>
     });
 
     return (

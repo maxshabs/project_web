@@ -2,92 +2,102 @@
     {
       "id": "1",
       "title": "Funniest videos of 2022",
-      "author": "Tutorials by Adam",
+      "description": "The funniest videos of 2022. You will laugh so hard that you will cry!",
+      "author": "FunnyAnimals",
       "views": "1.2M",
       "img": "images/img1.jpg",
       "video": "videos/video1.mp4",
-      "uploadTime": "2022-01-01T12:00:00Z"
+      "uploadTime": "2 years"
     },
     {
       "id": "2",
       "title": "Learn Photoshop in 5 minutes",
+      "description": "Learn how to use Photoshop in 5 minutes. This tutorial is for beginners.",
       "author": "Tutorials by Adam",
       "views": "517K",
       "img": "images/img2.jpg",
       "video": "videos/video2.mp4",
-      "uploadTime": "2023-01-01T12:00:00Z"
+      "uploadTime": "1 year"
     },
     {
       "id": "3",
       "title": "Was Will Smith in Shrek?",
+      "description": "A conspiracy theory that suggests that Will Smith was the voice actor for Shrek.",
       "author": "Conspiracy Theories",
       "views": "1.2M",
       "img": "images/img3.jpg",
       "video": "videos/video3.mp4",
-      "uploadTime": "2022-06-01T12:00:00Z"
+      "uploadTime": "2 years"
     },
     {
       "id": "4",
       "title": "Who is the best Roblox youtuber?",
+      "description": "A video discussing who is the best Roblox youtuber of all time.",
       "author": "MegaEpicGaming",
       "views": "5.7K",
       "img": "images/img4.jpg",
       "video": "videos/video4.mp4",
-      "uploadTime": "2023-05-01T12:00:00Z"
+      "uploadTime": "6 months"
     },
     {
       "id": "5",
       "title": "Will AI take over the world?",
+      "description": "A discussion on the possibility of AI taking over the world and the implications of such an event.",
       "author": "DailyTechNews",
       "views": "3.4M",
       "img": "images/img5.jpg",
       "video": "videos/video5.mp4",
-      "uploadTime": "2023-02-01T12:00:00Z"
+      "uploadTime": "8 months"
     },
     {
       "id": "6",
       "title": "The possibility to create superhumans",
+      "description": "Disscussing the possibility of creating superhumans through genetic engineering.",
       "author": "ScienceDaily",
       "views": "5.2M",
       "img": "images/img6.jpg",
       "video": "videos/video6.mp4",
-      "uploadTime": "2023-08-01T12:00:00Z"
+      "uploadTime": "2 days"
     },
     {
       "id": "7",
       "title": "Lebron James 2013-2014 Highlights",
+      "description": "The best highlights of Lebron James from the 2013-2014 NBA season.",
       "author": "NBA",
       "views": "2M",
       "img": "images/img7.jpg",
       "video": "videos/video7.mp4",
-      "uploadTime": "2021-01-01T12:00:00Z"
+      "uploadTime": "3 weeks"
     },
     {
       "id": "8",
       "title": "Funny cat compilation 2023",
+      "description": "The funniest cat videos of 2023, if you laugh you lose!",
       "author": "FunnyAnimals",
       "views": "1.5M",
       "img": "images/img8.jpg",
       "video": "videos/video8.mp4",
-      "uploadTime": "2023-03-01T12:00:00Z"
+      "uploadTime": "1 day"
     },
     {
       "id": "9",
       "title": "Best DIY of 2024",
+      "description": "The best DIY projects of 2024 that you can do at home.",
       "author": "Diyourself",
       "views": "103K",
       "img": "images/img9.jpg",
       "video": "videos/video9.mp4",
-      "uploadTime": "2024-01-01T12:00:00Z"
+      "uploadTime": "5 years"
     },
     {
       "id": "10",
       "title": "The best gaming setup of 2023",
+      "description": "A video showcasing the best gaming setup of 2023. You won't believe how cool it is!",
       "author": "GamingCentral",
       "views": "1.9M",
       "img": "images/img10.jpg",
       "video": "videos/video10.mp4",
-      "uploadTime": "2023-07-01T12:00:00Z"
+      "uploadTime": "2 months"
     }
   ]
   

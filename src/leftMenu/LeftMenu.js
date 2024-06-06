@@ -1,32 +1,33 @@
 import './LeftMenu.css';
 import Logo from '../logo.png';
+import { Link } from 'react-router-dom';
 
 function LeftMenu() {
     return (
         <div className="menu">
             <button className="menu-btn" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">
-                    <i className="bi bi-list"></i>
+                <i className="bi bi-list"></i>
             </button>
             <ul className="nav flex-column menu-list">
                 <li className="menu-item">
-                    <a className="menu-link" href="#">
+                    <Link to="/main" className="menu-link">
                         <i className="bi bi-house-door-fill"></i>
-                    </a>
+                    </Link>
                 </li>
                 <li className="menu-item">
-                    <a className="menu-link" href="#">
+                    <Link to="/main" className="menu-link">
                         <i className="bi bi-arrow-up-right-square-fill"></i>
-                    </a>
+                    </Link>
                 </li>
                 <li className="menu-item">
-                    <a className="menu-link" href="#">
+                    <Link to="/main" className="menu-link">
                         <i className="bi bi-collection-play-fill"></i>
-                    </a>
+                    </Link>
                 </li>
                 <li className="menu-item">
-                    <a className="menu-link" href="#">
+                    <Link to="/main" className="menu-link">
                         <i className="bi bi-person-fill"></i>
-                        </a>
+                    </Link>
                 </li>
             </ul>
             <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel" style={{ width: '200px' }}>
@@ -41,34 +42,34 @@ function LeftMenu() {
                         <li className="list-group-item">
                             <ul className="nav flex-column">
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
-                                        <i class="bi bi-house-door"></i>
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
+                                        <i className="bi bi-house-door"></i>
                                         <span>Home</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-arrow-up-right-square"></i>
                                         <span>Shorts</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-collection-play"></i>
                                         <span>Subscriptions</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-person"></i>
                                         <span>You</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-clock-history"></i>
                                         <span>History</span>
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
@@ -78,40 +79,40 @@ function LeftMenu() {
                         <li className="list-group-item">
                             <ul className="nav flex-column">
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-fire"></i>
                                         <span>Trending</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-music-note"></i>
                                         <span>Music</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-controller"></i>
                                         <span>Gaming</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-newspaper"></i>
                                         <span>News</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-trophy"></i>
                                         <span>Sports</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i className="bi bi-mic"></i>
                                         <span>Podcasts</span>
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
@@ -121,22 +122,22 @@ function LeftMenu() {
                         <li className="list-group-item">
                             <ul className="nav flex-column">
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i class="bi bi-gear"></i>
                                         <span>Settings</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i class="bi bi-question-circle"></i>
                                         <span>Help</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link ps-0 pe-0" href="#">
+                                    <Link to="/main" className="nav-link ps-0 pe-0">
                                         <i class="bi bi-chat-dots"></i>
                                         <span>Feedback</span>
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>

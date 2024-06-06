@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import SignUp from './sign_up/SignUp';
 import SignIn from './sign_in/SignIn';
 import UploadVideo from './upload_video/UploadVideo';
+import EditVideo from './edit_video/EditVideo';
 import MainPage from './main_page/MainPage';  
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
@@ -11,6 +12,7 @@ import videos from './data/videos.json';
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [allVideos, setAllVideos] = useState(videos);
   const [videoList, setVideoList] = useState(videos);
   const [theme, setTheme] = useState('light');
 
@@ -31,7 +33,22 @@ const ManageRoutes = () => {
   };
 
   const handleUploadVideo = (newVideo) => {
-    setVideoList([newVideo, ...videoList]);
+    setVideoList([newVideo, ...allVideos]);
+    setAllVideos([newVideo, ...allVideos]);
+  };
+
+  const handleEditVideo = (editedVideo) => {
+    const updatedVideos = allVideos.map(video =>
+      video.id === editedVideo.id ? editedVideo : video
+    );
+    setAllVideos(updatedVideos);
+    setVideoList(updatedVideos);
+  };
+
+  const handleDeleteVideo = (videoId) => {
+    const updatedVideos = allVideos.filter(video => video.id !== videoId);
+    setAllVideos(updatedVideos);
+    setVideoList(updatedVideos);
   };
 
   useEffect(() => {
@@ -39,7 +56,7 @@ const ManageRoutes = () => {
   }, [theme]);
 
   const doSearch = (query) => {
-    setVideoList(videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
+    setVideoList(allVideos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase())));
   };
 
   const toggleTheme = () => {
@@ -56,16 +73,25 @@ const ManageRoutes = () => {
         element={
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <MainPage videos={videoList}/>
+            <MainPage videos={videoList} handleDeleteVideo={handleDeleteVideo} loggedInUser={loggedInUser}/>
           </>
         } 
       />
       <Route 
         path="/upload-video" 
-        element={
+        element={ loggedInUser &&
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={videoList} />
+            <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={allVideos} />
+          </>
+        } 
+      />
+      <Route 
+        path="/edit-video/:id" 
+        element={ loggedInUser &&
+          <>
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
+            <EditVideo handleEditVideo={handleEditVideo} videos={allVideos} />
           </>
         } 
       />

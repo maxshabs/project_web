@@ -39,4 +39,27 @@
     color: #aaa;
 }
 
+.btn {
+    float: right;
+    color: var(--background-color);
+}
 
+#edit-btn {
+    float: left;
+    background-color: rgba(0, 47, 255, 0.774);
+    color: var(--background-color);
+}
+
+#edit-btn:hover {
+    background-color: rgba(0, 47, 255, 0.9);
+}
+
+#delete-btn {
+    float: right;
+    background-color: rgba(163, 10, 10, 0.774);
+    color: var(--background-color);
+}
+
+#delete-btn:hover {
+    background-color: rgba(163, 10, 10, 0.9);
+}
