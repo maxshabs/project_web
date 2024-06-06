@@ -1,0 +1,51 @@
+.commentContainer {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.commentText {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.lighter {
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.comment-button {
+    padding: 3px 7px;
+    background-color: lightgray; /* Primary color */
+    color: black; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 50px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    font-weight: 600;
+  }
+
+  .comment-button:hover {
+    background-color: gray;
+  }
+
+  .comment-button.liked:hover {
+    background-color: rgb(66, 212, 66);
+  }
+
+  .comment-button.disliked:hover {
+    background-color: rgb(243, 77, 77);
+  }
+
+  .liked {
+    background-color: rgb(66, 212, 66);
+  }
+
+  .disliked {
+    background-color: rgb(243, 77, 77);
+  }

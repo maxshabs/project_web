@@ -1,0 +1,51 @@
+/* Sidebar */
+.list-group {
+    border-radius: 0;
+  }
+  
+  .list-group-item {
+    border-radius: 0;
+    border-width: 0;
+    background-color: transparent;
+    text-align: left;
+  }
+  
+  .list-group-item:hover {
+    border-radius: 0;
+    border-width: 0;
+    background-color: lightgray;
+    cursor: pointer;
+  }
+  
+  /* Video page */
+  
+  .thumbnail {
+    width: 1100px;
+    border-radius: 15px;
+  }
+  
+  #description {
+    background-color: lightgray;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  /* video title */
+  #title {
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 5px;
+    text-align: left;
+  }
+  
+  /* date and view count */
+  #stats {
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  #searchBar {
+    padding: 10px;
+  }
