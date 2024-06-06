@@ -1,4 +1,5 @@
 import React from 'react';
+import React1, { useState } from 'react';
 import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
@@ -6,6 +7,7 @@ import videos from './videos';
 import ActionBar from './ActionsBar/ActionBar';
 import pic4 from './pic4.jpg'
 import comments from './comments';
+import lebronDunk from './mainVideos/lebronDunk.mp4'
 
 
 
@@ -35,19 +37,21 @@ const videoList = videos.map((video, key) => {
                 <div className="col-7">
                     <div>
                         <div>
-                            <img className="thumbnail" src="pic3.jpg" alt=''></img>
+                            <video className='thumbnail' controls src={lebronDunk}></video>
                             <div id="title">This is the title</div>
                               <ActionBar/>
                             <div id="description">
                                     <div id="stats">100 views - 1 day ago</div>
                                     <div>this is a description</div>
                             </div>
-                            <CommentSection img={pic4} comments={comments} />
+                            <CommentSection img={pic4} userName="myUser" />
                         </div>
                     </div>
                 </div>
                 <div className="col-3">
+                  <div>
                   {videoList}
+                  </div>
                 </div>
             </div>    
         </div>

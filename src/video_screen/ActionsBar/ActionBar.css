@@ -48,15 +48,15 @@
     background-color: gray;
   }
 
-  #like:focus {
+  .userBar-button.liked {
     background-color: rgb(66, 212, 66);
   }
   
-  #dislike:focus {
+  .userBar-button.disliked {
     background-color: rgb(243, 77, 77);
   }
   
-  #subscribe {
+  .subscribe-button {
     padding: 7px 14px;
     background-color: black; /* Primary color */
     color: white; /* Text color */
@@ -67,11 +67,11 @@
     transition: background-color 0.3s ease; /* Smooth background color transition */
   }
   
-  #subscribe:hover {
+  .subscribe-button:hover {
     background-color: rgb(68, 68, 68);
   }
 
-  #subscribe:focus {
+  .subscribe-button.subscribed {
     background-color: lightgray; /* Primary color */
     color: black; /* Text color */
   }
