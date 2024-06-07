@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './SignIn.module.css';
-import logo from '../assets/lebronsunshine.jpg';
+import Logo from '../logo.png';
 
 const SignIn = ({ validateUser }) => {
   const navigate = useNavigate();
@@ -22,12 +22,13 @@ const SignIn = ({ validateUser }) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>VidTube</h1>
       <div className={styles.formWrapper}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <img src={logo} alt='logo' className={styles.logo} />
+          <Link to="/main">
+            <img src={Logo} alt='Home' className={styles.logo} />
+          </Link>
           <div className={styles.inputContainer}>
-            <label className={styles.inputLabel} htmlFor="username">Username</label>
+            <label className={styles.inputLabel} htmlFor="username">Username:</label>
             <input type="text" id="username" name="username" className={styles.input} placeholder="example123" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <div className={styles.inputContainer}>

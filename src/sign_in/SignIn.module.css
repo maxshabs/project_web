@@ -5,7 +5,7 @@
     align-items: center; /* Center items horizontally */
     justify-content: center; /* Center items vertically */
     height: 100vh; /* Full height of the viewport */
-    background-color: rgba(222, 230, 242); /* Light grey background */
+    background-color: #fff; /* White background */
 }
 
 /* Form Wrapper to Position Form */
@@ -13,7 +13,7 @@
     width: 350px; /* Width for 9:16 ratio */
     height: 600px; /* Height for 9:16 ratio */
     padding: 30px; /* Add some padding */
-    background-color: #fff; /* White background */
+    background-color: rgb(242,242,242); /* Light grey background */
     border-radius: 20px; /* Rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow */
 }
@@ -30,16 +30,9 @@
 /* Logo */
 .logo {
     width: 100%; /* Full width */
-    margin-bottom: 20px; /* Space between logo and form */
+    margin-bottom: 10px; /* Space between logo and form */
 }
 
-/* Title */
-.title {
-    font-size: 32px; /* Larger font size */
-    font-weight: bold; /* Bold text */
-    color: #007bff; /* Blue color */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
-}
 
 /* Input Container */
 .inputContainer {
@@ -50,6 +43,7 @@
 
 /* Input */
 .input {
+    background-color: #fff; /* Ensure white background for inputs */
     width: 100%; /* Full width */
     padding: 15px 10px; /* Add some padding */
     border: 1px solid #ccc; /* Add a border */
@@ -57,7 +51,6 @@
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     font-size: 16px; /* Increase font size */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow to inputs */
-    background-color: #fff; /* Ensure white background for inputs */
 }
 
 /* Label Inside Input */
@@ -69,12 +62,19 @@
     padding: 0 5px; /* Padding for background */
     font-size: 15px; /* Larger font size */
     color: #333; /* Darker color */
+    border-radius: 5px; /* Rounded corners */
 }
 
 /* Placeholder */
 .input::placeholder {
     font-size: 14px; /* Set the font size for the placeholder text */
     color: #aaa; /* Set the color for the placeholder text */
+}
+
+.input:focus {
+    outline: none; /* Remove the outline */
+    border-color: #007bff; /* Blue border color on focus */
+    background-color: white; /* White background on focus */
 }
 
 /* Button */
@@ -107,3 +107,5 @@
 .link:hover {
     text-decoration: underline; /* Underline on hover */
 }
+
+

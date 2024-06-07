@@ -1,40 +1,40 @@
 /* Container */
 .container {
     display: flex; /* Flexbox layout */
-    flex-direction: column; /* Stack the flex items vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
+    flex-direction: row; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
     height: 100vh; /* Full height of the viewport */
-    background-color: rgba(222, 230, 242);
+    background-color: white; /* White background */
+    padding: 20px; /* Add some padding around the container */
 }
 
 /* Logo */
 .logo {
-    margin-bottom: 20px; /* Space between logo and form */
-    margin-right: 400px; /* Space between logo and form */
-    font-size: larger; /* Larger font size */
+    width: 400px; /* Increase the width for a bigger logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 70px; /* Space between logo and form */
+    margin-top: -100px; /* Move the logo slightly to the top */
 }
 
 /* Form Wrapper to Position Form */
 .formWrapper {
-    position: absolute; /* Position absolute */
-    right: 30%; /* Position form between center and right */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust for vertical centering */
+    width: 350px; /* Width for 9:16 ratio */
+    height: auto; /* Auto height to fit content */
+    padding: 30px; /* Add some padding */
+    background-color: rgb(242, 242, 242); /* Light grey background */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow */
 }
 
 /* Form */
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack the flex items vertically */
+    align-items: center; /* Center items horizontally */
     justify-content: space-between; /* Space between items */
-    width: 350px; /* Width for 9:16 ratio */
-    height: 600px; /* Height for 9:16 ratio */
-    padding: 30px; /* Add some padding */
-    background-color: #fff; /* White background */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
 }
 
 /* Title */
@@ -67,9 +67,10 @@
     background-color: #fff; /* Ensure white background for inputs */
 }
 
-/* File Input */
-.input[type="file"] {
-    background-color: #fff; /* Ensure white background for file input */
+.input:focus {
+    outline: none; /* Remove the outline */
+    border-color: #007bff; /* Blue border color on focus */
+    background-color: white; /* White background on focus */
 }
 
 /* Label Inside Input */
@@ -81,6 +82,7 @@
     padding: 0 5px; /* Padding for background */
     font-size: 15px; /* Larger font size */
     color: #333; /* Darker color */
+    border-radius: 5px;
 }
 
 /* Placeholder */
