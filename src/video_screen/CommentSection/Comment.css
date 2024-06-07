@@ -39,6 +39,7 @@
     font-size: 16px; /* Font size */
     transition: background-color 0.3s ease; /* Smooth background color transition */
     font-weight: 600;
+    margin-right: 5px;
   }
 
   .comment-button:hover {
