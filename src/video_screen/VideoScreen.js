@@ -66,7 +66,7 @@ const VideoScreen = ({ videos, initialComments }) => {
             <div>
               <video className="thumbnail" controls autoPlay src={currentVideo.video}></video>
               <div id="title">{currentVideo.title}</div>
-              <ActionBar
+              <ActionBar className="action-bar"
                 userName={currentVideo.author}
                 img={currentVideo.authorImage}
                 isLiked={isLiked}
