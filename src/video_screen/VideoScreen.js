@@ -95,6 +95,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
                 initialComments={comments}
                 updateComments={updateComments}
                 loggedInUser={loggedInUser}
+                calculateTimeAgo={calculateTimeAgo}
               />
             </div>
           </div>

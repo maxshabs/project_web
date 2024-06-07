@@ -67,10 +67,10 @@
     background-color: var(--inputlabel-sign-in-and-out); 
 }
 
+
 .input:focus {
     outline: none; /* Remove the outline */
-    border-color: #007bff; /* Blue border color on focus */
-    background-color: white; /* White background on focus */
+    background-color: var(--inputlabel-sign-in-and-out);
 }
 
 /* Label Inside Input */
@@ -132,4 +132,8 @@
 
 .link:hover {
     text-decoration: underline; /* Underline on hover */
+}
+
+:global(#profilePicture) {
+    color: black;
 }

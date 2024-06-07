@@ -9,6 +9,7 @@ import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
 import initialComments from './data/comments.json';
+import Logo from './logo.png';
 
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
@@ -39,7 +40,7 @@ const ManageRoutes = () => {
     const uploadTime = new Date().toISOString();
     setVideoList([newVideo, ...allVideos]);
     setAllVideos([newVideo, ...allVideos]);
-    setComments([...comments, { videoId: newVideo.id, comments: [{ id: 1, text: 'Great video, welcome to VidTube!', username: 'VidTube Official Account', date: uploadTime, img: '/logo.png' }] }]);
+    setComments([...comments, { videoId: newVideo.id, comments: [{ id: 1, text: 'Great video, welcome to VidTube!', username: 'VidTube Official Account', date: uploadTime, img: Logo }] }]);
   
     setDisplayTimes((prevDisplayTimes) => ({
       ...prevDisplayTimes,

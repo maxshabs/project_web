@@ -3,7 +3,7 @@ import './CommentSection.css';
 import Comment from './Comment';
 import defaultImg from '../anonymous-user.jpg' // Import the default image
 
-function CommentSection({ videoId, initialComments, updateComments, loggedInUser }) {
+function CommentSection({ videoId, initialComments, updateComments, loggedInUser, calculateTimeAgo }) {
   const [commentText, setCommentText] = useState('');
 
   const handleInputChange = (e) => {
@@ -18,7 +18,7 @@ function CommentSection({ videoId, initialComments, updateComments, loggedInUser
         id: initialComments.find(commentData => commentData.videoId === videoId)?.comments.length + 1 || 1,
         text: commentText,
         username: loggedInUser.displayName, // Use logged-in user's name
-        date: '1 second',
+        date: new Date().toISOString(),
         img: loggedInUser.profilePicture, // Use logged-in user's image
         videoId,
       };
@@ -78,6 +78,7 @@ function CommentSection({ videoId, initialComments, updateComments, loggedInUser
       onEdit={handleEditComment}
       onDelete={handleDeleteComment}
       loggedInUser={loggedInUser}
+      calculateTimeAgo={calculateTimeAgo}
     />
   ));
 
