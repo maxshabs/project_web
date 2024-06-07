@@ -81,7 +81,7 @@ const ManageRoutes = () => {
       />
       <Route 
         path="/upload-video" 
-        element={ //loggedInUser &&
+        element={ loggedInUser &&
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
             <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={allVideos} />

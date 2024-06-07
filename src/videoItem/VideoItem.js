@@ -1,10 +1,8 @@
 import './VideoItem.css';
-import { Link, Routes, Router } from 'react-router-dom';
-import VideoScreen from '../video_screen/VideoScreen';
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-function VideoItem({ id, title, author, views, img, uploadTime, loggedInUser, handleDeleteVideo, videos }) {
+function VideoItem({ id, title, author, views, img, uploadTime, loggedInUser, handleDeleteVideo}) {
     return (
         <div className="col-lg-3 col-md-4 col-sm-6" id="">
             <div className="card">
