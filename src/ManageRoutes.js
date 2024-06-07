@@ -9,6 +9,8 @@ import MainPage from './main_page/MainPage';
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
+import initialComments from './data/comments.json';
+
 
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
@@ -16,6 +18,7 @@ const ManageRoutes = () => {
   const [allVideos, setAllVideos] = useState(videos);
   const [videoList, setVideoList] = useState(videos);
   const [theme, setTheme] = useState('light');
+  const [comments, setComments] = useState(initialComments);
 
   const addUser = (newUser) => {
     setUsers([...users, newUser]);
@@ -97,7 +100,15 @@ const ManageRoutes = () => {
           </>
         } 
       />
-      <Route path="/videos/:id" element={<VideoScreen videos={allVideos} />} />
+      <Route 
+      path="/videos/:id" 
+      element={
+        <>
+          <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
+          <VideoScreen videos={allVideos} initialComments={comments} />
+        </>
+      } 
+      />
       <Route path="/" element={<Navigate to="/main" />} />
     </Routes>
   );

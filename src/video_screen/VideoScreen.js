@@ -1,14 +1,13 @@
-// Import necessary modules and components
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
-import initialComments from './comments';
 import ActionBar from './ActionsBar/ActionBar';
 import pic4 from './pic4.jpg';
+import LeftMenu from '../leftMenu/LeftMenu';
 
-const VideoScreen = ( {videos} ) => {
+const VideoScreen = ({ videos, initialComments }) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
   // State and function to update comments
@@ -35,7 +34,7 @@ const VideoScreen = ( {videos} ) => {
     setIsLiked(false);
     setIsDisliked(false);
     setIsSubscribed(false);
-  }, [id]);
+  }, [id, videos]);
 
   if (!currentVideo) {
     return <div>Error: Video not found.</div>; // Handle case where video is not found
@@ -50,33 +49,24 @@ const VideoScreen = ( {videos} ) => {
       title={video.title}
       author={video.author}
       views={video.views}
-      image={video.image}
+      img={video.img}
+      date={video.uploadTime}
       key={key}
     />
   ));
 
   return (
     <div className="container-fluid">
-      <div id="searchBar">
-        <input></input>
-        <button>Search</button>
-      </div>
       <div className="row">
-        <div className="col-2 bg-light vh-100">
-          <ul className="list-group">
-            <li className="list-group-item">An active item</li>
-            <li className="list-group-item">A second item</li>
-            <li className="list-group-item">A third item</li>
-            <li className="list-group-item">A fourth item</li>
-            <li className="list-group-item">And a fifth one</li>
-          </ul>
+        <div className="col-1 vh-100">
+          <LeftMenu></LeftMenu>
         </div>
         <div className="col-7">
           <div>
             <div>
-              <video className="thumbnail" controls autoplay src={currentVideo.video}></video>
+              <video className="thumbnail" controls autoPlay src={currentVideo.video}></video>
               <div id="title">{currentVideo.title}</div>
-              <ActionBar
+              <ActionBar className="action-bar"
                 userName={currentVideo.author}
                 img={currentVideo.authorImage}
                 isLiked={isLiked}

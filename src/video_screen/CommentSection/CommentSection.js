@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './CommentSection.css';
 import Comment from './Comment';
 
-
 function CommentSection({ img, userName, videoId, initialComments, updateComments }) {
   const [commentText, setCommentText] = useState('');
 
@@ -11,11 +10,10 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
   };
 
   const handleCommentClick = () => {
-    console.log('Adding comment:', commentText); //check if handleCommentClick is called
+    console.log('Adding comment:', commentText); // Check if handleCommentClick is called
     if (commentText) {
-      const videoComments = initialComments.find((commentData) => commentData.videoId === videoId).comments;
       const newComment = {
-        id: videoComments.length + 1,
+        id: initialComments.length + 1,
         text: commentText,
         username: userName,
         date: '1 second',
@@ -32,7 +30,7 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
     setCommentText('');
   };
 
-  // find the comments for the current videoId
+  // Get comments for the current videoId
   const videoComments = initialComments.find((commentData) => commentData.videoId === videoId)?.comments || [];
 
   const commentList = videoComments.map((comment, key) => (
