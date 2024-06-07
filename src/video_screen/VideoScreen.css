@@ -1,9 +1,9 @@
 
 /* Video page */
   
-.middle-col {
-  display: flex;
-}
+  .middle-col {
+    display: flex;
+  }
 
   .thumbnail {
     width: 100%;

@@ -13,6 +13,17 @@
     padding-left: 10px;
 }
 
+.editBar {
+  min-width: calc(50% - 6px);
+  flex: 1;
+  flex-basis: 0.000000001px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px; /* Add some space between items */
+  padding-top: 5px;
+}
+
 .lighter {
     font-weight: lighter;
     font-size: 16px;

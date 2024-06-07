@@ -4,26 +4,24 @@ import './VideoScreen.css';
 import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
 import ActionBar from './ActionsBar/ActionBar';
-import pic4 from './pic4.jpg';
 import LeftMenu from '../leftMenu/LeftMenu';
+import pic4 from './pic4.jpg';
 
-const VideoScreen = ({ videos, initialComments }) => {
+const VideoScreen = ({ videos, comments, setComments }) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
-  // State and function to update comments
-  const [comments, setComments] = useState(initialComments);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const updateComments = (videoId, newComment) => {
+  const updateComments = (videoId, newComments) => {
     const updatedComments = comments.map((commentData) =>
       commentData.videoId === videoId
-        ? { ...commentData, comments: [...commentData.comments, newComment] }
+        ? { ...commentData, comments: newComments }
         : commentData
     );
-    setComments(updatedComments);
+    setComments(updatedComments); // Update the comments in the parent component
   };
 
   useEffect(() => {
@@ -59,7 +57,7 @@ const VideoScreen = ({ videos, initialComments }) => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-1 vh-100">
-          <LeftMenu></LeftMenu>
+          <LeftMenu />
         </div>
         <div className="col-7">
           <div>

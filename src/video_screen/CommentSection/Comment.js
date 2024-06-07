@@ -3,26 +3,37 @@ import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
 import { ReactComponent as Dislike } from '../ActionsBar/dislike.svg';
 
-function Comment({ text, username, date, img }) {
+function Comment({ id, text, username, date, img, onEdit, onDelete }) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editText, setEditText] = useState(text);
 
   const handleLikeClick = () => {
-    if (!liked) {
-      setLiked(true);
-      setDisliked(false);
-    } else {
-      setLiked(false);
-    }
+    setLiked(!liked);
+    setDisliked(false);
   };
 
   const handleDislikeClick = () => {
-    if (!disliked) {
-      setDisliked(true);
-      setLiked(false);
-    } else {
-      setDisliked(false);
-    }
+    setDisliked(!disliked);
+    setLiked(false);
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    onEdit(id, editText);
+    setIsEditing(false);
+  };
+
+  const handleDeleteClick = () => {
+    onDelete(id);
+  };
+
+  const handleEditTextChange = (e) => {
+    setEditText(e.target.value);
   };
 
   return (
@@ -30,7 +41,15 @@ function Comment({ text, username, date, img }) {
       <img src={img} className="userPicture" alt='' />
       <div className="commentText">
         <p>{username} - {date} ago</p>
-        <p className='lighter'>{text}</p>
+        {isEditing ? (
+          <input
+            className='editTextField'
+            value={editText}
+            onChange={handleEditTextChange}
+          />
+        ) : (
+          <p className='lighter'>{text}</p>
+        )}
         <div>
           <button
             id='liked'
@@ -46,6 +65,12 @@ function Comment({ text, username, date, img }) {
           >
             <Dislike />
           </button>
+          {isEditing ? (
+            <button className='comment-button' onClick={handleSaveClick}>Save</button>
+          ) : (
+            <button className='comment-button' onClick={handleEditClick}>Edit</button>
+          )}
+          <button className='comment-button' onClick={handleDeleteClick}>Delete</button>
         </div>
       </div>
     </div>

@@ -10,10 +10,9 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
   };
 
   const handleCommentClick = () => {
-    console.log('Adding comment:', commentText); // Check if handleCommentClick is called
     if (commentText) {
       const newComment = {
-        id: initialComments.length + 1,
+        id: initialComments.find(commentData => commentData.videoId === videoId)?.comments.length + 1 || 1,
         text: commentText,
         username: userName,
         date: '1 second',
@@ -21,7 +20,13 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
         videoId,
       };
 
-      updateComments(videoId, newComment);
+      const updatedComments = initialComments.map((commentData) =>
+        commentData.videoId === videoId
+          ? { ...commentData, comments: [...commentData.comments, newComment] }
+          : commentData
+      );
+
+      updateComments(videoId, updatedComments.find(data => data.videoId === videoId).comments);
       setCommentText('');
     }
   };
@@ -30,11 +35,46 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
     setCommentText('');
   };
 
-  // Get comments for the current videoId
+  const handleEditComment = (commentId, newText) => {
+    const updatedComments = initialComments.map((commentData) => {
+      if (commentData.videoId === videoId) {
+        return {
+          ...commentData,
+          comments: commentData.comments.map((comment) =>
+            comment.id === commentId ? { ...comment, text: newText } : comment
+          ),
+        };
+      }
+      return commentData;
+    });
+
+    updateComments(videoId, updatedComments.find(data => data.videoId === videoId).comments);
+  };
+
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = initialComments.map((commentData) => {
+      if (commentData.videoId === videoId) {
+        return {
+          ...commentData,
+          comments: commentData.comments.filter((comment) => comment.id !== commentId),
+        };
+      }
+      return commentData;
+    });
+
+    updateComments(videoId, updatedComments.find(data => data.videoId === videoId).comments);
+  };
+
+  // Get comments for the current videoId and ensure it's an array
   const videoComments = initialComments.find((commentData) => commentData.videoId === videoId)?.comments || [];
 
   const commentList = videoComments.map((comment, key) => (
-    <Comment {...comment} key={key} />
+    <Comment
+      {...comment}
+      key={key}
+      onEdit={handleEditComment}
+      onDelete={handleDeleteComment}
+    />
   ));
 
   return (
