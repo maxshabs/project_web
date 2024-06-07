@@ -45,6 +45,7 @@ const ManageRoutes = () => {
     setAllVideos(updatedVideos);
     setVideoList(updatedVideos);
   };
+  
 
   const handleDeleteVideo = (videoId) => {
     const updatedVideos = allVideos.filter(video => video.id !== videoId);
@@ -80,7 +81,7 @@ const ManageRoutes = () => {
       />
       <Route 
         path="/upload-video" 
-        element={ loggedInUser &&
+        element={ //loggedInUser &&
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
             <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={allVideos} />

@@ -2,8 +2,8 @@
     margin: 10px;
     padding: 8px 15px;
     border-radius: 15px;
+    border: 1px solid var(--category-button-text-color);
     background-color: var(--category-button-background-color);
-    border: none;
     font-size: 14px;
     color: var(--category-button-text-color);
     transition: background-color 0.3s;
@@ -11,4 +11,9 @@
 
 .category-button:hover {
     background-color: var(--category-button-hover-background-color);
+}
+
+.category-button:focus {
+    background-color: var(--category-button-hover-background-color);
+    color: var(--category-button-text-color);
 }
