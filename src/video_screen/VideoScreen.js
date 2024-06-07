@@ -6,13 +6,14 @@ import CommentSection from './CommentSection/CommentSection';
 import ActionBar from './ActionsBar/ActionBar';
 import LeftMenu from '../leftMenu/LeftMenu';
 
-const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
+const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTimeAgo, displayTimes }) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
   const [currentVideo, setCurrentVideo] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [displayTime, setDisplayTime] = useState('');
 
   const updateComments = (videoId, newComments) => {
     const updatedComments = comments.map((commentData) =>
@@ -33,6 +34,17 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
     setIsSubscribed(false);
   }, [id, videos]);
 
+  useEffect(() => {
+    if (currentVideo) {
+      setDisplayTime(calculateTimeAgo(currentVideo.uploadTime));
+      const interval = setInterval(() => {
+        setDisplayTime(calculateTimeAgo(currentVideo.uploadTime));
+      }, 60000); // Update every minute
+
+      return () => clearInterval(interval); // Cleanup interval on component unmount
+    }
+  }, [currentVideo, calculateTimeAgo]);
+
   if (!currentVideo) {
     return <div></div>;
   }
@@ -47,7 +59,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
       author={video.author}
       views={video.views}
       img={video.img}
-      date={video.uploadTime}
+      date={displayTimes[video.id] || calculateTimeAgo(video.uploadTime)}
       key={key}
     />
   ));
@@ -63,7 +75,8 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
             <div>
               <video className="thumbnail" controls autoPlay src={currentVideo.video}></video>
               <div id="title">{currentVideo.title}</div>
-              <ActionBar className="action-bar"
+              <ActionBar
+                className="action-bar"
                 userName={currentVideo.author}
                 img={currentVideo.authorImage}
                 isLiked={isLiked}
@@ -74,7 +87,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
                 setIsSubscribed={setIsSubscribed}
               />
               <div id="description">
-                <div id="stats">{currentVideo.views} views - {currentVideo.date}</div>
+                <div id="stats">{currentVideo.views} views - {displayTime}</div>
                 <div>{currentVideo.description}</div>
               </div>
               <CommentSection

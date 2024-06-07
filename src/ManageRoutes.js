@@ -4,7 +4,7 @@ import SignUp from './sign_up/SignUp';
 import SignIn from './sign_in/SignIn';
 import UploadVideo from './upload_video/UploadVideo';
 import EditVideo from './edit_video/EditVideo';
-import MainPage from './main_page/MainPage';  
+import MainPage from './main_page/MainPage';
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
@@ -17,6 +17,7 @@ const ManageRoutes = () => {
   const [videoList, setVideoList] = useState(videos);
   const [theme, setTheme] = useState('light');
   const [comments, setComments] = useState(initialComments);
+  const [displayTimes, setDisplayTimes] = useState({});
 
   const addUser = (newUser) => {
     setUsers([...users, newUser]);
@@ -35,12 +36,20 @@ const ManageRoutes = () => {
   };
 
   const handleUploadVideo = (newVideo) => {
+    const uploadTime = new Date().toISOString();
     setVideoList([newVideo, ...allVideos]);
     setAllVideos([newVideo, ...allVideos]);
+    setComments([...comments, { videoId: newVideo.id, comments: [{ id: 1, text: 'Great video, welcome to VidTube!', username: 'VidTube Official Account', date: uploadTime, img: '/logo.png' }] }]);
+  
+    setDisplayTimes((prevDisplayTimes) => ({
+      ...prevDisplayTimes,
+      [newVideo.id]: calculateTimeAgo(uploadTime),
+    }));
   };
+  
 
   const handleEditVideo = (editedVideo) => {
-    const updatedVideos = allVideos.map(video =>
+    const updatedVideos = allVideos.map((video) =>
       video.id === editedVideo.id ? editedVideo : video
     );
     setAllVideos(updatedVideos);
@@ -48,12 +57,51 @@ const ManageRoutes = () => {
   };
 
   const handleDeleteVideo = (videoId) => {
-    const updatedVideos = allVideos.filter(video => video.id !== videoId);
-    const updatedComments = comments.filter(comment => comment.videoId !== videoId);
+    const updatedVideos = allVideos.filter((video) => video.id !== videoId);
+    const updatedComments = comments.filter((comment) => comment.videoId !== videoId);
     setAllVideos(updatedVideos);
     setVideoList(updatedVideos);
     setComments(updatedComments);
   };
+
+  const calculateTimeAgo = (uploadTime) => {
+    const now = new Date();
+    const uploadDate = new Date(uploadTime);
+    const differenceInSeconds = Math.floor((now - uploadDate) / 1000);
+    let timeAgo = '';
+
+    if (differenceInSeconds < 60) {
+      timeAgo = `${differenceInSeconds} seconds ago`;
+    } else if (differenceInSeconds < 3600) {
+      timeAgo = `${Math.floor(differenceInSeconds / 60)} minutes ago`;
+    } else if (differenceInSeconds < 86400) {
+      timeAgo = `${Math.floor(differenceInSeconds / 3600)} hours ago`;
+    } else {
+      timeAgo = `${Math.floor(differenceInSeconds / 86400)} days ago`;
+    }
+
+    return timeAgo;
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const updatedDisplayTimes = {};
+      allVideos.forEach((video) => {
+        updatedDisplayTimes[video.id] = calculateTimeAgo(video.uploadTime);
+      });
+      setDisplayTimes(updatedDisplayTimes);
+    }, 60000); // Update every minute
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [allVideos]);
+
+  useEffect(() => {
+    const updatedDisplayTimes = {};
+    allVideos.forEach((video) => {
+      updatedDisplayTimes[video.id] = calculateTimeAgo(video.uploadTime);
+    });
+    setDisplayTimes(updatedDisplayTimes);
+  }, [allVideos]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -71,42 +119,45 @@ const ManageRoutes = () => {
     <Routes>
       <Route path="/sign-up" element={<SignUp addUser={addUser} />} />
       <Route path="/sign-in" element={<SignIn validateUser={validateUser} />} />
-      
-      <Route 
-        path="/main" 
+      <Route
+        path="/main"
         element={
           <>
-            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <MainPage videos={videoList} handleDeleteVideo={handleDeleteVideo} loggedInUser={loggedInUser}/>
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+            <MainPage videos={videoList} handleDeleteVideo={handleDeleteVideo} loggedInUser={loggedInUser} calculateTimeAgo={calculateTimeAgo} displayTimes={displayTimes} />
           </>
-        } 
+        }
       />
-      <Route 
-        path="/upload-video" 
-        element={ loggedInUser &&
-          <>
-            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={allVideos} />
-          </>
-        } 
+      <Route
+        path="/upload-video"
+        element={
+          loggedInUser && (
+            <>
+              <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+              <UploadVideo handleUploadVideo={handleUploadVideo} loggedInUser={loggedInUser} videos={allVideos} />
+            </>
+          )
+        }
       />
-      <Route 
-        path="/edit-video/:id" 
-        element={ loggedInUser &&
-          <>
-            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <EditVideo handleEditVideo={handleEditVideo} videos={allVideos} />
-          </>
-        } 
+      <Route
+        path="/edit-video/:id"
+        element={
+          loggedInUser && (
+            <>
+              <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+              <EditVideo handleEditVideo={handleEditVideo} videos={allVideos} />
+            </>
+          )
+        }
       />
-      <Route 
-        path="/videos/:id" 
+      <Route
+        path="/videos/:id"
         element={
           <>
-            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <VideoScreen loggedInUser={loggedInUser}  videos={allVideos} comments={comments} setComments={setComments} />
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+            <VideoScreen loggedInUser={loggedInUser} videos={allVideos} comments={comments} setComments={setComments} calculateTimeAgo={calculateTimeAgo} displayTimes={displayTimes} />
           </>
-        } 
+        }
       />
       <Route path="/" element={<Navigate to="/main" />} />
     </Routes>
