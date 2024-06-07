@@ -17,6 +17,8 @@
     --category-button-background-color: #f0f0f0;
     --category-button-text-color: #000;
     --category-button-hover-background-color: #e0e0e0;
+    --input-border-color: #ddd;
+    --input-container-background-color: #f8f8f8;
 }
 
 /* Dark theme variables */
@@ -38,5 +40,6 @@
     --category-button-background-color: #555555;
     --category-button-text-color: #ffffff;
     --category-button-hover-background-color: #979797;
-    
+    --input-border-color: #5c5c5c;
+    --input-container-background-color: #1f1f1f;
 }

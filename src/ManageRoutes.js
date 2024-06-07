@@ -50,8 +50,10 @@ const ManageRoutes = () => {
   const handleDeleteVideo = (videoId) => {
     const updatedVideos = allVideos.filter(video => video.id !== videoId);
     const updatedComments = comments.filter(comment => comment.videoId !== videoId);
+    const updatedComments = comments.filter(comment => comment.videoId !== videoId);
     setAllVideos(updatedVideos);
     setVideoList(updatedVideos);
+    setComments(updatedComments);
     setComments(updatedComments);
   };
 

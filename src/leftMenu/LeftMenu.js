@@ -17,17 +17,17 @@ function LeftMenu() {
                 <li className="menu-item">
                     <Link to="/main" className="menu-link">
                         <i className="bi bi-arrow-up-right-square-fill"></i>
-                    </Link>
+                        </Link>
                 </li>
                 <li className="menu-item">
                     <Link to="/main" className="menu-link">
                         <i className="bi bi-collection-play-fill"></i>
-                    </Link>
+                        </Link>
                 </li>
                 <li className="menu-item">
                     <Link to="/main" className="menu-link">
                         <i className="bi bi-person-fill"></i>
-                    </Link>
+                        </Link>
                 </li>
             </ul>
             <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel" style={{ width: '200px' }}>
