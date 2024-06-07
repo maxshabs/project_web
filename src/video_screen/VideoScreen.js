@@ -7,7 +7,7 @@ import ActionBar from './ActionsBar/ActionBar';
 import LeftMenu from '../leftMenu/LeftMenu';
 import pic4 from './pic4.jpg';
 
-const VideoScreen = ({ videos, comments, setComments }) => {
+const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
   const [currentVideo, setCurrentVideo] = useState(null);
@@ -35,7 +35,7 @@ const VideoScreen = ({ videos, comments, setComments }) => {
   }, [id, videos]);
 
   if (!currentVideo) {
-    return <div>Error: Video not found.</div>; // Handle case where video is not found
+    return <div></div>;
   }
 
   // Filter out the current video from the list of videos
@@ -79,11 +79,10 @@ const VideoScreen = ({ videos, comments, setComments }) => {
                 <div>{currentVideo.description}</div>
               </div>
               <CommentSection
-                img={pic4}
-                userName="myUser"
                 videoId={currentVideo.id}
                 initialComments={comments}
                 updateComments={updateComments}
+                loggedInUser={loggedInUser}
               />
             </div>
           </div>

@@ -104,7 +104,7 @@ const ManageRoutes = () => {
         element={
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-            <VideoScreen videos={allVideos} comments={comments} setComments={setComments} />
+            <VideoScreen loggedInUser={loggedInUser}  videos={allVideos} comments={comments} setComments={setComments} />
           </>
         } 
       />

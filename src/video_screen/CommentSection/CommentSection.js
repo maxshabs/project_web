@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './CommentSection.css';
 import Comment from './Comment';
+import defaultImg from '../anonymous-user.jpg' // Import the default image
 
-function CommentSection({ img, userName, videoId, initialComments, updateComments }) {
+function CommentSection({ videoId, initialComments, updateComments, loggedInUser }) {
   const [commentText, setCommentText] = useState('');
 
   const handleInputChange = (e) => {
@@ -10,13 +11,15 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
   };
 
   const handleCommentClick = () => {
+    if (!loggedInUser) return; // Prevent commenting if the user is not logged in
+
     if (commentText) {
       const newComment = {
         id: initialComments.find(commentData => commentData.videoId === videoId)?.comments.length + 1 || 1,
         text: commentText,
-        username: userName,
+        username: loggedInUser.displayName, // Use logged-in user's name
         date: '1 second',
-        img,
+        img: loggedInUser.profilePicture, // Use logged-in user's image
         videoId,
       };
 
@@ -81,10 +84,16 @@ function CommentSection({ img, userName, videoId, initialComments, updateComment
     <div className='commentSection'>
       <div>{videoComments.length} Comments</div>
       <div className='addCommentContainer'>
-        <img src={img} className="userPicture" alt='' />
-        <input className='textField' placeholder="Add a comment..." value={commentText} onChange={handleInputChange} />
+        <img src={loggedInUser ? loggedInUser.profilePicture : defaultImg} className="userPicture" alt='' />
+        <input
+          className='textField'
+          placeholder={loggedInUser ? "Add a comment..." : "Log in to comment"}
+          value={commentText}
+          onChange={handleInputChange}
+          disabled={!loggedInUser}
+        />
         <button className='cancelBtn' onClick={handleCancelClick}>Cancel</button>
-        <button className='commentBtn' onClick={handleCommentClick}>Comment</button>
+        <button className='commentBtn' onClick={handleCommentClick} disabled={!loggedInUser}>Comment</button>
       </div>
       {commentList.reverse()}
     </div>
