@@ -1,4 +1,3 @@
-// src/ManageRoutes.js
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import SignUp from './sign_up/SignUp';
@@ -10,7 +9,6 @@ import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
 import initialComments from './data/comments.json';
-
 
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
@@ -48,12 +46,13 @@ const ManageRoutes = () => {
     setAllVideos(updatedVideos);
     setVideoList(updatedVideos);
   };
-  
 
   const handleDeleteVideo = (videoId) => {
     const updatedVideos = allVideos.filter(video => video.id !== videoId);
+    const updatedComments = comments.filter(comment => comment.videoId !== videoId);
     setAllVideos(updatedVideos);
     setVideoList(updatedVideos);
+    setComments(updatedComments);
   };
 
   useEffect(() => {
@@ -101,13 +100,13 @@ const ManageRoutes = () => {
         } 
       />
       <Route 
-      path="/videos/:id" 
-      element={
-        <>
-          <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
-          <VideoScreen videos={allVideos} initialComments={comments} />
-        </>
-      } 
+        path="/videos/:id" 
+        element={
+          <>
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser}/>
+            <VideoScreen videos={allVideos} comments={comments} setComments={setComments} />
+          </>
+        } 
       />
       <Route path="/" element={<Navigate to="/main" />} />
     </Routes>

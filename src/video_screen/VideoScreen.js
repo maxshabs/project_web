@@ -7,11 +7,9 @@ import ActionBar from './ActionsBar/ActionBar';
 import pic4 from './pic4.jpg';
 import LeftMenu from '../leftMenu/LeftMenu';
 
-const VideoScreen = ({ videos, initialComments }) => {
+const VideoScreen = ({ videos, comments, setComments}) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
-  // State and function to update comments
-  const [comments, setComments] = useState(initialComments);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
@@ -23,7 +21,7 @@ const VideoScreen = ({ videos, initialComments }) => {
         ? { ...commentData, comments: [...commentData.comments, newComment] }
         : commentData
     );
-    setComments(updatedComments);
+    setComments(updatedComments); // Update the comments in the parent component
   };
 
   useEffect(() => {
