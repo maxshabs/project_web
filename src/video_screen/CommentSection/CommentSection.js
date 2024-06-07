@@ -77,6 +77,7 @@ function CommentSection({ videoId, initialComments, updateComments, loggedInUser
       key={key}
       onEdit={handleEditComment}
       onDelete={handleDeleteComment}
+      loggedInUser={loggedInUser}
     />
   ));
 

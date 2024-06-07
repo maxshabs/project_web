@@ -3,7 +3,7 @@ import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
 import { ReactComponent as Dislike } from '../ActionsBar/dislike.svg';
 
-function Comment({ id, text, username, date, img, onEdit, onDelete }) {
+function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser }) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -65,12 +65,16 @@ function Comment({ id, text, username, date, img, onEdit, onDelete }) {
           >
             <Dislike />
           </button>
-          {isEditing ? (
-            <button className='comment-button' onClick={handleSaveClick}>Save</button>
-          ) : (
-            <button className='comment-button' onClick={handleEditClick}>Edit</button>
-          )}
-          <button className='comment-button' onClick={handleDeleteClick}>Delete</button>
+          {loggedInUser && 
+          <>
+            {isEditing ? (
+              <button className='comment-button' onClick={handleSaveClick}>Save</button>
+            ) : (
+              <button className='comment-button' onClick={handleEditClick}>Edit</button>
+            )}
+            <button className='comment-button' onClick={handleDeleteClick}>Delete</button>
+          </>
+        }   
         </div>
       </div>
     </div>

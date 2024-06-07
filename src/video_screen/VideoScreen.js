@@ -5,7 +5,6 @@ import SideVideo from './SideVideo/SideVideo';
 import CommentSection from './CommentSection/CommentSection';
 import ActionBar from './ActionsBar/ActionBar';
 import LeftMenu from '../leftMenu/LeftMenu';
-import pic4 from './pic4.jpg';
 
 const VideoScreen = ({ loggedInUser, videos, comments, setComments }) => {
   const { id } = useParams(); // Get the video ID from the URL params
