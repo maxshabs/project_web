@@ -19,7 +19,7 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
     }
 
     const newVideo = {
-      id: String(videos.length + 1),
+      id: videos[videos.length - 1].id + 1,
       title,
       description,
       author: loggedInUser.displayName,
