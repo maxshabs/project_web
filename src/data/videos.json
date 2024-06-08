@@ -16,7 +16,7 @@
       "description": "Lebron james puts nurkic on a poster!",
       "author": "LeKing James",
       "views": "517K",
-      "img": "/images/img2.jpg",
+      "img": "/images/lebronpic.jpg",
       "video": "/mainVideos/lebronDunk.mp4",
       "uploadTime": "1 year",
       "authorImage": "/images/img2.jpg"
@@ -27,7 +27,7 @@
       "description": "Coming soon to theatres near you and worldwide.",
       "author": "Marvel Studios",
       "views": "1.2M",
-      "img": "/images/img3.jpg",
+      "img": "/images/deadpoolpic.jpg",
       "video": "/mainVideos/deadpool.mp4",
       "uploadTime": "2 years",
       "authorImage": "/images/img3.jpg"
@@ -38,7 +38,7 @@
       "description": "funny family guy clip",
       "author": "MegaEpicGaming",
       "views": "5.7K",
-      "img": "/images/img4.jpg",
+      "img": "/images/famguy1pic.jpg",
       "video": "/mainVideos/familyguy.mp4",
       "uploadTime": "6 months",
       "authorImage": "/images/img4.jpg"
@@ -49,7 +49,7 @@
       "description": "funny family guy clip2",
       "author": "DailyLaugh",
       "views": "3.4M",
-      "img": "/images/img5.jpg",
+      "img": "/images/famguy2pic.jpg",
       "video": "/mainVideos/familyguy2.mp4",
       "uploadTime": "8 months",
       "authorImage": "/images/img5.jpg"
@@ -60,7 +60,7 @@
       "description": "gonna be amazing.",
       "author": "Rockstar Games",
       "views": "5.2M",
-      "img": "/images/img6.jpg",
+      "img": "/images/gtavipic.jpg",
       "video": "/mainVideos/gtavi.mp4",
       "uploadTime": "2 days",
       "authorImage": "/images/img9.jpg"
@@ -71,7 +71,7 @@
       "description": "The best song evarrrr",
       "author": "Travis Scott",
       "views": "2M",
-      "img": "/images/img7.jpg",
+      "img": "/images/feinpic.jpg",
       "video": "/mainVideos/FEIN.mp4",
       "uploadTime": "3 weeks",
       "authorImage": "/images/img6.jpg"
@@ -82,7 +82,7 @@
       "description": "The funniest minions video of 2023, if you laugh you lose!",
       "author": "FunnyMinions",
       "views": "1.5M",
-      "img": "/images/img8.jpg",
+      "img": "/images/minionspic.jpg",
       "video": "/mainVideos/minions.mp4",
       "uploadTime": "1 day",
       "authorImage": "/images/img7.jpg"
@@ -93,7 +93,7 @@
       "description": "The best of Tokyo, Japan.",
       "author": "TravelToday",
       "views": "103K",
-      "img": "/images/img9.jpg",
+      "img": "/images/tokyothings.jpg",
       "video": "/mainVideos/tokyo.mp4",
       "uploadTime": "5 years",
       "authorImage": "/images/img8.jpg"
@@ -104,7 +104,7 @@
       "author": "Animate Central",
       "views": "1.9M",
       "description": "A video showcasing the best Animation of 2023. You won't believe how cool it is!",
-      "img": "/images/img10.jpg",
+      "img": "/images/animationpic.jpg",
       "video": "/mainVideos/Animation.mp4",
       "uploadTime": "2 months",
       "authorImage": "/images/img10.jpg"
