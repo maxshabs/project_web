@@ -77,8 +77,12 @@ const ManageRoutes = () => {
       timeAgo = `${Math.floor(differenceInSeconds / 60)} minutes ago`;
     } else if (differenceInSeconds < 86400) {
       timeAgo = `${Math.floor(differenceInSeconds / 3600)} hours ago`;
-    } else {
+    } else if (differenceInSeconds < 2592000) {
       timeAgo = `${Math.floor(differenceInSeconds / 86400)} days ago`;
+    } else if (differenceInSeconds < 31536000) {
+      timeAgo = `${Math.floor(differenceInSeconds / 2592000)} months ago`;
+    } else {
+      timeAgo = `${Math.floor(differenceInSeconds / 31536000)} years ago`;
     }
 
     return timeAgo;
