@@ -26,7 +26,8 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
       views: "0",
       img: URL.createObjectURL(imageFile),
       video: URL.createObjectURL(videoFile),
-      uploadTime: new Date().toISOString() // Store the upload time in ISO format
+      uploadTime: new Date().toISOString(), // Store the upload time in ISO format
+      authorImage: loggedInUser.profilePicture
     };
 
     handleUploadVideo(newVideo);

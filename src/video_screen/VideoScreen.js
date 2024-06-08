@@ -59,7 +59,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
       author={video.author}
       views={video.views}
       img={video.img}
-      date={displayTimes[video.id] || calculateTimeAgo(video.uploadTime)}
+      date={calculateTimeAgo(video.uploadTime)}
       key={key}
     />
   ));
