@@ -41,7 +41,7 @@ function ActionBar({
     <div className="container">
       <div className="userBar">
         <img src={img} className="img-thumbnail" alt=""></img>
-        <a id="userName" href="">{userName}</a>
+        <p id="userName">{userName}</p>
         <button
           id='subscribe'
           className={`subscribe-button${isSubscribed ? ' subscribed' : ''}`}
