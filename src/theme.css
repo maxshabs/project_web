@@ -23,6 +23,7 @@
     --hover-sign-in-and-out: #00008B;
     --inputlabel-sign-in-and-out: white;
     --placeholder-sign-in-and-out: #aaa;
+    --side-video-stats: black;
 }
 
 /* Dark theme variables */
@@ -50,4 +51,5 @@
     --hover-sign-in-and-out: #0056b3;
     --inputlabel-sign-in-and-out: rgb(242,242,242);
     --placeholder-sign-in-and-out: #888;
+    --side-video-stats: white;
 }

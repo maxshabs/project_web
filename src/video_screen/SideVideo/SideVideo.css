@@ -25,8 +25,9 @@
     text-align: left;
   }
 
-  .sideVideoStats {
+  #sideVideoStats {
     text-align: left;
+    color: var(--side-video-stats);
   }
   
 .link-style {

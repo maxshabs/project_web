@@ -28,7 +28,7 @@
   #userName {
     margin: 0;
     font-weight: bold;
-    color: black; /* Change text color to black */
+    color: var(--side-video-stats); /* Change text color to black */
     text-decoration: none; /* Remove underline */
   }
   
