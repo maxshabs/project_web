@@ -9,7 +9,7 @@ import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
 import initialComments from './data/comments.json';
-import Logo from './logo.png';
+import Logo from './favicon.png';
 
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
