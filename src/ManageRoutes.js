@@ -38,8 +38,8 @@ const ManageRoutes = () => {
 
   const handleUploadVideo = (newVideo) => {
     const uploadTime = new Date().toISOString();
-    setVideoList([newVideo, ...allVideos]);
-    setAllVideos([newVideo, ...allVideos]);
+    setVideoList([...allVideos, newVideo]);
+    setAllVideos([...allVideos, newVideo]);
     setComments([...comments, { videoId: newVideo.id, comments: [{ id: 1, text: 'Great video, welcome to VidTube!', username: 'VidTube Official Account', date: uploadTime, img: Logo }] }]);
   
     setDisplayTimes((prevDisplayTimes) => ({
