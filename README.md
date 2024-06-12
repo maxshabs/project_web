@@ -19,7 +19,6 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Web App Features:
 * After running `npm start` the localhost will open in the browser and you will be brought to the Home page
-  picture of home page
 
 * The Home page contains many exciting features such as:
     * A video list displaying some of the videos on the platform
