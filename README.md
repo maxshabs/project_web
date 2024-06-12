@@ -7,7 +7,7 @@ this Readme file contains an overview of the web app and its features, along wit
 In order to run the Web app, start by cloning the repository, you can do this by opening the terminal and entering this command:
 `git clone https://github.com/maxshabs/project_web.git`
 
-While in the project directory, you can run:
+After cloning, while in the project directory, you can run:
 ### `npm install`
 
 and wait for it to finish installing, afterwards run
