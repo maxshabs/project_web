@@ -4,7 +4,7 @@ The VidTube app is a video sharing app, made for allowing users across the world
 this Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
 
 ## How To Run
-details
+In order to run the Web app,
 
 In the project directory, you can run:
 
@@ -65,47 +65,47 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ![Alt text](/Web-app-Screenshots/Screenshot_1.jpg)
 
 ## Home Page (logged in):
-![Alt text](/Web-app-Screenshots/Screenshot_2.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_2.png)
 
 ## Home Page (Dark mode):
-![Alt text](/Web-app-Screenshots/Screenshot_3.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_3.png)
 
 ## Upload-Video Page:
-![Alt text](/Web-app-Screenshots/Screenshot_4.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_4.png)
 
 ## Side Menu (opened by clicking the 3 lines icon):
-![Alt text](/Web-app-Screenshots/Screenshot_5.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_5.png)
 
 ## Watch-Video Page (logged in):
-![Alt text](/Web-app-Screenshots/Screenshot_6.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_6.png)
 
 ## Watch-Video Page (Dark mode):
-![Alt text](/Web-app-Screenshots/Screenshot_7.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_7.png)
 
 ## Watch-Video Page (Like, Dislike, Subscribe, Share):
-![Alt text](/Web-app-Screenshots/Screenshot_8.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_9.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_10.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_11.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_12.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_8.png)
+![Alt text](/Web-app-Screenshots/Screenshot_9.png)
+![Alt text](/Web-app-Screenshots/Screenshot_10.png)
+![Alt text](/Web-app-Screenshots/Screenshot_11.png)
+![Alt text](/Web-app-Screenshots/Screenshot_12.png)
 
 ## Watch-Video Page Comment section (Comment, like, dislike, edit, delete):
-![Alt text](/Web-app-Screenshots/Screenshot_13.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_14.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_15.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_16.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_17.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_13.png)
+![Alt text](/Web-app-Screenshots/Screenshot_14.png)
+![Alt text](/Web-app-Screenshots/Screenshot_15.png)
+![Alt text](/Web-app-Screenshots/Screenshot_16.png)
+![Alt text](/Web-app-Screenshots/Screenshot_17.png)
 
 ## Edit-Video Page (and editing a video):
-![Alt text](/Web-app-Screenshots/Screenshot_18.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_19.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_18.png)
+![Alt text](/Web-app-Screenshots/Screenshot_19.png)
 
 ## Edit-Video Page (Dark Mode):
-![Alt text](/Web-app-Screenshots/Screenshot_20.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_20.png)
 
 ## Sign-Up and Sign-In Pages:
-![Alt text](/Web-app-Screenshots/Screenshot_21.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_22.jpg)
-![Alt text](/Web-app-Screenshots/Screenshot_23.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_21.png)
+![Alt text](/Web-app-Screenshots/Screenshot_22.png)
+![Alt text](/Web-app-Screenshots/Screenshot_23.png)
 
 
