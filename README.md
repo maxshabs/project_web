@@ -1,3 +1,5 @@
+![Alt text](/Web-app-Screenshots/logo_vidtube.png)
+
 # VidTube-Web app
 
 The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
