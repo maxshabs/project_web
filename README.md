@@ -63,3 +63,49 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Home Page:
 ![Alt text](/Web-app-Screenshots/Screenshot_1.jpg)
+
+## Home Page (logged in):
+![Alt text](/Web-app-Screenshots/Screenshot_2.jpg)
+
+## Home Page (Dark mode):
+![Alt text](/Web-app-Screenshots/Screenshot_3.jpg)
+
+## Upload-Video Page:
+![Alt text](/Web-app-Screenshots/Screenshot_4.jpg)
+
+## Side Menu (opened by clicking the 3 lines icon):
+![Alt text](/Web-app-Screenshots/Screenshot_5.jpg)
+
+## Watch-Video Page (logged in):
+![Alt text](/Web-app-Screenshots/Screenshot_6.jpg)
+
+## Watch-Video Page (Dark mode):
+![Alt text](/Web-app-Screenshots/Screenshot_7.jpg)
+
+## Watch-Video Page (Like, Dislike, Subscribe, Share):
+![Alt text](/Web-app-Screenshots/Screenshot_8.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_9.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_10.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_11.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_12.jpg)
+
+## Watch-Video Page Comment section (Comment, like, dislike, edit, delete):
+![Alt text](/Web-app-Screenshots/Screenshot_13.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_14.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_15.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_16.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_17.jpg)
+
+## Edit-Video Page (and editing a video):
+![Alt text](/Web-app-Screenshots/Screenshot_18.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_19.jpg)
+
+## Edit-Video Page (Dark Mode):
+![Alt text](/Web-app-Screenshots/Screenshot_20.jpg)
+
+## Sign-Up and Sign-In Pages:
+![Alt text](/Web-app-Screenshots/Screenshot_21.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_22.jpg)
+![Alt text](/Web-app-Screenshots/Screenshot_23.jpg)
+
+
