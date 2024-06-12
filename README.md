@@ -1,4 +1,5 @@
-![Alt text](/Web-app-Screenshots/logo_vidtube.png)
+<img src="/Web-app-Screenshots/logo_vidtube.png" alt="Example Image" width="200" height="150">
+
 
 # VidTube-Web app
 
