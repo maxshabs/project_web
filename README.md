@@ -77,6 +77,9 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Upload-Video Page:
 ![Alt text](/Web-app-Screenshots/Screenshot_4.png)
+![Alt text](/Web-app-Screenshots/Screenshot_24.png)
+![Alt text](/Web-app-Screenshots/Screenshot_25.png)
+![Alt text](/Web-app-Screenshots/Screenshot_26.png)
 
 ## Side Menu (opened by clicking the 3 lines icon):
 ![Alt text](/Web-app-Screenshots/Screenshot_5.png)
