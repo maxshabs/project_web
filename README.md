@@ -88,20 +88,29 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Watch-Video Page (Like, Dislike, Subscribe, Share):
 ![Alt text](/Web-app-Screenshots/Screenshot_8.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_9.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_10.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_11.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_12.png)
 
 ## Watch-Video Page Comment section (Comment, like, dislike, edit, delete):
 ![Alt text](/Web-app-Screenshots/Screenshot_13.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_14.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_15.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_16.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_17.png)
 
 ## Edit-Video Page (and editing a video):
 ![Alt text](/Web-app-Screenshots/Screenshot_18.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_19.png)
 
 ## Edit-Video Page (Dark Mode):
@@ -109,7 +118,9 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Sign-Up and Sign-In Pages:
 ![Alt text](/Web-app-Screenshots/Screenshot_21.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_22.png)
+-----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_23.png)
 
 
