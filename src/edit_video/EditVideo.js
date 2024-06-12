@@ -10,6 +10,7 @@ const EditVideo = ({ handleEditVideo, videos }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [author, setAuthor] = useState('');
+  const [authorImage, setAuthorImage] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,6 +21,7 @@ const EditVideo = ({ handleEditVideo, videos }) => {
       setTitle(videoToEdit.title);
       setDescription(videoToEdit.description);
       setAuthor(videoToEdit.author);
+      setAuthorImage(videoToEdit.authorImage);
       setImageFile(videoToEdit.img);
       setVideoFile(videoToEdit.video);
     }
@@ -40,7 +42,8 @@ const EditVideo = ({ handleEditVideo, videos }) => {
       views: videos.find(video => video.id === id).views,
       img: typeof imageFile === 'string' ? imageFile : URL.createObjectURL(imageFile),
       video: typeof videoFile === 'string' ? videoFile : URL.createObjectURL(videoFile),
-      uploadTime: videos.find(video => video.id === id).uploadTime
+      uploadTime: videos.find(video => video.id === id).uploadTime,
+      authorImage
     };
 
     handleEditVideo(editedVideo);
