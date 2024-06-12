@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+# VidTube-Web app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
+this Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
 
-## Available Scripts
+## How To Run
+details
 
 In the project directory, you can run:
 
@@ -11,60 +13,53 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Web App Features:
+* After running `npm start` the localhost will open in the browser and you will be brought to the Home page
+  picture of home page
 
-### `npm test`
+* The Home page contains many exciting features such as:
+    * A video list displaying some of the videos on the platform
+    * A search bar where you can filter videos by title
+    * The ability to sign in (or sign up and then sign in) which unlocks more features such as:
+        * Upload video - share your videos and content with the world (note: videos must contain a title, description, thumbnail etc.).
+        * Edit video - allows you to change video title, description, thumbnail, or the video itself.
+        * Delete video - don't want your video to appear on VidTube? you can easily delete it.
+        * Commenting on a video (in the watch-video page).
+    * Dark mode, which works across the entire Web app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* The Watch-Video Page contains even more great functionality:
+    * The video itself with Pause, Play, Fullscreen, and the ability to control Volume and video speed.
+    * Interesting details about the video such as the author, author image, views, how long ago the video was uploaded, the description etc.
+    * A side list with lots of reccomended videos for you to watch and enjoy, each better than the last.
+    * The ability to show your thoughts with buttonssuch as 'Like', 'Dislike', and 'Subscribe', 
+      along with a 'Share' drop-down menu where you can share  the video on Whatsapp, Gmail or Facebook.
+    * You can also share your thoughts via the comment section (note: you must be logged in to comment, and comment must contain text)
+      where you can like or dislike other peoples' comments, post a comment on your behalf with your Display name and profile picture,
+      and also delete and edit comments (again, you must be logged in to edit and delete).
 
-### `npm run build`
+* The Upload-Video Page:
+    * Here you can share your video content with the world!
+    * Choose a catchy title, iformative description, an eye catching thumbnail and then select the video you want to share.
+      click 'Upload Video' and your video can be seen on VidTube!
+    * Your new video will be posted under your Display name and your profile picture, with a fresh comment from the Official VidTube account welcoming your new content to the platform.
+    * Having second thoughts? dont worry, just click the 'cancel' button and you will be brought back to the Home page!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* The Edit-Video Page:
+    * We believe in second chances! Here you can edit videos, and change their title, description, thumbnail or the video itself.
+    * Having second thoughts? dont worry, just click the 'cancel' button and you will be brought back to the Home page!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* The Sign-in Page:
+    * Sign in with your Username and password (make sure your account exists first) to unlock features such as commenting, editing, deleting and uploading videos and many more!
+    * Don't have an account? No worries! click the "Don't have an account? Sign up here." text and you will be brought to the Sign-up page, where you can create an acoount.
+    * Don't want to sign in? click the VidTube logo and you will be brought back to the Home page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* The Sign-up Page:
+    * Sign up by choosing your own Username, Display name, profile picture and password (and Verifying your password) to create your very own VidTube account and unlock features such as commenting, editing, deleting and uploading videos and many more!
+    * Already have an account? No worries! click the "Already have an account? Log in" text and you will be brought to the Sign-in page, where you can log in to your account.
+    * Don't want to sign up? click the VidTube logo and you will be brought back to the Home page.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 📷 Screenshots from the Web app:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Home Page:
+![The Home page](Web-app-Screenshots\Screenshot_1.png)
