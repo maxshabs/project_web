@@ -62,4 +62,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 # 📷 Screenshots from the Web app:
 
 ## Home Page:
-![The Home page](Web-app-Screenshots\Screenshot_1.png)
+![The Home page](/Web-app-Screenshots\Screenshot_1.png)
