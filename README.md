@@ -53,7 +53,7 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 * The Sign-in Page:
     * Sign in with your Username and password (make sure your account exists first) to unlock features such as commenting, editing, deleting and uploading videos and many more!
-    * Don't have an account? No worries! click the "Don't have an account? Sign up here." text and you will be brought to the Sign-up page, where you can create an acoount.
+    * Don't have an account? No worries! click the "Don't have an account? Sign up here." text and you will be brought to the Sign-up page, where you can create an account.
     * Don't want to sign in? click the VidTube logo and you will be brought back to the Home page.
 
 * The Sign-up Page:
