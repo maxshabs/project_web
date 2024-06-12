@@ -26,7 +26,7 @@ const LoggedInHeader = ({ loggedInUser, doSearch, toggleTheme, theme, signOutUse
           <ThemeSwitchButton toggleTheme={toggleTheme} theme={theme} className={styles.button}/>
           <img src={loggedInUser.profilePicture} alt="Profile" className={styles.profilePicture} />
           <span>Hello, {loggedInUser.displayName}!</span>
-          <Link to="/sign-in" className={styles.button} onClick={onSignOut}><i className="bi bi-box-arrow-right"></i> Sign Out </Link>
+          <Link to="/main" className={styles.button} onClick={onSignOut}><i className="bi bi-box-arrow-right"></i> Sign Out </Link>
         </> :
         <>
           <ThemeSwitchButton toggleTheme={toggleTheme} theme={theme} className={styles.button}/>
