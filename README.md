@@ -4,7 +4,7 @@ The VidTube app is a video sharing app, made for allowing users across the world
 this Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
 
 ## How To Run
-In order to run the Web app, start by cloning the repository, you can do this by opening the terminal and entering this command:
+In order to run the Web app, start by cloning the repository to your IDE of choice, you can do this by opening the terminal and entering this command:
 `git clone https://github.com/maxshabs/project_web.git`
 
 After cloning, while in the project directory, you can run:
