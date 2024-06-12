@@ -34,7 +34,7 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
     * The video itself with Pause, Play, Fullscreen, and the ability to control Volume and video speed.
     * Interesting details about the video such as the author, author image, views, how long ago the video was uploaded, the description etc.
     * A side list with lots of recommended videos for you to watch and enjoy, each better than the last.
-    * The ability to show your thoughts with buttons such as 'Like', 'Dislike', and 'Subscribe', 
+    * The ability to share your thoughts with buttons such as 'Like', 'Dislike', and 'Subscribe', 
       along with a 'Share' drop-down menu where you can share  the video on Whatsapp, Gmail or Facebook.
     * You can also share your thoughts via the comment section (note: you must be logged in to comment, and comment must contain text)
       where you can like or dislike other peoples' comments, post a comment on your behalf with your Display name and profile picture,
