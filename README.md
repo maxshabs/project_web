@@ -10,7 +10,7 @@ In order to run the Web app, start by cloning the repository, you can do this by
 After cloning, while in the project directory, you can run:
 ### `npm install`
 
-and wait for it to finish installing, afterwards run
+and wait for it to finish installing, afterwards run:
 ### `npm start`
 
 which runs the app in the development mode.
