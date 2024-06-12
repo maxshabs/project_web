@@ -4,14 +4,18 @@ The VidTube app is a video sharing app, made for allowing users across the world
 this Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
 
 ## How To Run
-In order to run the Web app,
+In order to run the Web app, start by cloning the repository, you can do this by opening the terminal and entering this command:
+`git clone https://github.com/maxshabs/project_web.git`
 
-In the project directory, you can run:
+While in the project directory, you can run:
+### `npm install`
 
+and wait for it to finish installing, afterwards run
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+which runs the app in the development mode.
+The app should open on your browser automatically, but if it doesn't,
+open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Web App Features:
 * After running `npm start` the localhost will open in the browser and you will be brought to the Home page
