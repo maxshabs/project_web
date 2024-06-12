@@ -35,7 +35,7 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
     * Interesting details about the video such as the author, author image, views, how long ago the video was uploaded, the description etc.
     * A side list with lots of recommended videos for you to watch and enjoy, each better than the last.
     * The ability to share your thoughts with buttons such as 'Like', 'Dislike', and 'Subscribe', 
-      along with a 'Share' drop-down menu where you can share  the video on Whatsapp, Gmail or Facebook.
+      along with a 'Share' drop-down menu where you can share the video on Whatsapp, Gmail or Facebook.
     * You can also share your thoughts via the comment section (note: you must be logged in to comment, and comment must contain text)
       where you can like or dislike other peoples' comments, post a comment on your behalf with your Display name and profile picture,
       and also delete and edit comments (again, you must be logged in to edit and delete).
@@ -43,7 +43,7 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 * The Upload-Video Page:
     * Here you can share your video content with the world!
     * Choose a catchy title, informative description, an eye catching thumbnail and then select the video you want to share.
-      click 'Upload Video' and your video can be seen on VidTube!
+      click 'Upload To Vidtube' and your video can be seen on VidTube!
     * Your new video will be posted under your Display name and your profile picture, with a fresh comment from the Official VidTube account welcoming your new content to the platform.
     * Having second thoughts? don't worry, just click the 'cancel' button and you will be brought back to the Home page!
 
@@ -60,6 +60,7 @@ open [http://localhost:3000](http://localhost:3000) to view it in your browser.
     * Sign up by choosing your own Username, Display name, profile picture and password (and Verifying your password) to create your very own VidTube account and unlock features such as commenting, editing, deleting and uploading videos and many more!
     * Already have an account? No worries! click the "Already have an account? Log in" text and you will be brought to the Sign-in page, where you can log in to your account.
     * Don't want to sign up? click the VidTube logo and you will be brought back to the Home page.
+    * Make sure your password fits the criteria and that your password and verification password match, or else you wont be allowed to sign up.
 
 
 # 📷 Screenshots from the Web app:
