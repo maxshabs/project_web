@@ -1,4 +1,3 @@
-// src/sign_in/SignIn.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './SignIn.module.css';
@@ -10,13 +9,17 @@ const SignIn = ({ validateUser }) => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = validateUser(username, password);
-    if (user) {
-      navigate('/main');
-    } else {
-      setErrorMessage('Invalid username or password');
+    try {
+      const user = await validateUser(username, password);
+      if (user) {
+        navigate('/main');
+      } else {
+        setErrorMessage('Invalid username or password');
+      }
+    } catch (error) {
+      setErrorMessage('Failed to sign in. Please try again later.');
     }
   };
 
@@ -32,7 +35,7 @@ const SignIn = ({ validateUser }) => {
             <input type="text" id="username" name="username" className={styles.input} placeholder="example123" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <div className={styles.inputContainer}>
-            <label className={styles.inputLabel} htmlFor="password">Password</label>
+            <label className={styles.inputLabel} htmlFor="password">Password:</label>
             <input type="password" id="password" name="password" className={styles.input} placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
           {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}

@@ -1,7 +1,7 @@
 // src/sign_up/SignUp.js
 import React, { useState } from 'react';
-import styles from './SignUp.module.css';
 import { useNavigate, Link } from 'react-router-dom';
+import styles from './SignUp.module.css';
 import Logo from '../logo.png';
 
 const SignUp = ({ addUser }) => {
@@ -19,7 +19,6 @@ const SignUp = ({ addUser }) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
 
-    // Validate password strength and matching verification password
     if (!strongPasswordRegex.test(newPassword)) {
       setErrorMessage('Password must be at least 8 characters long and contain at least one capital letter, one small letter, one number, and one special character.');
     } else if (verifyPassword !== '' && verifyPassword !== newPassword) {
@@ -42,21 +41,28 @@ const SignUp = ({ addUser }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (errorMessage === '') {
-      addUser({ username, password, displayName, profilePicture });
-      navigate('/sign-in');
-    } else {
-      setErrorMessage('Form contains errors');
+      try {
+        await addUser({
+          username,
+          password,
+          displayName,
+          profilePicture
+        });
+        navigate('/sign-in');
+      } catch (error) {
+        setErrorMessage('Failed to create account. Please try again later.');
+      }
     }
   };
 
   return (
     <div className={styles.container}>
       <Link to="/main">
-            <img src={Logo} alt='Home' className={styles.logo} />
-          </Link>
+        <img src={Logo} alt="Home" className={styles.logo} />
+      </Link>
       <div className={styles.formWrapper}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
