@@ -8,7 +8,6 @@ import MainPage from './main_page/MainPage';
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
-// import initialComments from './data/comments.json';
 import Logo from './favicon.png';
 
 const ManageRoutes = () => {
@@ -47,7 +46,6 @@ const ManageRoutes = () => {
       [newVideo.id]: calculateTimeAgo(uploadTime),
     }));
   };
-  
 
   const handleEditVideo = (editedVideo) => {
     const updatedVideos = allVideos.map((video) =>
@@ -120,10 +118,10 @@ const ManageRoutes = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-   // Function to fetch comments from the server
-   const fetchComments = async () => {
+  // Function to fetch all comments from the server
+  const fetchComments = async () => {
     try {
-      const response = await fetch('/api/comments'); // Replace with your actual API endpoint
+      const response = await fetch('/api/comments');
       if (!response.ok) {
         throw new Error('Failed to fetch comments');
       }
@@ -134,6 +132,10 @@ const ManageRoutes = () => {
       // Handle error state or retry logic
     }
   };
+
+  useEffect(() => {
+    fetchComments(); // Fetch comments when component mounts
+  }, []);
 
   return (
     <Routes>
