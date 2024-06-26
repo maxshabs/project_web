@@ -11,27 +11,42 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
   const [videoFile, setVideoFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !description || !imageFile || !videoFile) {
       setErrorMessage('All fields are required.');
       return;
     }
 
-    const newVideo = {
-      id: videos[videos.length - 1].id + 1,
-      title,
-      description,
-      author: loggedInUser.displayName,
-      views: "0",
-      img: URL.createObjectURL(imageFile),
-      video: URL.createObjectURL(videoFile),
-      uploadTime: new Date().toISOString(), // Store the upload time in ISO format
-      authorImage: loggedInUser.profilePicture
-    };
+    try {
+      const imgBase64 = await convertToBase64(imageFile);
+      const videoBase64 = await convertToBase64(videoFile);
 
-    handleUploadVideo(newVideo);
-    navigate('/main');
+      const newVideo = {
+        title,
+        description,
+        author: loggedInUser.displayName,
+        img: imgBase64,
+        video: videoBase64,
+        uploadTime: new Date().toISOString(), // Store the upload time in ISO format
+        authorImage: loggedInUser.profilePicture
+      };
+
+      await handleUploadVideo(newVideo);
+      navigate('/main');
+    } catch (error) {
+      console.error('Error uploading video:', error);
+      setErrorMessage('Error uploading video.');
+    }
   };
 
   return (
