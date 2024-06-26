@@ -22,7 +22,7 @@ const ManageRoutes = () => {
 
   const addUser = async (newUser) => {
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch('http://localhost:12345/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const ManageRoutes = () => {
 
   const validateUser = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:5000/api/users/signin', {
+      const response = await fetch('http://localhost:12345/api/users/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
