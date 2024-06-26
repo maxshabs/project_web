@@ -10,27 +10,39 @@ function CommentSection({ videoId, initialComments, updateComments, loggedInUser
     setCommentText(e.target.value);
   };
 
-  const handleCommentClick = () => {
-    if (!loggedInUser) return; // Prevent commenting if the user is not logged in
+  const handleCommentClick = async () => {
+    if (!loggedInUser) return;
 
     if (commentText) {
       const newComment = {
         id: initialComments.find(commentData => commentData.videoId === videoId)?.comments.length + 1 || 1,
         text: commentText,
-        username: loggedInUser.displayName, // Use logged-in user's name
+        username: loggedInUser.displayName,
         date: new Date().toISOString(),
-        img: loggedInUser.profilePicture, // Use logged-in user's image
+        img: loggedInUser.profilePicture,
         videoId,
       };
 
-      const updatedComments = initialComments.map((commentData) =>
-        commentData.videoId === videoId
-          ? { ...commentData, comments: [...commentData.comments, newComment] }
-          : commentData
-      );
-
-      updateComments(videoId, updatedComments.find(data => data.videoId === videoId).comments);
-      setCommentText('');
+      console.log('New Comment:', newComment); // Log the newComment object
+      
+      try {
+        const response = await fetch(`/api/comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newComment),
+        });
+        if (response.ok) {
+          const updatedComments = await response.json();
+          updateComments(videoId, updatedComments.comments);
+          setCommentText('');
+        } else {
+          throw new Error('Failed to post comment');
+        }
+      } catch (error) {
+        console.error('Error posting comment:', error.message);
+      }
     }
   };
 

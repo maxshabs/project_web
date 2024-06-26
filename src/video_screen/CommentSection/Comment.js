@@ -9,12 +9,14 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(text);
   const [displayTime, setDisplayTime] = useState(date);
+
+
   useEffect(() => {
     setDisplayTime(calculateTimeAgo(date));
     const interval = setInterval(() => {
       setDisplayTime(calculateTimeAgo(date));
     }, 60000); // Update every minute
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    return () => clearInterval(interval);
   }, [date, calculateTimeAgo]);
 
   const handleLikeClick = () => {
@@ -31,15 +33,41 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
-    onEdit(id, editText);
-    setIsEditing(false);
+  
+  const handleSaveClick = async () => {
+    try {
+      const response = await fetch(`/api/comments/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: editText }),
+      });
+      if (response.ok) {
+        onEdit(id, editText);
+        setIsEditing(false);
+      } else {
+        throw new Error('Failed to update comment');
+      }
+    } catch (error) {
+      console.error('Error updating comment:', error.message);
+    }
   };
 
-  const handleDeleteClick = () => {
-    onDelete(id);
+  const handleDeleteClick = async () => {
+    try {
+      const response = await fetch(`/api/comments/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        onDelete(id);
+      } else {
+        throw new Error('Failed to delete comment');
+      }
+    } catch (error) {
+      console.error('Error deleting comment:', error.message);
+    }
   };
-
   const handleEditTextChange = (e) => {
     setEditText(e.target.value);
   };

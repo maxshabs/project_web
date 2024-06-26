@@ -8,7 +8,7 @@ import MainPage from './main_page/MainPage';
 import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
-import initialComments from './data/comments.json';
+// import initialComments from './data/comments.json';
 import Logo from './favicon.png';
 
 const ManageRoutes = () => {
@@ -17,7 +17,7 @@ const ManageRoutes = () => {
   const [allVideos, setAllVideos] = useState(videos);
   const [videoList, setVideoList] = useState(videos);
   const [theme, setTheme] = useState('light');
-  const [comments, setComments] = useState(initialComments);
+  const [comments, setComments] = useState([]);
   const [displayTimes, setDisplayTimes] = useState({});
 
   const addUser = (newUser) => {
@@ -118,6 +118,21 @@ const ManageRoutes = () => {
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+   // Function to fetch comments from the server
+   const fetchComments = async () => {
+    try {
+      const response = await fetch('/api/comments'); // Replace with your actual API endpoint
+      if (!response.ok) {
+        throw new Error('Failed to fetch comments');
+      }
+      const data = await response.json();
+      setComments(data); // Assuming data is an array of comments
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+      // Handle error state or retry logic
+    }
   };
 
   return (
