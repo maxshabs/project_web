@@ -39,6 +39,7 @@ const ManageRoutes = () => {
       }
     } catch (error) {
       console.error('Error adding user:', error);
+      throw error; // Re-throw the error to handle it in SignUp component
     }
   };
 

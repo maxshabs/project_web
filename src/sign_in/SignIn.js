@@ -12,14 +12,15 @@ const SignIn = ({ validateUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await validateUser(username, password);
-      if (user) {
+      const data = await validateUser(username, password);
+      if (data) {
+        localStorage.setItem('jwtToken', data.token); // Store the token in local storage
         navigate('/main');
       } else {
         setErrorMessage('Invalid username or password');
       }
     } catch (error) {
-      setErrorMessage('Failed to sign in. Please try again later.');
+      setErrorMessage('Invalid username or password');
     }
   };
 
@@ -28,7 +29,7 @@ const SignIn = ({ validateUser }) => {
       <div className={styles.formWrapper}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <Link to="/main">
-            <img src={Logo} alt='Home' className={styles.logo} />
+            <img src={Logo} alt="Home" className={styles.logo} />
           </Link>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="username">Username:</label>

@@ -1,4 +1,3 @@
-// src/sign_up/SignUp.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './SignUp.module.css';
@@ -8,7 +7,7 @@ const SignUp = ({ addUser }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [displayName, setDisplayName] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePicture, setProfilePicture] = useState('');
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -39,6 +38,15 @@ const SignUp = ({ addUser }) => {
     } else {
       setErrorMessage('');
     }
+  };
+
+  const handleProfilePicture = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProfilePicture(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -83,7 +91,7 @@ const SignUp = ({ addUser }) => {
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture:</label>
-            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={(e) => setProfilePicture(URL.createObjectURL(e.target.files[0]))} required />
+            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={handleProfilePicture} required />
           </div>
           {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
           <button type="submit" className={styles.button}>Sign Up</button>
