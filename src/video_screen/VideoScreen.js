@@ -48,7 +48,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
         setDisplayTime(calculateTimeAgo(currentVideo.uploadTime));
       }, 60000); // Update every minute
 
-      return () => clearInterval(interval); // Cleanup interval on component unmount
+      return () => clearInterval(interval);
     }
   }, [currentVideo, calculateTimeAgo]);
 
@@ -56,7 +56,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
     return <div></div>;
   }
 
-  // Filter out the current video from the list of videos
+  // adding videos to side list which arent the main video
   const sideVideos = videos.filter((video) => video._id !== id);
 
   const sideVideoList = sideVideos.map((video, key) => (
