@@ -33,7 +33,6 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
     setIsEditing(true);
   };
 
-  
   const handleSaveClick = async () => {
     try {
       const response = await fetch(`/api/comments/${id}`, {

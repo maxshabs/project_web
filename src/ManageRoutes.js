@@ -177,6 +177,7 @@ const ManageRoutes = () => {
         element={
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+            {/* comments ={comments} passes all comments in database, then in watch video we filter only the comments for current video by videoID */}
             <VideoScreen loggedInUser={loggedInUser} videos={allVideos} comments={comments} setComments={setComments} calculateTimeAgo={calculateTimeAgo} displayTimes={displayTimes} />
           </>
         }
