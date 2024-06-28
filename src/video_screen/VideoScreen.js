@@ -25,14 +25,21 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
   };
 
   useEffect(() => {
-    const video = videos.find((video) => video.id === id);
-    setCurrentVideo(video);
+    const fetchVideo = async () => {
+      try {
+        const response = await fetch(`http://localhost:12345/api/videos/${id}`);
+        if (!response.ok) {
+          throw new Error('Video not found');
+        }
+        const data = await response.json();
+        setCurrentVideo(data);
+      } catch (error) {
+        console.error('Error fetching video:', error);
+      }
+    };
 
-    // Reset button states when a new video is loaded
-    setIsLiked(false);
-    setIsDisliked(false);
-    setIsSubscribed(false);
-  }, [id, videos]);
+    fetchVideo();
+  }, [id]);
 
   useEffect(() => {
     if (currentVideo) {
@@ -50,11 +57,11 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
   }
 
   // Filter out the current video from the list of videos
-  const sideVideos = videos.filter((video) => video.id !== id);
+  const sideVideos = videos.filter((video) => video._id !== id);
 
   const sideVideoList = sideVideos.map((video, key) => (
     <SideVideo
-      id={video.id}
+      id={video._id}
       title={video.title}
       author={video.author}
       views={video.views}
@@ -91,7 +98,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
                 <div>{currentVideo.description}</div>
               </div>
               <CommentSection
-                videoId={currentVideo.id}
+                videoId={currentVideo._id}
                 initialComments={comments}
                 updateComments={updateComments}
                 loggedInUser={loggedInUser}
