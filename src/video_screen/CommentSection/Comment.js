@@ -3,7 +3,7 @@ import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
 import { ReactComponent as Dislike } from '../ActionsBar/dislike.svg';
 
-function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUser, calculateTimeAgo, refreshComments}) {
+function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUser, calculateTimeAgo, refreshComments, likes }) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -25,9 +25,33 @@ function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUse
     }
   }, [isEditing, text]);
 
-  const handleLikeClick = () => {
+  useEffect(() => {
+    if (loggedInUser) {
+      setLiked(likes.includes(loggedInUser.displayName));
+    }
+  }, [loggedInUser, likes]);
+
+  const handleLikeClick = async () => {
+    if (!loggedInUser) return;
     setLiked(!liked);
     setDisliked(false);
+
+    try {
+      const response = await fetch(`http://localhost:12345/api/${_id}/${liked ? 'unlike' : 'like'}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
+      });
+      if (response.ok) {
+        refreshComments(); // Refresh comments to update likes
+      } else {
+        throw new Error('Failed to update like');
+      }
+    } catch (error) {
+      console.error('Error updating like:', error.message);
+    }
   };
 
   const handleDislikeClick = () => {
