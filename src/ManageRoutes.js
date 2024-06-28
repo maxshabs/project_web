@@ -13,38 +13,117 @@ import Logo from './favicon.png';
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const [allVideos, setAllVideos] = useState(videos);
-  const [videoList, setVideoList] = useState(videos);
+  const [allVideos, setAllVideos] = useState([]);
+  const [videoList, setVideoList] = useState([]);
   const [theme, setTheme] = useState('light');
   const [comments, setComments] = useState([]);
   const [displayTimes, setDisplayTimes] = useState({});
 
-  const addUser = (newUser) => {
-    setUsers([...users, newUser]);
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await fetch('http://localhost:12345/api/videos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setAllVideos(data);
+        setVideoList(data);
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      }
+    };
+
+    fetchVideos();
+  }, []);
+
+  const addUser = async (newUser) => {
+    try {
+      const response = await fetch('http://localhost:12345/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      if (response.ok) {
+        const user = await response.json();
+        setUsers((prevUsers) => [...prevUsers, user]);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Failed to add user');
+      }
+    } catch (error) {
+      console.error('Error adding user:', error);
+      throw error; // Re-throw the error to handle it in SignUp component
+    }
   };
 
-  const validateUser = (username, password) => {
-    const user = users.find((user) => user.username === username && user.password === password);
-    if (user) {
-      setLoggedInUser(user);
+  const validateUser = async (username, password) => {
+    try {
+      const response = await fetch('http://localhost:12345/api/users/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const user = await response.json();
+        setLoggedInUser(user);
+        return user;
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Error validating user:', error);
+      return null;
     }
-    return user;
   };
 
   const signOutUser = () => {
     setLoggedInUser(null);
   };
 
-  const handleUploadVideo = (newVideo) => {
-    const uploadTime = new Date().toISOString();
-    setVideoList([...allVideos, newVideo]);
-    setAllVideos([...allVideos, newVideo]);
-    setComments([...comments, { videoId: newVideo.id, comments: [{ id: 1, text: 'Great video, welcome to VidTube!', username: 'VidTube Official Account', date: uploadTime, img: Logo }] }]);
-  
-    setDisplayTimes((prevDisplayTimes) => ({
-      ...prevDisplayTimes,
-      [newVideo.id]: calculateTimeAgo(uploadTime),
-    }));
+
+  const handleUploadVideo = async (newVideo) => {
+    try {
+      const uploadTime = new Date().toISOString();
+
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.id}/videos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newVideo),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to upload video');
+      }
+
+      // Fetch the updated list of videos from the server
+      const fetchUpdatedVideos = async () => {
+        const response = await fetch('http://localhost:12345/api/videos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setAllVideos(data);
+        setVideoList(data);
+      };
+
+      fetchUpdatedVideos();
+    } catch (error) {
+      console.error('Error uploading video:', error);
+    }
   };
 
   const handleEditVideo = (editedVideo) => {
@@ -62,6 +141,7 @@ const ManageRoutes = () => {
     setVideoList(updatedVideos);
     setComments(updatedComments);
   };
+  
 
   const calculateTimeAgo = (uploadTime) => {
     const now = new Date();
