@@ -3,7 +3,7 @@ import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
 import { ReactComponent as Dislike } from '../ActionsBar/dislike.svg';
 
-function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser, calculateTimeAgo }) {
+function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUser, calculateTimeAgo, refreshComments}) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -19,6 +19,12 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
     return () => clearInterval(interval);
   }, [date, calculateTimeAgo]);
 
+  useEffect(() => {
+    if (!isEditing) {
+      setEditText(text); // Reset edit text to original comment text when not editing
+    }
+  }, [isEditing, text]);
+
   const handleLikeClick = () => {
     setLiked(!liked);
     setDisliked(false);
@@ -33,17 +39,20 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
     setIsEditing(true);
   };
 
-  const handleSaveClick = async () => {
+  const handleEditSaveClick = async () => {
+    console.log("id is: ", _id)
+    console.log("text is: ", editText)
     try {
-      const response = await fetch(`/api/comments/${id}`, {
-        method: 'PUT',
+      const response = await fetch(`http://localhost:12345/api/users/${_id}/comments`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: editText }),
+        
+        body: JSON.stringify({ id: _id , text: editText }),
       });
       if (response.ok) {
-        onEdit(id, editText);
+        onEdit();
         setIsEditing(false);
       } else {
         throw new Error('Failed to update comment');
@@ -52,14 +61,15 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
       console.error('Error updating comment:', error.message);
     }
   };
+  
 
   const handleDeleteClick = async () => {
     try {
-      const response = await fetch(`/api/comments/${id}`, {
+      const response = await fetch(`http://localhost:12345/api/users/${_id}/comments`, {
         method: 'DELETE',
       });
       if (response.ok) {
-        onDelete(id);
+        onDelete();
       } else {
         throw new Error('Failed to delete comment');
       }
@@ -87,29 +97,30 @@ function Comment({ id, text, username, date, img, onEdit, onDelete, loggedInUser
         )}
         <div>
           <button
-            id='liked'
+            _id='liked'
             className={`comment-button ${liked ? 'liked' : ''}`}
             onClick={handleLikeClick}
           >
             <Like />
           </button>
           <button
-            id='disliked'
+            _id='disliked'
             className={`comment-button ${disliked ? 'disliked' : ''}`}
             onClick={handleDislikeClick}
           >
             <Dislike />
           </button>
-          {loggedInUser && 
-          <>
-            {isEditing ? (
-              <button className='comment-button' onClick={handleSaveClick}>Save</button>
-            ) : (
-              <button className='comment-button' onClick={handleEditClick}>Edit</button>
-            )}
-            <button className='comment-button' onClick={handleDeleteClick}>Delete</button>
-          </>
-        }   
+          {/* allow user to perform actions only on his own comments (if comment username matches user displayname) */}
+          {loggedInUser && loggedInUser.displayName === username && (
+            <>
+              {isEditing ? (
+                <button className='comment-button' onClick={handleEditSaveClick}>Save</button>
+              ) : (
+                <button className='comment-button' onClick={handleEditClick}>Edit</button>
+              )}
+              <button className='comment-button' onClick={handleDeleteClick}>Delete</button>
+            </>
+          )}
         </div>
       </div>
     </div>

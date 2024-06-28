@@ -7,6 +7,7 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
   const [commentText, setCommentText] = useState('');
   const [allComments, setAllComments] = useState([]);
   const [currentVideoComments, setCurrentVideoComments] = useState([]);
+  var refreshComments = 1;
 
   useEffect(() => {
     fetchComments();
@@ -81,38 +82,13 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
     setCommentText('');
   };
 
-  const handleEditComment = async (commentId, newText) => {
-    try {
-      const response = await fetch(`/api/comments/${commentId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: newText }),
-      });
-      if (response.ok) {
-        await fetchComments(); // Fetch updated comments after editing
-      } else {
-        throw new Error('Failed to edit comment');
-      }
-    } catch (error) {
-      console.error('Error editing comment:', error.message);
-    }
+  //refresh the comments after an edit
+  const handleEditComment = async () => {
+    fetchComments();
   };
 
-  const handleDeleteComment = async (commentId) => {
-    try {
-      const response = await fetch(`/api/comments/${commentId}`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        await fetchComments(); // Fetch updated comments after deletion
-      } else {
-        throw new Error('Failed to delete comment');
-      }
-    } catch (error) {
-      console.error('Error deleting comment:', error.message);
-    }
+  const handleDeleteComment = async () => {
+    fetchComments();
   };
 
   // display the comments from currentVideoComments
