@@ -10,8 +10,6 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
   const { id } = useParams(); // Get the video ID from the URL params
 
   const [currentVideo, setCurrentVideo] = useState(null);
-  const [isLiked, setIsLiked] = useState(false);
-  const [isDisliked, setIsDisliked] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [displayTime, setDisplayTime] = useState('');
 
@@ -86,12 +84,12 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
                 className="action-bar"
                 userName={currentVideo.author}
                 img={currentVideo.authorImage}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
-                isDisliked={isDisliked}
-                setIsDisliked={setIsDisliked}
+                likes={currentVideo.likes}
+                dislikes={currentVideo.dislikes}
                 isSubscribed={isSubscribed}
                 setIsSubscribed={setIsSubscribed}
+                videoId={currentVideo._id} //can also pass id variable from url if needed
+                loggedInUser={loggedInUser}
               />
               <div id="description">
                 <div id="stats">{currentVideo.views} views - {displayTime}</div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ActionBar.css';
 import { ReactComponent as ShareIcon } from './share.svg';
 import { ReactComponent as Like } from './like.svg';
@@ -9,27 +9,61 @@ import { ReactComponent as Gmail } from './gmail.svg';
 
 
 
-function ActionBar({
-  userName,
-  img,
-  isLiked,
-  setIsLiked,
-  isDisliked,
-  setIsDisliked,
-  isSubscribed,
-  setIsSubscribed,
-}) {
-  const handleLikeClick = () => {
+function ActionBar({ userName, img, likes, dislikes, isSubscribed, setIsSubscribed, videoId, loggedInUser }) {
+
+const [isLiked, setIsLiked] = useState(false);
+const [isDisliked, setIsDisliked] = useState(false);
+
+
+ // Setting the like/dislike state
+ useEffect(() => {
+  if (loggedInUser) {
+    setIsLiked(likes.includes(loggedInUser.displayName));
+    setIsDisliked(dislikes.includes(loggedInUser.displayName));
+  }
+}, [loggedInUser, likes, dislikes]);
+
+// Handling a like click on video
+ const handleLikeClick = async () => {
+    if (!loggedInUser) return;
     setIsLiked(!isLiked);
-    if (isDisliked) {
-      setIsDisliked(false);
+    setIsDisliked(false);
+
+    try {
+      const response = await fetch(`http://localhost:12345/api/videos/${videoId}/like`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update like');
+      }
+    } catch (error) {
+      console.error('Error updating like:', error.message);
     }
   };
 
-  const handleDislikeClick = () => {
+  // Handling a dislike click on video
+  const handleDislikeClick = async () => {
+    if (!loggedInUser) return;
     setIsDisliked(!isDisliked);
-    if (isLiked) {
-      setIsLiked(false);
+    setIsLiked(false);
+
+    try {
+      const response = await fetch(`http://localhost:12345/api/videos/${videoId}/dislike`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update dislike');
+      }
+    } catch (error) {
+      console.error('Error updating dislike:', error.message);
     }
   };
 

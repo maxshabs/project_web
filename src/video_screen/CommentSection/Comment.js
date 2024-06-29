@@ -54,7 +54,6 @@ function Comment({ _id, text, username, date, img, onUpdate , loggedInUser, calc
         throw new Error('Failed to update like');
       }
     } catch (error) {
-      onUpdate();
       console.error('Error updating like:', error.message);
     }
   };
@@ -77,7 +76,6 @@ function Comment({ _id, text, username, date, img, onUpdate , loggedInUser, calc
       if (response.ok) {
         onUpdate(); // Refresh comments to update dislikes
       } else {
-        onUpdate();
         throw new Error('Failed to update dislike');
       }
     } catch (error) {
