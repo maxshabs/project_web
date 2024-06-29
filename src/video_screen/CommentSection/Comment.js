@@ -3,14 +3,14 @@ import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
 import { ReactComponent as Dislike } from '../ActionsBar/dislike.svg';
 
-function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUser, calculateTimeAgo, refreshComments, likes }) {
+function Comment({ _id, text, username, date, img, onUpdate , loggedInUser, calculateTimeAgo, likes , dislikes }) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(text);
   const [displayTime, setDisplayTime] = useState(date);
 
-
+  // For comment time
   useEffect(() => {
     setDisplayTime(calculateTimeAgo(date));
     const interval = setInterval(() => {
@@ -19,25 +19,29 @@ function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUse
     return () => clearInterval(interval);
   }, [date, calculateTimeAgo]);
 
+  // Reset edit text to original comment text when not editing
   useEffect(() => {
     if (!isEditing) {
-      setEditText(text); // Reset edit text to original comment text when not editing
+      setEditText(text);
     }
   }, [isEditing, text]);
 
+  // Setting the likes/dislikes state
   useEffect(() => {
     if (loggedInUser) {
       setLiked(likes.includes(loggedInUser.displayName));
+      setDisliked(dislikes.includes(loggedInUser.displayName));
     }
-  }, [loggedInUser, likes]);
+  }, [loggedInUser, likes, dislikes]);
 
+  // Handling a like click
   const handleLikeClick = async () => {
     if (!loggedInUser) return;
     setLiked(!liked);
     setDisliked(false);
 
     try {
-      const response = await fetch(`http://localhost:12345/api/${_id}/${liked ? 'unlike' : 'like'}`, {
+      const response = await fetch(`http://localhost:12345/api/${_id}/like`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -45,27 +49,49 @@ function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUse
         body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
       });
       if (response.ok) {
-        refreshComments(); // Refresh comments to update likes
+        onUpdate(); // Refresh comments to update likes
       } else {
         throw new Error('Failed to update like');
       }
     } catch (error) {
+      onUpdate();
       console.error('Error updating like:', error.message);
     }
   };
 
-  const handleDislikeClick = () => {
+  // Handling a dislike click
+  const handleDislikeClick = async () => {
+    if (!loggedInUser) return;
     setDisliked(!disliked);
     setLiked(false);
+
+    try {
+      const response = await fetch(`http://localhost:12345/api/${_id}/dislike`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
+      });
+      onUpdate();
+      if (response.ok) {
+        onUpdate(); // Refresh comments to update dislikes
+      } else {
+        onUpdate();
+        throw new Error('Failed to update dislike');
+      }
+    } catch (error) {
+      console.error('Error updating dislike:', error.message);
+    }
   };
 
+  // Handling an edit button click
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  // Handling a save button click
   const handleEditSaveClick = async () => {
-    console.log("id is: ", _id)
-    console.log("text is: ", editText)
     try {
       const response = await fetch(`http://localhost:12345/api/users/${_id}/comments`, {
         method: 'PATCH',
@@ -76,7 +102,7 @@ function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUse
         body: JSON.stringify({ id: _id , text: editText }),
       });
       if (response.ok) {
-        onEdit();
+        onUpdate();
         setIsEditing(false);
       } else {
         throw new Error('Failed to update comment');
@@ -86,14 +112,14 @@ function Comment({ _id, text, username, date, img, onEdit, onDelete, loggedInUse
     }
   };
   
-
+  // Handling a delete button click
   const handleDeleteClick = async () => {
     try {
       const response = await fetch(`http://localhost:12345/api/users/${_id}/comments`, {
         method: 'DELETE',
       });
       if (response.ok) {
-        onDelete();
+        onUpdate();
       } else {
         throw new Error('Failed to delete comment');
       }

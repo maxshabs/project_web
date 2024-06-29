@@ -7,7 +7,6 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
   const [commentText, setCommentText] = useState('');
   const [allComments, setAllComments] = useState([]);
   const [currentVideoComments, setCurrentVideoComments] = useState([]);
-  var refreshComments = 1;
 
   useEffect(() => {
     fetchComments();
@@ -27,10 +26,10 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
       
       // "data" contains all comments from the DB
       const data = await response.json();
-      setAllComments(data); // Assuming data is an array of comments
+      setAllComments(data);
+      console.log("comments fetched from server") // data is an array of comments
     } catch (error) {
       console.error('Error fetching comments:', error);
-      // Handle error state or retry logic
     }
   };
 
@@ -56,8 +55,6 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
         videoId,
       };
 
-      console.log('New Comment:', newComment); // Log the newComment object
-
       try {
         const response = await fetch(`/api/comments`, {
           method: 'POST',
@@ -82,12 +79,8 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
     setCommentText('');
   };
 
-  //refresh the comments after an edit
-  const handleEditComment = async () => {
-    fetchComments();
-  };
-
-  const handleDeleteComment = async () => {
+  //refresh the comments after an edit/deletion
+  const handleCommentUpdate = async () => {
     fetchComments();
   };
 
@@ -96,8 +89,7 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
     <Comment
       {...comment}
       key={key}
-      onEdit={handleEditComment}
-      onDelete={handleDeleteComment}
+      onUpdate={handleCommentUpdate}
       loggedInUser={loggedInUser}
       calculateTimeAgo={calculateTimeAgo}
     />
@@ -110,7 +102,7 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
         <img src={loggedInUser ? loggedInUser.profilePicture : defaultImg} className="userPicture" alt="" />
         <input
           className="textField"
-          placeholder={loggedInUser ? 'Add a comment...' : 'Log in to comment'}
+          placeholder={loggedInUser ? 'Add a comment...' : 'Log in to comment and like'}
           value={commentText}
           onChange={handleInputChange}
           disabled={!loggedInUser}
