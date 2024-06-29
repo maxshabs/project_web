@@ -87,28 +87,37 @@ const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser }) => {
 
   return (
     <div className={styles.profileContainer}>
-      <h1>Profile Page</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" className={styles.input} value={username} onChange={(e) => { setUsername(e.target.value); handleInputChange() }} />
+      <div className={styles.leftColumn}>
+        <div className={styles.profileHeader}>
+          <img src={loggedInUser.profilePicture} alt="Profile" className={styles.profilePicture} />
+          <h2 className={styles.profileDisplayName}>{loggedInUser.displayName}</h2>
         </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" className={styles.input} placeholder="********" value={password} onChange={(e) => {setPassword(e.target.value); handleInputChange()}} />
-        </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="displayName">Display Name:</label>
-          <input type="text" id="displayName" name="displayName" className={styles.input} value={displayName} onChange={(e) => { setDisplayName(e.target.value); handleInputChange() }} />
-        </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture:</label>
-          <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={handleProfilePicture} />
-        </div>
-        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
-        <button type="submit" className={styles.button}>Update Profile</button>
-        <button type="button" className={styles.deleteButton} onClick={handleDelete}>Delete Account</button>
-      </form>
+        <h1 className={styles.sectionTitle}>Change your details</h1>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="username">Username:</label>
+            <input type="text" id="username" name="username" className={styles.input} value={username} onChange={(e) => { setUsername(e.target.value); handleInputChange() }} />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="password">Password:</label>
+            <input type="password" id="password" name="password" className={styles.input} placeholder="********" value={password} onChange={(e) => { setPassword(e.target.value); handleInputChange() }} />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="displayName">Display Name:</label>
+            <input type="text" id="displayName" name="displayName" className={styles.input} value={displayName} onChange={(e) => { setDisplayName(e.target.value); handleInputChange() }} />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture:</label>
+            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={handleProfilePicture} />
+          </div>
+          {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+          <button type="submit" className={styles.button}>Update Profile</button>
+          <button type="button" className={styles.deleteButton} onClick={handleDelete}>Delete Account</button>
+        </form>
+      </div>
+      <div className={styles.rightColumn}>
+        <h1 className={styles.sectionTitle}>{loggedInUser.displayName}'s Videos</h1>
+      </div>
     </div>
   );
 };
