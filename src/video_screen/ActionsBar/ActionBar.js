@@ -6,6 +6,7 @@ import { ReactComponent as Dislike } from './dislike.svg';
 import { ReactComponent as Whatsapp } from './whatsapp.svg';
 import { ReactComponent as Facebook } from './facebook.svg';
 import { ReactComponent as Gmail } from './gmail.svg';
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,6 +14,7 @@ function ActionBar({ userName, img, likes, dislikes, isSubscribed, setIsSubscrib
 
 const [isLiked, setIsLiked] = useState(false);
 const [isDisliked, setIsDisliked] = useState(false);
+const userProfileLink = loggedInUser && userName === loggedInUser.displayName ? '/profile' : `/profile/${userName}`;
 
 
  // Setting the like/dislike state
@@ -74,8 +76,8 @@ const [isDisliked, setIsDisliked] = useState(false);
   return (
     <div className="container">
       <div className="userBar">
-        <img src={img} className="img-thumbnail" alt=""></img>
-        <a id="userName">{userName}</a>
+        <Link to={userProfileLink} className="Link"><img src={img} className="img-thumbnail" alt=""></img></Link>
+        <Link to={userProfileLink} className="Link"><a id="userName">{userName}</a></Link>
         <button
           id='subscribe'
           className={`subscribe-button${isSubscribed ? ' subscribed' : ''}`}

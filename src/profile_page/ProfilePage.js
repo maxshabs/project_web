@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
+import SideVideo from '../video_screen/SideVideo/SideVideo';
 
-const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser }) => {
+
+const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser, videos, calculateTimeAgo }) => {
+  const { clickedDisplayName } = useParams();
+
   const navigate = useNavigate();
   const [user, setUser] = useState(loggedInUser);
   const [username, setUsername] = useState(loggedInUser.username);
@@ -85,11 +90,25 @@ const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser }) => {
     setErrorMessage('');
   };
 
+  // filter videos by user display name
+  const userVideos = videos.filter((video) => video.author === loggedInUser.displayName);
+
+  const userVideoList = userVideos.map((video, key) => (
+    <SideVideo
+      id={video._id}
+      title={video.title}
+      author={video.author}
+      views={video.views}
+      img={video.img}
+      date={calculateTimeAgo(video.uploadTime)}
+      key={key}
+    />
+  ));
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.leftColumn}>
         <div className={styles.profileHeader}>
-          <img src={loggedInUser.profilePicture} alt="Profile" className={styles.profilePicture} />
           <h2 className={styles.profileDisplayName}>{loggedInUser.displayName}</h2>
         </div>
         <h1 className={styles.sectionTitle}>Change your details</h1>
@@ -116,7 +135,8 @@ const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser }) => {
         </form>
       </div>
       <div className={styles.rightColumn}>
-        <h1 className={styles.sectionTitle}>{loggedInUser.displayName}'s Videos</h1>
+        <h1 className={styles.sectionTitle}>Your Videos</h1>
+        <div>{userVideoList}</div>
       </div>
     </div>
   );
