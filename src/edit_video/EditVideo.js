@@ -14,6 +14,7 @@ const EditVideo = ({ handleEditVideo, videos }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [author, setAuthor] = useState('');
+  const [username, setUsername] = useState('');
   const [uploadTime, setUploadTime] = useState('');
   const [authorImage, setAuthorImage] = useState('');
 
@@ -25,6 +26,7 @@ const EditVideo = ({ handleEditVideo, videos }) => {
       setImageFile(videoToEdit.img);
       setVideoFile(videoToEdit.video);
       setAuthor(videoToEdit.author);
+      setUsername(videoToEdit.username);
       setUploadTime(videoToEdit.uploadTime);
       setAuthorImage(videoToEdit.authorImage);
     }
@@ -54,6 +56,7 @@ const EditVideo = ({ handleEditVideo, videos }) => {
         title,
         description,
         author,
+        username,
         img: imgBase64,
         video: videoBase64,
         uploadTime,

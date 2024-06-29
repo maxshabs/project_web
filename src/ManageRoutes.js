@@ -95,7 +95,7 @@ const ManageRoutes = () => {
   const handleUploadVideo = async (newVideo) => {
     try {
 
-      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.id}/videos`, {
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ const ManageRoutes = () => {
 
   const handleEditVideo = async (id, editedVideo) => {
     try {
-      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.id}/videos/${id}`, {
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ const ManageRoutes = () => {
   
   const handleDeleteVideo = async (id) => {
     try {
-      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.id}/videos/${id}`, {
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
