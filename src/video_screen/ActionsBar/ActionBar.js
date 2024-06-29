@@ -1,3 +1,5 @@
+// src/ActionsBar/ActionBar.js
+
 import React, { useState, useEffect } from 'react';
 import './ActionBar.css';
 import { ReactComponent as ShareIcon } from './share.svg';
@@ -7,33 +9,31 @@ import { ReactComponent as Whatsapp } from './whatsapp.svg';
 import { ReactComponent as Facebook } from './facebook.svg';
 import { ReactComponent as Gmail } from './gmail.svg';
 
-
-
 function ActionBar({ userName, img, likes, dislikes, isSubscribed, setIsSubscribed, videoId, loggedInUser }) {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
 
-const [isLiked, setIsLiked] = useState(false);
-const [isDisliked, setIsDisliked] = useState(false);
+  // Setting the like/dislike state
+  useEffect(() => {
+    if (loggedInUser) {
+      setIsLiked(likes.includes(loggedInUser.displayName));
+      setIsDisliked(dislikes.includes(loggedInUser.displayName));
+    }
+  }, [loggedInUser, likes, dislikes]);
 
-
- // Setting the like/dislike state
- useEffect(() => {
-  if (loggedInUser) {
-    setIsLiked(likes.includes(loggedInUser.displayName));
-    setIsDisliked(dislikes.includes(loggedInUser.displayName));
-  }
-}, [loggedInUser, likes, dislikes]);
-
-// Handling a like click on video
- const handleLikeClick = async () => {
+  // Handling a like click on video
+  const handleLikeClick = async () => {
     if (!loggedInUser) return;
     setIsLiked(!isLiked);
     setIsDisliked(false);
 
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/videos/${videoId}/like`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
       });
@@ -52,10 +52,12 @@ const [isDisliked, setIsDisliked] = useState(false);
     setIsLiked(false);
 
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/videos/${videoId}/dislike`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
       });
