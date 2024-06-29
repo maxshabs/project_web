@@ -53,17 +53,25 @@ const SignUp = ({ addUser }) => {
     e.preventDefault();
     if (errorMessage === '') {
       try {
-        await addUser({
+        const error = await addUser({
           username,
           password,
           displayName,
           profilePicture
         });
-        navigate('/sign-in');
+        if (!error) {
+          navigate('/sign-in');
+        } else {
+          setErrorMessage(error);
+        }
       } catch (error) {
-        setErrorMessage('Failed to create account. Please try again later.');
+        setErrorMessage(error.message);
       }
     }
+  };
+
+  const handleInputChange = () => {
+    setErrorMessage('');
   };
 
   return (
@@ -75,7 +83,7 @@ const SignUp = ({ addUser }) => {
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="username">Username:</label>
-            <input type="text" id="username" name="username" className={styles.input} placeholder="example123" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <input type="text" id="username" name="username" className={styles.input} placeholder="example123" value={username} onChange={(e) => {setUsername(e.target.value); handleInputChange();}} required />
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="password">Password:</label>
@@ -87,7 +95,7 @@ const SignUp = ({ addUser }) => {
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="displayName">Display Name:</label>
-            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="displayName123" value={displayName} onChange={(e) => setDisplayName(e.target.value)} required />
+            <input type="text" id="displayName" name="displayName" className={styles.input} placeholder="displayName123" value={displayName} onChange={(e) => {setDisplayName(e.target.value); handleInputChange();}} required />
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture:</label>

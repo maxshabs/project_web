@@ -49,19 +49,21 @@ const ManageRoutes = () => {
         },
         body: JSON.stringify(newUser),
       });
-
+  
       if (response.ok) {
         const user = await response.json();
         setUsers((prevUsers) => [...prevUsers, user]);
+        return null; // No error
       } else {
         const errorData = await response.json();
-        throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Failed to add user');
+        return errorData.errors ? errorData.errors.join(', ') : 'Failed to add user';
       }
     } catch (error) {
       console.error('Error adding user:', error);
-      throw error; // Re-throw the error to handle it in SignUp component
+      return 'Failed to add user';
     }
   };
+  
 
   const validateUser = async (username, password) => {
     try {
@@ -72,11 +74,11 @@ const ManageRoutes = () => {
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
       if (response.ok) {
-        const user = await response.json();
-        setLoggedInUser(user);
-        return user;
+        const data = await response.json();
+        setLoggedInUser(data.user); // Set the full user object in state
+        return data;
       } else {
         const errorData = await response.json();
         throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Invalid username or password');
@@ -86,6 +88,7 @@ const ManageRoutes = () => {
       return null;
     }
   };
+  
 
   const signOutUser = () => {
     setLoggedInUser(null);
@@ -95,19 +98,21 @@ const ManageRoutes = () => {
   const handleUploadVideo = async (newVideo) => {
     try {
       const uploadTime = new Date().toISOString();
-
-      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.id}/videos`, {
+      const token = localStorage.getItem('jwtToken');
+  
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(newVideo),
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to upload video');
       }
-
+  
       // Fetch the updated list of videos from the server
       const fetchUpdatedVideos = async () => {
         const response = await fetch('http://localhost:12345/api/videos', {
@@ -120,12 +125,13 @@ const ManageRoutes = () => {
         setAllVideos(data);
         setVideoList(data);
       };
-
+  
       fetchUpdatedVideos();
     } catch (error) {
       console.error('Error uploading video:', error);
     }
   };
+  
   
 
   const handleEditVideo = (editedVideo) => {
