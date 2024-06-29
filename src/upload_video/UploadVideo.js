@@ -35,6 +35,7 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
         title,
         description,
         author: loggedInUser.displayName,
+        username: loggedInUser.username,
         img: imgBase64,
         video: videoBase64,
         uploadTime: new Date().toISOString(), // Store the upload time in ISO format

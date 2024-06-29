@@ -210,21 +210,71 @@ const ManageRoutes = () => {
   
   
 
-  const handleEditVideo = (editedVideo) => {
-    const updatedVideos = allVideos.map((video) =>
-      video.id === editedVideo.id ? editedVideo : video
-    );
-    setAllVideos(updatedVideos);
-    setVideoList(updatedVideos);
+  const handleEditVideo = async (id, editedVideo) => {
+    try {
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editedVideo),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to edit video');
+      }
+  
+      // Fetch the updated list of videos from the server
+      const fetchUpdatedVideos = async () => {
+        const response = await fetch('http://localhost:12345/api/videos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setAllVideos(data);
+        setVideoList(data);
+      };
+  
+      fetchUpdatedVideos();
+    } catch (error) {
+      console.error('Error editing video:', error);
+    }
   };
-
-  const handleDeleteVideo = (videoId) => {
-    const updatedVideos = allVideos.filter((video) => video.id !== videoId);
-    const updatedComments = comments.filter((comment) => comment.videoId !== videoId);
-    setAllVideos(updatedVideos);
-    setVideoList(updatedVideos);
-    setComments(updatedComments);
+  
+  const handleDeleteVideo = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to delete video');
+      }
+  
+      // Fetch the updated list of videos from the server
+      const fetchUpdatedVideos = async () => {
+        const response = await fetch('http://localhost:12345/api/videos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setAllVideos(data);
+        setVideoList(data);
+      };
+  
+      fetchUpdatedVideos();
+    } catch (error) {
+      console.error('Error deleting video:', error);
+    }
   };
+  
   
 
   const calculateTimeAgo = (uploadTime) => {
