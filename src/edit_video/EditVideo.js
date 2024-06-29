@@ -9,45 +9,63 @@ const EditVideo = ({ handleEditVideo, videos }) => {
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [author, setAuthor] = useState('');
-  const [authorImage, setAuthorImage] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [author, setAuthor] = useState('');
+  const [uploadTime, setUploadTime] = useState('');
+  const [authorImage, setAuthorImage] = useState('');
+
   useEffect(() => {
-    const videoToEdit = videos.find(video => video.id === id);
+    const videoToEdit = videos.find(video => video._id === id);
     if (videoToEdit) {
       setTitle(videoToEdit.title);
       setDescription(videoToEdit.description);
-      setAuthor(videoToEdit.author);
-      setAuthorImage(videoToEdit.authorImage);
       setImageFile(videoToEdit.img);
       setVideoFile(videoToEdit.video);
+      setAuthor(videoToEdit.author);
+      setUploadTime(videoToEdit.uploadTime);
+      setAuthorImage(videoToEdit.authorImage);
     }
   }, [id, videos]);
 
-  const handleSubmit = (e) => {
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !description || !imageFile || !videoFile) {
       setErrorMessage('All fields are required.');
       return;
     }
 
-    const editedVideo = {
-      id,
-      title,
-      description,
-      author,
-      views: videos.find(video => video.id === id).views,
-      img: typeof imageFile === 'string' ? imageFile : URL.createObjectURL(imageFile),
-      video: typeof videoFile === 'string' ? videoFile : URL.createObjectURL(videoFile),
-      uploadTime: videos.find(video => video.id === id).uploadTime,
-      authorImage
-    };
+    try {
+      const imgBase64 = typeof imageFile === 'string' ? imageFile : await convertToBase64(imageFile);
+      const videoBase64 = typeof videoFile === 'string' ? videoFile : await convertToBase64(videoFile);
 
-    handleEditVideo(editedVideo);
-    navigate('/main');
+      const editedVideo = {
+        title,
+        description,
+        author,
+        img: imgBase64,
+        video: videoBase64,
+        uploadTime,
+        authorImage
+      };
+      
+      await handleEditVideo(id, editedVideo);
+      navigate('/main');
+    } catch (error) {
+      console.error('Error editing video:', error);
+      setErrorMessage('Error editing video.');
+    }
   };
 
   return (
