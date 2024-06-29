@@ -9,6 +9,7 @@ import LoggedInHeader from './logged_in_header/LoggedInHeader';
 import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
 import initialComments from './data/comments.json';
+import ProfilePage from './profile_page/ProfilePage';
 import Logo from './favicon.png';
 
 const ManageRoutes = () => {
@@ -78,6 +79,7 @@ const ManageRoutes = () => {
       if (response.ok) {
         const data = await response.json();
         setLoggedInUser(data.user); // Set the full user object in state
+        localStorage.setItem('jwtToken', data.token); // Store the token
         return data;
       } else {
         const errorData = await response.json();
@@ -92,8 +94,83 @@ const ManageRoutes = () => {
 
   const signOutUser = () => {
     setLoggedInUser(null);
+    localStorage.removeItem('jwtToken'); // Remove the token on sign out
   };
 
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken');
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (response.ok) {
+        const user = await response.json();
+        return user;
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Failed to fetch user');
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      throw error;
+    }
+  };
+
+  const updateUser = async (updatedUser) => {
+    try {
+      const token = localStorage.getItem('jwtToken');
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedUser),
+      });
+  
+      if (response.ok) {
+        const user = await response.json();
+        setLoggedInUser(user); // Update the logged-in user state
+        return null;
+      } else {
+        const errorData = await response.json();
+        return errorData.errors ? errorData.errors.join(', ') : 'Failed to update user';
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+      return 'Failed to update user';
+    }
+  };
+
+  const deleteUser = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken');
+      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (response.ok) {
+        setLoggedInUser(null);
+        localStorage.removeItem('jwtToken');
+        return null;
+      } else {
+        const errorData = await response.json();
+        return errorData.errors ? errorData.errors.join(', ') : 'Failed to delete user';
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      return 'Failed to delete user';
+    }
+  };
 
   const handleUploadVideo = async (newVideo) => {
     try {
@@ -248,6 +325,17 @@ const ManageRoutes = () => {
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
             <VideoScreen loggedInUser={loggedInUser} videos={allVideos} comments={comments} setComments={setComments} calculateTimeAgo={calculateTimeAgo} displayTimes={displayTimes} />
           </>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          loggedInUser && (
+            <>
+              <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+              <ProfilePage loggedInUser={loggedInUser} fetchUser={fetchUser} updateUser={updateUser} deleteUser={deleteUser} />
+            </>
+          )
         }
       />
       <Route path="/" element={<Navigate to="/main" />} />
