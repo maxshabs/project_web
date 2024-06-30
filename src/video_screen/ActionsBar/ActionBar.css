@@ -19,7 +19,7 @@
   
   .userBar img.img-thumbnail {
     height: 50px;
-    width: 50px;
+    width: 60px;
     border-radius: 30px;
     object-fit: cover;
     margin-left: -10px;
@@ -28,8 +28,12 @@
   #userName {
     margin: 0;
     font-weight: bold;
-    color: var(--side-video-stats); /* Change text color to black */
-    text-decoration: none; /* Remove underline */
+    color: var(--side-video-stats);
+    text-decoration: none;
+  }
+  
+  #userName:hover {
+    text-decoration: none;
   }
   
   .userBar-button {
@@ -55,6 +59,11 @@
   
   .userBar-button.disliked {
     background-color: rgb(243, 77, 77);
+  }
+
+  .Link {
+    text-decoration: none;
+    color: inherit;
   }
   
   .subscribe-button {

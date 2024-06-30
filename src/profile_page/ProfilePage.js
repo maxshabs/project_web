@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
+import SideVideo from '../video_screen/SideVideo/SideVideo';
 
-const ProfilePage = ({ loggedInUser, updateUser, deleteUser }) => {
+
+const ProfilePage = ({ loggedInUser, updateUser, deleteUser, videos, calculateTimeAgo }) => {
+  const { clickedDisplayName } = useParams();
+
   const navigate = useNavigate();
   const [user, setUser] = useState(loggedInUser);
   const [username, setUsername] = useState(loggedInUser.username);
@@ -75,30 +80,54 @@ const ProfilePage = ({ loggedInUser, updateUser, deleteUser }) => {
     setErrorMessage('');
   };
 
+  // filter videos by user display name
+  const userVideos = videos.filter((video) => video.author === loggedInUser.displayName);
+
+  const userVideoList = userVideos.map((video, key) => (
+    <SideVideo
+      id={video._id}
+      title={video.title}
+      author={video.author}
+      views={video.views}
+      img={video.img}
+      date={calculateTimeAgo(video.uploadTime)}
+      key={key}
+    />
+  ));
+
   return (
     <div className={styles.profileContainer}>
-      <h1>Profile Page</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" className={styles.input} value={username} onChange={(e) => { setUsername(e.target.value); handleInputChange() }} />
+      <div className={styles.leftColumn}>
+        <div className={styles.profileHeader}>
+          <h2 className={styles.profileDisplayName}>{loggedInUser.displayName}</h2>
         </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" className={styles.input} placeholder="********" value={password} onChange={(e) => {setPassword(e.target.value); handleInputChange()}} />
-        </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="displayName">Display Name:</label>
-          <input type="text" id="displayName" name="displayName" className={styles.input} value={displayName} onChange={(e) => { setDisplayName(e.target.value); handleInputChange() }} />
-        </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture:</label>
-          <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={handleProfilePicture} />
-        </div>
-        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
-        <button type="submit" className={styles.button}>Update Profile</button>
-        <button type="button" className={styles.deleteButton} onClick={handleDelete}>Delete Account</button>
-      </form>
+        <h1 className={styles.sectionTitle}>Change your details</h1>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="username">Username:</label>
+            <input type="text" id="username" name="username" className={styles.input} value={username} onChange={(e) => { setUsername(e.target.value); handleInputChange() }} />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="password">Password:</label>
+            <input type="password" id="password" name="password" className={styles.input} placeholder="********" value={password} onChange={(e) => { setPassword(e.target.value); handleInputChange() }} />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="displayName">Display Name:</label>
+            <input type="text" id="displayName" name="displayName" className={styles.input} value={displayName} onChange={(e) => { setDisplayName(e.target.value); handleInputChange() }} />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.inputLabel} htmlFor="profilePicture">Upload Profile Picture:</label>
+            <input type="file" id="profilePicture" name="profilePicture" className={styles.input} onChange={handleProfilePicture} />
+          </div>
+          {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+          <button type="submit" className={styles.button}>Update Profile</button>
+          <button type="button" className={styles.deleteButton} onClick={handleDelete}>Delete Account</button>
+        </form>
+      </div>
+      <div className={styles.rightColumn}>
+        <h1 className={styles.sectionTitle}>Your Videos</h1>
+        <div>{userVideoList}</div>
+      </div>
     </div>
   );
 };

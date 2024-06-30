@@ -8,18 +8,12 @@ import { ReactComponent as Dislike } from './dislike.svg';
 import { ReactComponent as Whatsapp } from './whatsapp.svg';
 import { ReactComponent as Facebook } from './facebook.svg';
 import { ReactComponent as Gmail } from './gmail.svg';
+import { Link } from 'react-router-dom';
 
 function ActionBar({ userName, img, likes, dislikes, isSubscribed, setIsSubscribed, videoId, loggedInUser }) {
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
-
-  // Setting the like/dislike state
-  useEffect(() => {
-    if (loggedInUser) {
-      setIsLiked(likes.includes(loggedInUser.displayName));
-      setIsDisliked(dislikes.includes(loggedInUser.displayName));
-    }
-  }, [loggedInUser, likes, dislikes]);
+  const userProfileLink = loggedInUser && userName === loggedInUser.displayName ? '/profile' : `/profile/${userName}`;
 
   // Handling a like click on video
   const handleLikeClick = async () => {
@@ -76,8 +70,8 @@ function ActionBar({ userName, img, likes, dislikes, isSubscribed, setIsSubscrib
   return (
     <div className="container">
       <div className="userBar">
-        <img src={img} className="img-thumbnail" alt=""></img>
-        <a id="userName">{userName}</a>
+        <Link to={userProfileLink} className="Link"><img src={img} className="img-thumbnail" alt=""></img></Link>
+        <Link to={userProfileLink} className="Link"><a id="userName">{userName}</a></Link>
         <button
           id='subscribe'
           className={`subscribe-button${isSubscribed ? ' subscribed' : ''}`}

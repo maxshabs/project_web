@@ -10,6 +10,7 @@ import videos from './data/videos.json';
 import VideoScreen from './video_screen/VideoScreen';
 import ProfilePage from './profile_page/ProfilePage';
 import Logo from './favicon.png';
+import UserVideoPage from './profile_page/UserVideoPage';
 
 const ManageRoutes = () => {
   const [users, setUsers] = useState([]);
@@ -408,9 +409,19 @@ const ManageRoutes = () => {
           loggedInUser && (
             <>
               <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
-              <ProfilePage loggedInUser={loggedInUser} updateUser={updateUser} deleteUser={deleteUser} setLoggedInUser={setLoggedInUser} />
+              <ProfilePage loggedInUser={loggedInUser} fetchUser={fetchUser} updateUser={updateUser} deleteUser={deleteUser} videos={allVideos} calculateTimeAgo={calculateTimeAgo} />
             </>
           )
+        }
+      />
+      <Route
+        path="/profile/:clickedDisplayName"
+        element={
+          <>
+            <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
+            {/* comments ={comments} passes all comments in database, then in watch video we filter only the comments for current video by videoID */}
+            <UserVideoPage loggedInUser={loggedInUser} videos={allVideos} comments={comments} setComments={setComments} calculateTimeAgo={calculateTimeAgo} displayTimes={displayTimes} />
+          </>
         }
       />
       <Route path="/" element={<Navigate to="/main" />} />
