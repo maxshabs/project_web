@@ -50,7 +50,7 @@ const ManageRoutes = () => {
         },
         body: JSON.stringify(newUser),
       });
-  
+
       if (response.ok) {
         const user = await response.json();
         setUsers((prevUsers) => [...prevUsers, user]);
@@ -64,22 +64,25 @@ const ManageRoutes = () => {
       return 'Failed to add user';
     }
   };
-  
 
   const validateUser = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:12345/api/users/signin', {
+      const response = await fetch('http://localhost:12345/api/tokens', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
-        setLoggedInUser(data.user); // Set the full user object in state
         localStorage.setItem('jwtToken', data.token); // Store the token
+
+        // Fetch the most recent user information
+        const user = await fetchUser(data.user.username);
+        setLoggedInUser(user); // Set the full user object in state
+
         return data;
       } else {
         const errorData = await response.json();
@@ -90,29 +93,35 @@ const ManageRoutes = () => {
       return null;
     }
   };
-  
 
   const signOutUser = () => {
     setLoggedInUser(null);
     localStorage.removeItem('jwtToken'); // Remove the token on sign out
   };
 
-  const fetchUser = async () => {
+  const fetchUser = async (username) => {
     try {
       const token = localStorage.getItem('jwtToken');
-      const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}`, {
+      if (!token) {
+        console.error('No token found');
+        throw new Error('No token found');
+      }
+
+      console.log(`Fetching user with token: ${token}`);
+      const response = await fetch(`http://localhost:12345/api/users/${username}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
-  
+
       if (response.ok) {
         const user = await response.json();
         return user;
       } else {
         const errorData = await response.json();
+        console.error('Error response from server:', errorData);
         throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Failed to fetch user');
       }
     } catch (error) {
@@ -132,7 +141,7 @@ const ManageRoutes = () => {
         },
         body: JSON.stringify(updatedUser),
       });
-  
+
       if (response.ok) {
         const user = await response.json();
         setLoggedInUser(user); // Update the logged-in user state
@@ -157,7 +166,7 @@ const ManageRoutes = () => {
           'Authorization': `Bearer ${token}`,
         },
       });
-  
+
       if (response.ok) {
         setLoggedInUser(null);
         localStorage.removeItem('jwtToken');
@@ -174,9 +183,7 @@ const ManageRoutes = () => {
 
   const handleUploadVideo = async (newVideo) => {
     try {
-      const uploadTime = new Date().toISOString();
       const token = localStorage.getItem('jwtToken');
-  
       const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos`, {
         method: 'POST',
         headers: {
@@ -185,11 +192,11 @@ const ManageRoutes = () => {
         },
         body: JSON.stringify(newVideo),
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to upload video');
       }
-  
+
       // Fetch the updated list of videos from the server
       const fetchUpdatedVideos = async () => {
         const response = await fetch('http://localhost:12345/api/videos', {
@@ -202,29 +209,29 @@ const ManageRoutes = () => {
         setAllVideos(data);
         setVideoList(data);
       };
-  
+
       fetchUpdatedVideos();
     } catch (error) {
       console.error('Error uploading video:', error);
     }
   };
-  
-  
 
   const handleEditVideo = async (id, editedVideo) => {
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(editedVideo),
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to edit video');
       }
-  
+
       // Fetch the updated list of videos from the server
       const fetchUpdatedVideos = async () => {
         const response = await fetch('http://localhost:12345/api/videos', {
@@ -237,26 +244,28 @@ const ManageRoutes = () => {
         setAllVideos(data);
         setVideoList(data);
       };
-  
+
       fetchUpdatedVideos();
     } catch (error) {
       console.error('Error editing video:', error);
     }
   };
-  
+
   const handleDeleteVideo = async (id) => {
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to delete video');
       }
-  
+
       // Fetch the updated list of videos from the server
       const fetchUpdatedVideos = async () => {
         const response = await fetch('http://localhost:12345/api/videos', {
@@ -269,14 +278,12 @@ const ManageRoutes = () => {
         setAllVideos(data);
         setVideoList(data);
       };
-  
+
       fetchUpdatedVideos();
     } catch (error) {
       console.error('Error deleting video:', error);
     }
   };
-  
-  
 
   const calculateTimeAgo = (uploadTime) => {
     const now = new Date();
@@ -392,7 +399,6 @@ const ManageRoutes = () => {
         element={
           <>
             <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
-            {/* comments ={comments} passes all comments in database, then in watch video we filter only the comments for current video by videoID */}
             <VideoScreen loggedInUser={loggedInUser} videos={allVideos} comments={comments} setComments={setComments} calculateTimeAgo={calculateTimeAgo} displayTimes={displayTimes} />
           </>
         }

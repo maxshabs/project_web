@@ -14,7 +14,6 @@ const SignIn = ({ validateUser }) => {
     try {
       const data = await validateUser(username, password);
       if (data) {
-        localStorage.setItem('jwtToken', data.token); // Store the token in local storage
         navigate('/main');
       } else {
         setErrorMessage('Invalid username or password');

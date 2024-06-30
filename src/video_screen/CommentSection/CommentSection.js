@@ -1,3 +1,5 @@
+// src/comment/CommentSection.js
+
 import React, { useState, useEffect } from 'react';
 import './CommentSection.css';
 import Comment from './Comment';
@@ -57,10 +59,12 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
       };
       console.log("object:", newComment)
       try {
+        const token = localStorage.getItem('jwtToken');
         const response = await fetch(`/api/comments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify(newComment),
         });

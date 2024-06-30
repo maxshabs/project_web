@@ -1,3 +1,5 @@
+// src/comment/Comment.js
+
 import React, { useState, useEffect } from 'react';
 import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
@@ -41,10 +43,12 @@ function Comment({ _id, text, username, displayName, date, img, onUpdate , logge
     setDisliked(false);
 
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/${_id}/like`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
       });
@@ -65,14 +69,15 @@ function Comment({ _id, text, username, displayName, date, img, onUpdate , logge
     setLiked(false);
 
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/${_id}/dislike`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ userDisplayName: loggedInUser.displayName }),
       });
-      onUpdate();
       if (response.ok) {
         onUpdate(); // Refresh comments to update dislikes
       } else {
@@ -91,10 +96,12 @@ function Comment({ _id, text, username, displayName, date, img, onUpdate , logge
   // Handling a save button click
   const handleEditSaveClick = async () => {
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/users/${_id}/comments`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         
         body: JSON.stringify({ id: _id , text: editText }),
@@ -113,8 +120,13 @@ function Comment({ _id, text, username, displayName, date, img, onUpdate , logge
   // Handling a delete button click
   const handleDeleteClick = async () => {
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/users/${_id}/comments`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
       });
       if (response.ok) {
         onUpdate();

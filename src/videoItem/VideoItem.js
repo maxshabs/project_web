@@ -22,7 +22,7 @@ function VideoItem({ _id, title, author, views, img, uploadTime, loggedInUser, h
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{author}</p>
           <p className="card-text">{views} views - {displayTime}</p>
-          {loggedInUser && (
+          {loggedInUser && loggedInUser.displayName === author && (
             <div className="video-actions">
               <button onClick={() => handleDeleteVideo(_id)} className="btn" id="delete-btn"><i className="bi bi-trash3"></i></button>
               <Link to={`/edit-video/${_id}`} className="btn" id="edit-btn"><i className="bi bi-pencil"></i></Link>

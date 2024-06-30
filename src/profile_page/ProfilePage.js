@@ -19,21 +19,11 @@ const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser, videos, 
   const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const userData = await fetchUser();
-        setUser(userData);
-        setUsername(userData.username);
-        setDisplayName(userData.displayName);
-        setProfilePicture(userData.profilePicture);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-        setErrorMessage(error.message);
-      }
-    };
-
-    getUser();
-  }, [fetchUser]);
+    setUser(loggedInUser);
+    setUsername(loggedInUser.username);
+    setDisplayName(loggedInUser.displayName);
+    setProfilePicture(loggedInUser.profilePicture);
+  }, [loggedInUser]);
 
   const handleProfilePicture = (e) => {
     const file = e.target.files[0];
