@@ -3,7 +3,7 @@ import './Comment.css';
 import { ReactComponent as Like } from '../ActionsBar/like.svg';
 import { ReactComponent as Dislike } from '../ActionsBar/dislike.svg';
 
-function Comment({ _id, text, username, date, img, onUpdate , loggedInUser, calculateTimeAgo, likes , dislikes }) {
+function Comment({ _id, text, username, displayName, date, img, onUpdate , loggedInUser, calculateTimeAgo, likes , dislikes }) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -133,7 +133,7 @@ function Comment({ _id, text, username, date, img, onUpdate , loggedInUser, calc
     <div className='commentContainer'>
       <img src={img} className="userPicture" alt='' />
       <div className="commentText">
-        <p>{username} - {displayTime}</p>
+        <p>{displayName} - {displayTime}</p>
         {isEditing ? (
           <input
             className='editTextField'
@@ -158,8 +158,8 @@ function Comment({ _id, text, username, date, img, onUpdate , loggedInUser, calc
           >
             <Dislike />
           </button>
-          {/* allow user to perform actions only on his own comments (if comment username matches user displayname) */}
-          {loggedInUser && loggedInUser.displayName === username && (
+          {/* allow user to perform actions only on his own comments (if comment displayname matches user displayname) */}
+          {loggedInUser && loggedInUser.displayName === displayName && (
             <>
               {isEditing ? (
                 <button className='comment-button' onClick={handleEditSaveClick}>Save</button>
