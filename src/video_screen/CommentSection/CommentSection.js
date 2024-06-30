@@ -51,12 +51,13 @@ function CommentSection({ videoId, loggedInUser, calculateTimeAgo }) {
     if (commentText) {
       const newComment = {
         text: commentText,
-        username: loggedInUser.displayName,
+        userName: loggedInUser.username,
+        userDisplayName: loggedInUser.displayName,
         date: new Date().toISOString(),
         img: loggedInUser.profilePicture,
         videoId,
       };
-
+      console.log("object:", newComment)
       try {
         const token = localStorage.getItem('jwtToken');
         const response = await fetch(`/api/comments`, {
