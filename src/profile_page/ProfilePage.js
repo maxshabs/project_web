@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 
-const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser }) => {
+const ProfilePage = ({ loggedInUser, updateUser, deleteUser, setLoggedInUser }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(loggedInUser);
   const [username, setUsername] = useState(loggedInUser.username);
@@ -14,21 +14,11 @@ const ProfilePage = ({ loggedInUser, fetchUser, updateUser, deleteUser }) => {
   const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const userData = await fetchUser();
-        setUser(userData);
-        setUsername(userData.username);
-        setDisplayName(userData.displayName);
-        setProfilePicture(userData.profilePicture);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-        setErrorMessage(error.message);
-      }
-    };
-
-    getUser();
-  }, [fetchUser]);
+    setUser(loggedInUser);
+    setUsername(loggedInUser.username);
+    setDisplayName(loggedInUser.displayName);
+    setProfilePicture(loggedInUser.profilePicture);
+  }, [loggedInUser]);
 
   const handleProfilePicture = (e) => {
     const file = e.target.files[0];
