@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 
-const ProfilePage = ({ loggedInUser, updateUser, deleteUser, setLoggedInUser }) => {
+const ProfilePage = ({ loggedInUser, updateUser, deleteUser }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(loggedInUser);
   const [username, setUsername] = useState(loggedInUser.username);
