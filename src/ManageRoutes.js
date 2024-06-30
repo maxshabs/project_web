@@ -135,6 +135,35 @@ const ManageRoutes = () => {
       if (response.ok) {
         const user = await response.json();
         setLoggedInUser(user); // Update the logged-in user state
+        const fetchUpdatedVideos = async () => {
+          const response = await fetch('http://localhost:12345/api/videos', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          setAllVideos(data);
+          setVideoList(data);
+        };
+    
+        fetchUpdatedVideos();
+
+        const fetchComments = async () => {
+          try {
+            const response = await fetch('http://localhost:12345/api/comments');
+            if (!response.ok) {
+              throw new Error('Failed to fetch comments');
+            }
+            const data = await response.json();
+            setComments(data); // Assuming data is an array of comments
+          } catch (error) {
+            console.error('Error fetching comments:', error);
+            // Handle error state or retry logic
+          }
+        };
+
+        fetchComments();
         return null;
       } else {
         const errorData = await response.json();
@@ -159,12 +188,42 @@ const ManageRoutes = () => {
   
       if (response.ok) {
         setLoggedInUser(null);
+        const fetchUpdatedVideos = async () => {
+          const response = await fetch('http://localhost:12345/api/videos', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          setAllVideos(data);
+          setVideoList(data);
+        };
+    
+        fetchUpdatedVideos();
+
+        const fetchComments = async () => {
+          try {
+            const response = await fetch('http://localhost:12345/api/comments');
+            if (!response.ok) {
+              throw new Error('Failed to fetch comments');
+            }
+            const data = await response.json();
+            setComments(data); // Assuming data is an array of comments
+          } catch (error) {
+            console.error('Error fetching comments:', error);
+            // Handle error state or retry logic
+          }
+        };
+
+        fetchComments();
         localStorage.removeItem('jwtToken');
         return null;
       } else {
         const errorData = await response.json();
         return errorData.errors ? errorData.errors.join(', ') : 'Failed to delete user';
       }
+
     } catch (error) {
       console.error('Error deleting user:', error);
       return 'Failed to delete user';
