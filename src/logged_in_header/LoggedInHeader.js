@@ -1,4 +1,3 @@
-// src/logged_in_header/LoggedInHeader.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './LoggedInHeader.module.css';
@@ -24,8 +23,10 @@ const LoggedInHeader = ({ loggedInUser, doSearch, toggleTheme, theme, signOutUse
         <> 
           <Link to={"/upload-video"} className={styles.button}><i className="bi bi-plus-circle"></i></Link>
           <ThemeSwitchButton toggleTheme={toggleTheme} theme={theme} className={styles.button}/>
-          <img src={loggedInUser.profilePicture} alt="Profile" className={styles.profilePicture} />
-          <span>Hello, {loggedInUser.displayName}!</span>
+          <Link to={`/profile`} className={styles.profileLink}>
+            <img src={loggedInUser.profilePicture} alt="Profile" className={styles.profilePicture} />
+            <span>Hello, {loggedInUser.displayName}!</span>
+          </Link>
           <Link to="/main" className={styles.button} onClick={onSignOut}><i className="bi bi-box-arrow-right"></i> Sign Out </Link>
         </> :
         <>

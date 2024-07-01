@@ -1,4 +1,4 @@
-/* src/logged_in_header/loggedInHeader.module.css */
+/* src/logged_in_header/LoggedInHeader.module.css */
 .loggedInHeader {
   background-color: var(--background-color);
   font-size: 16px;
@@ -13,6 +13,7 @@
   color: var(--text-color);
   margin-top: 10px;
   margin-right: 10px;
+  text-decoration: none; /* Remove underline */
 }
 
 .logoContainer {
@@ -63,4 +64,15 @@
 .button:hover {
   background-color: #007bff;
   color: white;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove underline from the link */
+  transition: transform 0.2s; /* Add transition for the pop-out effect */
+}
+
+.profileLink:hover {
+  transform: scale(1.05); /* Slightly increase size on hover */
 }

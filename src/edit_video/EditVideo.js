@@ -1,4 +1,3 @@
-// src/edit_video/EditVideo.js
 import React, { useState, useEffect } from "react";
 import "./EditVideo.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -9,45 +8,57 @@ const EditVideo = ({ handleEditVideo, videos }) => {
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [author, setAuthor] = useState('');
-  const [authorImage, setAuthorImage] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [author, setAuthor] = useState('');
+  const [username, setUsername] = useState('');
+  const [uploadTime, setUploadTime] = useState('');
+  const [authorImage, setAuthorImage] = useState('');
+
   useEffect(() => {
-    const videoToEdit = videos.find(video => video.id === id);
+    const videoToEdit = videos.find(video => video._id === id);
     if (videoToEdit) {
       setTitle(videoToEdit.title);
       setDescription(videoToEdit.description);
+      setImageFile(null); // Reset image file
+      setVideoFile(null); // Reset video file
       setAuthor(videoToEdit.author);
+      setUsername(videoToEdit.username);
+      setUploadTime(videoToEdit.uploadTime);
       setAuthorImage(videoToEdit.authorImage);
-      setImageFile(videoToEdit.img);
-      setVideoFile(videoToEdit.video);
     }
   }, [id, videos]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !description || !imageFile || !videoFile) {
-      setErrorMessage('All fields are required.');
+    if (!title || !description) {
+      setErrorMessage('Title and description are required.');
       return;
     }
 
-    const editedVideo = {
-      id,
-      title,
-      description,
-      author,
-      views: videos.find(video => video.id === id).views,
-      img: typeof imageFile === 'string' ? imageFile : URL.createObjectURL(imageFile),
-      video: typeof videoFile === 'string' ? videoFile : URL.createObjectURL(videoFile),
-      uploadTime: videos.find(video => video.id === id).uploadTime,
-      authorImage
-    };
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('author', author);
+    formData.append('username', username);
+    if (imageFile) {
+      formData.append('img', imageFile);
+    }
+    if (videoFile) {
+      formData.append('video', videoFile);
+    }
+    formData.append('uploadTime', uploadTime);
+    formData.append('authorImage', authorImage);
 
-    handleEditVideo(editedVideo);
-    navigate('/main');
+    try {
+      await handleEditVideo(id, formData);
+      navigate('/main');
+    } catch (error) {
+      console.error('Error editing video:', error);
+      setErrorMessage('Error editing video.');
+    }
   };
 
   return (

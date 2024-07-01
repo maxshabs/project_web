@@ -11,27 +11,30 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
   const [videoFile, setVideoFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !description || !imageFile || !videoFile) {
       setErrorMessage('All fields are required.');
       return;
     }
 
-    const newVideo = {
-      id: videos[videos.length - 1].id + 1,
-      title,
-      description,
-      author: loggedInUser.displayName,
-      views: "0",
-      img: URL.createObjectURL(imageFile),
-      video: URL.createObjectURL(videoFile),
-      uploadTime: new Date().toISOString(), // Store the upload time in ISO format
-      authorImage: loggedInUser.profilePicture
-    };
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('author', loggedInUser.displayName);
+    formData.append('username', loggedInUser.username);
+    formData.append('img', imageFile);
+    formData.append('video', videoFile);
+    formData.append('uploadTime', new Date().toISOString());
+    formData.append('authorImage', loggedInUser.profilePicture);
 
-    handleUploadVideo(newVideo);
-    navigate('/main');
+    try {
+      await handleUploadVideo(formData);
+      navigate('/main');
+    } catch (error) {
+      console.error('Error uploading video:', error);
+      setErrorMessage('Error uploading video.');
+    }
   };
 
   return (

@@ -15,8 +15,7 @@ function VideoItem({ _id, title, author, views, img, uploadTime, loggedInUser, h
   }, [uploadTime, calculateTimeAgo]);
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6" id="">
-      <div className="card">
+      <div className="card-for-userpage">
         <Link to={`/videos/${_id}`}><img src={img} className="card-img-top" alt="..."></img></Link>
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
@@ -30,7 +29,6 @@ function VideoItem({ _id, title, author, views, img, uploadTime, loggedInUser, h
           )}
         </div>
       </div>
-    </div>
   );
 }
 

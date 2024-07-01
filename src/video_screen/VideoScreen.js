@@ -10,8 +10,6 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
   const { id } = useParams(); // Get the video ID from the URL params
 
   const [currentVideo, setCurrentVideo] = useState(null);
-  const [isLiked, setIsLiked] = useState(false);
-  const [isDisliked, setIsDisliked] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [displayTime, setDisplayTime] = useState('');
 
@@ -25,14 +23,21 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
   };
 
   useEffect(() => {
-    const video = videos.find((video) => video.id === id);
-    setCurrentVideo(video);
+    const fetchVideo = async () => {
+      try {
+        const response = await fetch(`http://localhost:12345/api/videos/${id}`);
+        if (!response.ok) {
+          throw new Error('Video not found');
+        }
+        const data = await response.json();
+        setCurrentVideo(data);
+      } catch (error) {
+        console.error('Error fetching video:', error);
+      }
+    };
 
-    // Reset button states when a new video is loaded
-    setIsLiked(false);
-    setIsDisliked(false);
-    setIsSubscribed(false);
-  }, [id, videos]);
+    fetchVideo();
+  }, [id]);
 
   useEffect(() => {
     if (currentVideo) {
@@ -41,20 +46,24 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
         setDisplayTime(calculateTimeAgo(currentVideo.uploadTime));
       }, 60000); // Update every minute
 
-      return () => clearInterval(interval); // Cleanup interval on component unmount
+      return () => clearInterval(interval);
     }
   }, [currentVideo, calculateTimeAgo]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top whenever the video ID changes
+  }, [id]);
 
   if (!currentVideo) {
     return <div></div>;
   }
 
-  // Filter out the current video from the list of videos
-  const sideVideos = videos.filter((video) => video.id !== id);
+  // adding videos to side list which arent the main video
+  const sideVideos = videos.filter((video) => video._id !== id);
 
   const sideVideoList = sideVideos.map((video, key) => (
     <SideVideo
-      id={video.id}
+      id={video._id}
       title={video.title}
       author={video.author}
       views={video.views}
@@ -79,19 +88,19 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
                 className="action-bar"
                 userName={currentVideo.author}
                 img={currentVideo.authorImage}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
-                isDisliked={isDisliked}
-                setIsDisliked={setIsDisliked}
+                likes={currentVideo.likes}
+                dislikes={currentVideo.dislikes}
                 isSubscribed={isSubscribed}
                 setIsSubscribed={setIsSubscribed}
+                videoId={currentVideo._id} //can also pass id variable from url if needed
+                loggedInUser={loggedInUser}
               />
               <div id="description">
                 <div id="stats">{currentVideo.views} views - {displayTime}</div>
                 <div>{currentVideo.description}</div>
               </div>
               <CommentSection
-                videoId={currentVideo.id}
+                videoId={currentVideo._id}
                 initialComments={comments}
                 updateComments={updateComments}
                 loggedInUser={loggedInUser}
