@@ -98,7 +98,7 @@ const ManageRoutes = () => {
         localStorage.setItem('jwtToken', data.token); // Store the token
 
         // Fetch the most recent user information
-        const user = await fetchUser(data.user.username);
+        const user = await fetchUser(username);
         setLoggedInUser(user); // Set the full user object in state
 
         return data;
