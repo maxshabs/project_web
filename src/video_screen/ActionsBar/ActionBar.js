@@ -15,6 +15,15 @@ function ActionBar({ userName, img, likes, dislikes, isSubscribed, setIsSubscrib
   const [isDisliked, setIsDisliked] = useState(false);
   const userProfileLink = loggedInUser && userName === loggedInUser.displayName ? '/profile' : `/profile/${userName}`;
 
+  // Setting the like/dislike state
+  useEffect(() => {
+    if (loggedInUser) {
+      setIsLiked(likes.includes(loggedInUser.displayName));
+      setIsDisliked(dislikes.includes(loggedInUser.displayName));
+    }
+  }, [loggedInUser, likes, dislikes]);
+
+
   // Handling a like click on video
   const handleLikeClick = async () => {
     if (!loggedInUser) return;
