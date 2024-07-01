@@ -22,6 +22,25 @@ const ManageRoutes = () => {
   const [displayTimes, setDisplayTimes] = useState({});
 
   useEffect(() => {
+    const fetchAllVideos = async () => {
+      try {
+        const response = await fetch('http://localhost:12345/api/allvideos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setAllVideos(data);
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      }
+    };
+
+    fetchAllVideos();
+  }, []);
+
+  useEffect(() => {
     const fetchVideos = async () => {
       try {
         const response = await fetch('http://localhost:12345/api/videos', {
@@ -31,7 +50,6 @@ const ManageRoutes = () => {
           },
         });
         const data = await response.json();
-        setAllVideos(data);
         setVideoList(data);
       } catch (error) {
         console.error('Error fetching videos:', error);
@@ -467,7 +485,7 @@ const handleEditVideo = async (id, formData) => {
           loggedInUser && (
             <>
               <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
-              <ProfilePage loggedInUser={loggedInUser} fetchUser={fetchUser} updateUser={updateUser} deleteUser={deleteUser} videos={allVideos} calculateTimeAgo={calculateTimeAgo} />
+              <ProfilePage loggedInUser={loggedInUser} fetchUser={fetchUser} handleDeleteVideo={handleDeleteVideo} updateUser={updateUser} deleteUser={deleteUser} videos={allVideos} calculateTimeAgo={calculateTimeAgo} />
             </>
           )
         }
