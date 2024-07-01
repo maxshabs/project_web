@@ -23,7 +23,7 @@ const LoggedInHeader = ({ loggedInUser, doSearch, toggleTheme, theme, signOutUse
         <> 
           <Link to={"/upload-video"} className={styles.button}><i className="bi bi-plus-circle"></i></Link>
           <ThemeSwitchButton toggleTheme={toggleTheme} theme={theme} className={styles.button}/>
-          <Link to={`/profile`}>
+          <Link to={`/profile`} className={styles.profileLink}>
             <img src={loggedInUser.profilePicture} alt="Profile" className={styles.profilePicture} />
             <span>Hello, {loggedInUser.displayName}!</span>
           </Link>
