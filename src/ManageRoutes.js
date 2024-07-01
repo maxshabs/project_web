@@ -22,6 +22,25 @@ const ManageRoutes = () => {
   const [displayTimes, setDisplayTimes] = useState({});
 
   useEffect(() => {
+    const fetchAllVideos = async () => {
+      try {
+        const response = await fetch('http://localhost:12345/api/allvideos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setAllVideos(data);
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      }
+    };
+
+    fetchAllVideos();
+  }, []);
+
+  useEffect(() => {
     const fetchVideos = async () => {
       try {
         const response = await fetch('http://localhost:12345/api/videos', {
@@ -31,7 +50,6 @@ const ManageRoutes = () => {
           },
         });
         const data = await response.json();
-        setAllVideos(data);
         setVideoList(data);
       } catch (error) {
         console.error('Error fetching videos:', error);
@@ -80,7 +98,7 @@ const ManageRoutes = () => {
         localStorage.setItem('jwtToken', data.token); // Store the token
 
         // Fetch the most recent user information
-        const user = await fetchUser(username);
+        const user = await fetchUser(data.user.username);
         setLoggedInUser(user); // Set the full user object in state
 
         return data;
