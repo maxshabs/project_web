@@ -409,7 +409,7 @@ const ManageRoutes = () => {
           loggedInUser && (
             <>
               <LoggedInHeader loggedInUser={loggedInUser} doSearch={doSearch} toggleTheme={toggleTheme} theme={theme} signOutUser={signOutUser} />
-              <ProfilePage loggedInUser={loggedInUser} fetchUser={fetchUser} updateUser={updateUser} deleteUser={deleteUser} videos={allVideos} calculateTimeAgo={calculateTimeAgo} />
+              <ProfilePage loggedInUser={loggedInUser} fetchUser={fetchUser} handleDeleteVideo={handleDeleteVideo} updateUser={updateUser} deleteUser={deleteUser} videos={allVideos} calculateTimeAgo={calculateTimeAgo} />
             </>
           )
         }

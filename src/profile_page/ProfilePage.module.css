@@ -104,3 +104,7 @@
   padding: 0.75rem 1.5rem; /* Standard padding */
   margin-right: 50px;
 }
+
+#user-video-list {
+  width: 300px;
+}
