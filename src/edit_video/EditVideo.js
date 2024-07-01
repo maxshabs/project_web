@@ -1,4 +1,3 @@
-// src/edit_video/EditVideo.js
 import React, { useState, useEffect } from "react";
 import "./EditVideo.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -23,8 +22,8 @@ const EditVideo = ({ handleEditVideo, videos }) => {
     if (videoToEdit) {
       setTitle(videoToEdit.title);
       setDescription(videoToEdit.description);
-      setImageFile(videoToEdit.img);
-      setVideoFile(videoToEdit.video);
+      setImageFile(null); // Reset image file
+      setVideoFile(null); // Reset video file
       setAuthor(videoToEdit.author);
       setUsername(videoToEdit.username);
       setUploadTime(videoToEdit.uploadTime);
@@ -32,38 +31,29 @@ const EditVideo = ({ handleEditVideo, videos }) => {
     }
   }, [id, videos]);
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !description || !imageFile || !videoFile) {
-      setErrorMessage('All fields are required.');
+    if (!title || !description) {
+      setErrorMessage('Title and description are required.');
       return;
     }
 
-    try {
-      const imgBase64 = typeof imageFile === 'string' ? imageFile : await convertToBase64(imageFile);
-      const videoBase64 = typeof videoFile === 'string' ? videoFile : await convertToBase64(videoFile);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('author', author);
+    formData.append('username', username);
+    if (imageFile) {
+      formData.append('img', imageFile);
+    }
+    if (videoFile) {
+      formData.append('video', videoFile);
+    }
+    formData.append('uploadTime', uploadTime);
+    formData.append('authorImage', authorImage);
 
-      const editedVideo = {
-        title,
-        description,
-        author,
-        username,
-        img: imgBase64,
-        video: videoBase64,
-        uploadTime,
-        authorImage
-      };
-      
-      await handleEditVideo(id, editedVideo);
+    try {
+      await handleEditVideo(id, formData);
       navigate('/main');
     } catch (error) {
       console.error('Error editing video:', error);
