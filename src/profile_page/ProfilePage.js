@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import SideVideo from '../video_screen/SideVideo/SideVideo';
+import VideoItemUserPage from "../videoItem/VideoItemUserPage";
 
 
-const ProfilePage = ({ loggedInUser, updateUser, deleteUser, videos, calculateTimeAgo }) => {
+const ProfilePage = ({ loggedInUser, fetchUser, handleDeleteVideo, updateUser, deleteUser, videos, calculateTimeAgo }) => {
   const { clickedDisplayName } = useParams();
 
   const navigate = useNavigate();
@@ -84,13 +85,16 @@ const ProfilePage = ({ loggedInUser, updateUser, deleteUser, videos, calculateTi
   const userVideos = videos.filter((video) => video.author === loggedInUser.displayName);
 
   const userVideoList = userVideos.map((video, key) => (
-    <SideVideo
-      id={video._id}
+    <VideoItemUserPage
+      _id={video._id}
       title={video.title}
       author={video.author}
       views={video.views}
       img={video.img}
-      date={calculateTimeAgo(video.uploadTime)}
+      uploadTime={video.uploadTime}
+      loggedInUser={loggedInUser}
+      handleDeleteVideo={handleDeleteVideo}
+      calculateTimeAgo={calculateTimeAgo}
       key={key}
     />
   ));
@@ -126,7 +130,7 @@ const ProfilePage = ({ loggedInUser, updateUser, deleteUser, videos, calculateTi
       </div>
       <div className={styles.rightColumn}>
         <h1 className={styles.sectionTitle}>Your Videos</h1>
-        <div>{userVideoList}</div>
+        <div id="user-video-list">{userVideoList}</div>
       </div>
     </div>
   );
