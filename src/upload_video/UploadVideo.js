@@ -11,15 +11,6 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
   const [videoFile, setVideoFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !description || !imageFile || !videoFile) {
@@ -27,22 +18,18 @@ const UploadVideo = ({ handleUploadVideo, loggedInUser, videos }) => {
       return;
     }
 
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('author', loggedInUser.displayName);
+    formData.append('username', loggedInUser.username);
+    formData.append('img', imageFile);
+    formData.append('video', videoFile);
+    formData.append('uploadTime', new Date().toISOString());
+    formData.append('authorImage', loggedInUser.profilePicture);
+
     try {
-      const imgBase64 = await convertToBase64(imageFile);
-      const videoBase64 = await convertToBase64(videoFile);
-
-      const newVideo = {
-        title,
-        description,
-        author: loggedInUser.displayName,
-        username: loggedInUser.username,
-        img: imgBase64,
-        video: videoBase64,
-        uploadTime: new Date().toISOString(), // Store the upload time in ISO format
-        authorImage: loggedInUser.profilePicture
-      };
-
-      await handleUploadVideo(newVideo);
+      await handleUploadVideo(formData);
       navigate('/main');
     } catch (error) {
       console.error('Error uploading video:', error);

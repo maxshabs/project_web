@@ -50,6 +50,10 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
     }
   }, [currentVideo, calculateTimeAgo]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top whenever the video ID changes
+  }, [id]);
+
   if (!currentVideo) {
     return <div></div>;
   }

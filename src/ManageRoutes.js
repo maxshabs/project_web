@@ -240,16 +240,15 @@ const ManageRoutes = () => {
     }
   };
 
-  const handleUploadVideo = async (newVideo) => {
+  const handleUploadVideo = async (formData) => {
     try {
       const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(newVideo),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -275,16 +274,15 @@ const ManageRoutes = () => {
     }
   };
 
-  const handleEditVideo = async (id, editedVideo) => {
+const handleEditVideo = async (id, formData) => {
     try {
       const token = localStorage.getItem('jwtToken');
       const response = await fetch(`http://localhost:12345/api/users/${loggedInUser.username}/videos/${id}`, {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(editedVideo),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -309,6 +307,7 @@ const ManageRoutes = () => {
       console.error('Error editing video:', error);
     }
   };
+
 
   const handleDeleteVideo = async (id) => {
     try {
