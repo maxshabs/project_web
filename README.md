@@ -1,6 +1,8 @@
 # VidTube-Web app
 <img src="/Web-app-Screenshots/logo_vidtube.png" alt="Example Image" width="300">
 
+NOTE: this branch is for part 1 of the project, for the frontend that is adjusted to work with the server (part 2 of the project), go to branch "master-part2".
+
 The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
 This Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
 
