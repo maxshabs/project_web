@@ -28,6 +28,16 @@ We started off by watching Hemi's videos in the moodle, they helped us in buildi
 ## Web App Features:
 * After running `npm start` the localhost will open in the browser and you will be brought to the **Home page**
 
+### NEW!
+* You can now delete your account or edit your user details in your profile page, you can access it by clicking your name in the header on the top right of the screen.
+in this page you can also view, delete or edit (redirects to edit page) your videos!
+
+* in the watch video screen, clicking the uploaders image or name will take you to his profile page where you can see more videos that he uploaded.
+
+* Users can now edit and delete only their own comments and videos.
+
+----------------------------------------------------------------------------------
+
 * The **Home page** contains many exciting features such as:
     * A video list displaying some of the videos on the platform
     * A search bar where you can filter videos by title
@@ -77,17 +87,15 @@ We started off by watching Hemi's videos in the moodle, they helped us in buildi
 ![Alt text](/Web-app-Screenshots/Screenshot_1.jpg)
 
 ## Home Page (logged in):
-![Alt text](/Web-app-Screenshots/Screenshot_2.png)
+![Alt text](/Web-app-Screenshots/Screenshot_2.jpg)
 
 ## Home Page (Dark mode):
-![Alt text](/Web-app-Screenshots/Screenshot_3.png)
+![Alt text](/Web-app-Screenshots/Screenshot_3.jpg)
 
 ## Upload-Video Page:
 ![Alt text](/Web-app-Screenshots/Screenshot_4.png)
 -----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_24.png)
------------------------------------------------------
-![Alt text](/Web-app-Screenshots/Screenshot_25.png)
 -----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_26.png)
 
@@ -112,20 +120,22 @@ We started off by watching Hemi's videos in the moodle, they helped us in buildi
 ![Alt text](/Web-app-Screenshots/Screenshot_12.png)
 
 ## Watch-Video Page Comment section (Comment, like, dislike, edit, delete):
-![Alt text](/Web-app-Screenshots/Screenshot_13.png)
+![Alt text](/Web-app-Screenshots/Screenshot_91.jpg)
 -----------------------------------------------------
-![Alt text](/Web-app-Screenshots/Screenshot_14.png)
+![Alt text](/Web-app-Screenshots/Screenshot_92.jpg)
 -----------------------------------------------------
-![Alt text](/Web-app-Screenshots/Screenshot_15.png)
+![Alt text](/Web-app-Screenshots/Screenshot_93.jpg)
 -----------------------------------------------------
-![Alt text](/Web-app-Screenshots/Screenshot_16.png)
+![Alt text](/Web-app-Screenshots/Screenshot_94.jpg)
 -----------------------------------------------------
-![Alt text](/Web-app-Screenshots/Screenshot_17.png)
+![Alt text](/Web-app-Screenshots/Screenshot_95.jpg)
+-----------------------------------------------------
+![Alt text](/Web-app-Screenshots/Screenshot_96.jpg)
+-----------------------------------------------------
+![Alt text](/Web-app-Screenshots/Screenshot_97.jpg)
 
 ## Edit-Video Page (and editing a video):
 ![Alt text](/Web-app-Screenshots/Screenshot_18.png)
------------------------------------------------------
-![Alt text](/Web-app-Screenshots/Screenshot_19.png)
 
 ## Edit-Video Page (Dark Mode):
 ![Alt text](/Web-app-Screenshots/Screenshot_20.png)
@@ -137,4 +147,8 @@ We started off by watching Hemi's videos in the moodle, they helped us in buildi
 -----------------------------------------------------
 ![Alt text](/Web-app-Screenshots/Screenshot_23.png)
 
+## User Profile Page (for himself):
+![Alt text](/Web-app-Screenshots/Screenshot_40.jpg)
 
+## User Profile page (other users):
+![Alt text](/Web-app-Screenshots/Screenshot_41.jpg)
