@@ -6,10 +6,11 @@ import CommentSection from './CommentSection/CommentSection';
 import ActionBar from './ActionsBar/ActionBar';
 import LeftMenu from '../leftMenu/LeftMenu';
 
-const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTimeAgo, displayTimes }) => {
+const VideoScreen = ({ loggedInUser, comments, setComments, calculateTimeAgo }) => {
   const { id } = useParams(); // Get the video ID from the URL params
 
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [sideVideos, setSideVideos] = useState([]);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [displayTime, setDisplayTime] = useState('');
 
@@ -22,6 +23,7 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
     setComments(updatedComments); // Update the comments in the parent component
   };
 
+  // Fetch the current video data
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -39,6 +41,36 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
     fetchVideo();
   }, [id]);
 
+  // Fetch recommended videos after the current video is loaded
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        if (!currentVideo) return;
+
+        // Send a request to the Node.js server for recommendations
+        const response = await fetch(`http://localhost:12345/api/videos/${id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ userId: loggedInUser._id, videoId: id })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch recommendations');
+        }
+
+        const recommendedVideos = await response.json();
+        setSideVideos(recommendedVideos); // Update the side videos with recommended videos
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+      }
+    };
+
+    fetchRecommendations();
+  }, [currentVideo, id, loggedInUser.id]);
+
+  // Update display time for the current video
   useEffect(() => {
     if (currentVideo) {
       setDisplayTime(calculateTimeAgo(currentVideo.uploadTime));
@@ -55,11 +87,8 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
   }, [id]);
 
   if (!currentVideo) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
-
-  // adding videos to side list which arent the main video
-  const sideVideos = videos.filter((video) => video._id !== id);
 
   const sideVideoList = sideVideos.map((video, key) => (
     <SideVideo
@@ -81,32 +110,30 @@ const VideoScreen = ({ loggedInUser, videos, comments, setComments, calculateTim
         </div>
         <div className="col-7">
           <div>
-            <div>
-              <video className="thumbnail" controls autoPlay src={currentVideo.video}></video>
-              <div id="title">{currentVideo.title}</div>
-              <ActionBar
-                className="action-bar"
-                userName={currentVideo.author}
-                img={currentVideo.authorImage}
-                likes={currentVideo.likes}
-                dislikes={currentVideo.dislikes}
-                isSubscribed={isSubscribed}
-                setIsSubscribed={setIsSubscribed}
-                videoId={currentVideo._id} //can also pass id variable from url if needed
-                loggedInUser={loggedInUser}
-              />
-              <div id="description">
-                <div id="stats">{currentVideo.views} views - {displayTime}</div>
-                <div>{currentVideo.description}</div>
-              </div>
-              <CommentSection
-                videoId={currentVideo._id}
-                initialComments={comments}
-                updateComments={updateComments}
-                loggedInUser={loggedInUser}
-                calculateTimeAgo={calculateTimeAgo}
-              />
+            <video className="thumbnail" controls autoPlay src={currentVideo.video}></video>
+            <div id="title">{currentVideo.title}</div>
+            <ActionBar
+              className="action-bar"
+              userName={currentVideo.author}
+              img={currentVideo.authorImage}
+              likes={currentVideo.likes}
+              dislikes={currentVideo.dislikes}
+              isSubscribed={isSubscribed}
+              setIsSubscribed={setIsSubscribed}
+              videoId={currentVideo._id}
+              loggedInUser={loggedInUser}
+            />
+            <div id="description">
+              <div id="stats">{currentVideo.views} views - {displayTime}</div>
+              <div>{currentVideo.description}</div>
             </div>
+            <CommentSection
+              videoId={currentVideo._id}
+              initialComments={comments}
+              updateComments={updateComments}
+              loggedInUser={loggedInUser}
+              calculateTimeAgo={calculateTimeAgo}
+            />
           </div>
         </div>
         <div className="col-3">
