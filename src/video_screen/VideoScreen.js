@@ -46,29 +46,48 @@ const VideoScreen = ({ loggedInUser, comments, setComments, calculateTimeAgo }) 
     const fetchRecommendations = async () => {
       try {
         if (!currentVideo) return;
-
-        // Send a request to the Node.js server for recommendations
-        const response = await fetch(`http://localhost:12345/api/videos/${id}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ userId: loggedInUser._id, videoId: id })
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch recommendations');
+        
+        if (loggedInUser != null){
+          // Send a request to the Node.js server for recommendations
+          const response = await fetch(`http://localhost:12345/api/videos/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId: loggedInUser._id, videoId: id })
+          });
+  
+          if (!response.ok) {
+            throw new Error('Failed to fetch recommendations');
+          }
+  
+          const recommendedVideos = await response.json();
+          setSideVideos(recommendedVideos); // Update the side videos with recommended videos
+        } else {
+          // Send a request to the Node.js server for recommendations
+          const response = await fetch(`http://localhost:12345/api/videos/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId: null, videoId: id })
+          });
+  
+          if (!response.ok) {
+            throw new Error('Failed to fetch recommendations');
+          }
+  
+          const recommendedVideos = await response.json();
+          setSideVideos(recommendedVideos); // Update the side videos with recommended videos
         }
-
-        const recommendedVideos = await response.json();
-        setSideVideos(recommendedVideos); // Update the side videos with recommended videos
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error fetching recommendations:', error);
       }
     };
 
     fetchRecommendations();
-  }, [currentVideo, id, loggedInUser.id]);
+  }, [currentVideo, id, loggedInUser?._id]);
 
   // Update display time for the current video
   useEffect(() => {
