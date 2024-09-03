@@ -1,7 +1,8 @@
 # VidTube-Web app
 <img src="/Web-app-Screenshots/logo_vidtube.png" alt="Example Image" width="300">
 
-NOTE: This is the branch for *part 4* of the project (the frontend for the server), so for this part you need the TCP server to run aswell (instructions for how to do this are in the wiki of the 4th and final part in the repo called "vidtube-part4").
+NOTE: This is the branch for *part 4* of the project (the frontend for the server), so for this part you need the TCP server to run aswell as the Node.js server (instructions for how to do this are in the wiki of the 4th and final part in the repo called "vidtube-part4").
+The viewing of this part of the project is in [http://localhost:12345](http://localhost:12345).
 
 The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
 This Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
