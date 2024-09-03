@@ -1,10 +1,11 @@
 # VidTube-Web app
 <img src="/Web-app-Screenshots/logo_vidtube.png" alt="Example Image" width="300">
 
+NOTE: This is the branch for part 2 of the project (the frontend for the server), so make sure you run the Node.js server aswell.
+The viewing of this part of the project is in [http://localhost:12345](http://localhost:12345).
+
 The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
 This Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
-
-NOTE: This is the branch for part 2 of the project (the frontend for the server)
 
 ## How To Run
 In order to run the Web app, start by cloning the repository to your IDE of choice, you can do this by opening the terminal and entering this command:
