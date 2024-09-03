@@ -4,9 +4,11 @@
 The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
 This Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
 
-NOTE: This is the branch for part 2 of the project (the frontend for the server)
+NOTE: This is the branch for *part 4* of the project (the frontend for the server)
 
 ## How To Run
+NOTE: you dont need to add the build from this frontend directory to the server (meaning that when you run the node.js server from it's repo you are good to go and don't need to do anything here), but if you do, make sure not to delete any of the photos and videos in the "public" folder in this project, or else the insertData.js script wont be able to add it's data.
+
 In order to run the Web app, start by cloning the repository to your IDE of choice, you can do this by opening the terminal and entering this command:
 `git clone https://github.com/maxshabs/project_web.git`
 
@@ -19,8 +21,6 @@ and wait for it to finish installing, afterwards run:
 which runs the app in the development mode.
 The app should open on your browser automatically, but if it doesn't,
 open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-NOTE: you dont need to add the build from this frontend directory to the server, but if you do, make sure not to delete any of the photos and videos in the "public" folder in this project, or else the insertData.js script wont be able to add it's data.
 
 ## Our work process:
 We started off by watching Hemi's videos in the moodle, they helped us in building a basis for the project, and then we continued on our own. Each of us had a responsibility for a different part of the project, Eyal's part was the sign-in, sign-up and upload video pages, Omri's part was the watch-video page and Max was responsible for the Home page. After everyone finished their pages we connected the pages, at the start it was difficult handling the logic behind the connectivity of the pages but we think we managed to do it on the best side. After finishing the site we tested the logic of it, and when we found bugs we fixed them and continued testing until there were no more bugs. While working on the project we used Jira to keep track of our tasks.
