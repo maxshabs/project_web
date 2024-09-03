@@ -1,10 +1,10 @@
 # VidTube-Web app
 <img src="/Web-app-Screenshots/logo_vidtube.png" alt="Example Image" width="300">
 
+NOTE: This is the branch for *part 4* of the project (the frontend for the server), so for this part you need the TCP server to run aswell (instructions for how to do this are in the wiki of the 4th and final part in the repo called "vidtube-part4").
+
 The VidTube app is a video sharing app, made for allowing users across the world to upload and share their video content, comment their thoughts and interact with each other.
 This Readme file contains an overview of the web app and its features, along with a guide on how to run it on your machine.
-
-NOTE: This is the branch for *part 4* of the project (the frontend for the server)
 
 ## How To Run
 NOTE: you dont need to add the build from this frontend directory to the server (meaning that when you run the node.js server from it's repo you are good to go and don't need to do anything here), but if you do, make sure not to delete any of the photos and videos in the "public" folder in this project, or else the insertData.js script wont be able to add it's data.
